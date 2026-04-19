@@ -56,11 +56,11 @@ function addUndoRedoButtons(workspace) {
   }
 
   // BOTONES
-  const undoBtn = createButton("/static/img/undo.png", 60, () =>
+  const undoBtn = createButton("./static/img/undo.png", 60, () =>
     workspace.undo(false),
   );
 
-  const redoBtn = createButton("/static/img/redo.png", 120, () =>
+  const redoBtn = createButton("./static/img/redo.png", 120, () =>
     workspace.undo(true),
   );
 

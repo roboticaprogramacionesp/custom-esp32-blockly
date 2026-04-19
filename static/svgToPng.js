@@ -33,7 +33,7 @@ function addScreenshotButton(workspace) {
   img.setAttributeNS(
     "http://www.w3.org/1999/xlink",
     "href",
-    "/static/img/camera.png", // 👈 cambia por tu icono
+    "./static/img/camera.png", // 👈 cambia por tu icono
   );
 
   g.appendChild(rect);
