@@ -1,0 +1,30 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="buzzer_tone" id="n_Cyfw8hY%S-P,5fMC*r" x="170" y="170">
+    <field name="PIN">0</field>
+    <field name="NOTE">31</field>
+    <value name="TIME">
+      <block type="math_arithmetic" id="fL[sap(5]]w2,cc7eES|">
+        <field name="OP">ADD</field>
+        <value name="B">
+          <block type="math_number" id="r@6ok?/8WxH/ozBxghzo">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+      </block>
+    </value>
+    <next>
+      <block type="wifi_connect" id="/%c2K)8ux6]vT!9#LJ;X">
+        <field name="SSID">MiWiFi</field>
+        <field name="PASS">12345678</field>
+        <next>
+          <block type="ble_set_name" id="OSKGTjr)q3b+,IH}5dV5">
+            <field name="BLE_NAME">P!t_Car_5</field>
+            <next>
+              <block type="portal_init" id=")QSCy+x1Sf#0rT%9L~d#"></block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

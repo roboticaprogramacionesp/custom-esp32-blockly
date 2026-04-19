@@ -1,0 +1,19 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="machine_reset" id="#;wGFpTl`ykSU91akov-" x="210" y="150">
+    <next>
+      <block type="pin_init_pull" id="L#@$H8!#CEptWpPuFm/y">
+        <field name="PIN">0</field>
+        <field name="MODE">Pin.PULL_DOWN</field>
+        <next>
+          <block type="text_print" id=",PZV~8Dz%;w4yH4A)ZLv">
+            <value name="TEXT">
+              <block type="math_arithmetic" id="hTg2VE.HA#zScg@sF8lS">
+                <field name="OP">ADD</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

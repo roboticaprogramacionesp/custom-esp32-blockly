@@ -1,0 +1,34 @@
+{
+  "name": "Mi Firmware Blockly",
+  "version": "1.0.0",
+  "new_install_prompt_erase": true,
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        {
+          "path": "ESP32_GENERIC.bin", 
+          "offset": 4096
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-S3",
+      "parts": [
+        {
+          "path": "ESP32_GENERIC_S3.bin",
+          "offset": 0
+        }
+      ]
+    },
+    {
+      "chipFamily": "ESP32-C3",
+      "parts": [
+        {
+          "path": "ESP32_GENERIC_C3.bin",
+          "offset": 0
+        }
+      ]
+    }
+  ]
+}
