@@ -2010,7 +2010,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/led_red.svg",
+              src: "./static/img/led_red.svg",
               width: 50,
               height: 50,
               alt: "LED RED",
@@ -2019,7 +2019,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/led_orange.svg",
+              src: "./static/img/led_orange.svg",
               width: 50,
               height: 50,
               alt: "LED ORANGE",
@@ -2028,7 +2028,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/led_green.svg",
+              src: "./static/img/led_green.svg",
               width: 50,
               height: 50,
               alt: "LED GREEN",
@@ -2037,7 +2037,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/led_yellow.svg",
+              src: "./static/img/led_yellow.svg",
               width: 50,
               height: 50,
               alt: "LED YELLOW",
@@ -2046,7 +2046,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/led_blue.svg",
+              src: "./static/img/led_blue.svg",
               width: 50,
               height: 50,
               alt: "LED BLUE",
@@ -2055,7 +2055,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/led_white.svg",
+              src: "./static/img/led_white.svg",
               width: 50,
               height: 50,
               alt: "LED WHITE",
@@ -2132,7 +2132,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/ky-011.svg",
+              src: "./static/img/ky-011.svg",
               width: 50,
               height: 50,
               alt: "KY-011",
@@ -2141,7 +2141,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-029.svg",
+              src: "./static/img/ky-029.svg",
               width: 50,
               height: 50,
               alt: "KY-029",
@@ -2256,7 +2256,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/ky-009.svg",
+              src: "./static/img/ky-009.svg",
               width: 50,
               height: 50,
               alt: "KY-009",
@@ -2265,7 +2265,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-016.svg",
+              src: "./static/img/ky-016.svg",
               width: 50,
               height: 50,
               alt: "KY-016",
@@ -2412,7 +2412,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "semaforo" },
       {
         type: "field_image",
-        src: "/static/img/semaforo.svg",
+        src: "./static/img/semaforo.svg",
         width: 50,
         height: 50,
         alt: "Semáforo",
@@ -2556,7 +2556,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "ir" },
       {
         type: "field_image",
-        src: "/static/img/ky-005.svg",
+        src: "./static/img/ky-005.svg",
         width: 50,
         height: 50,
         alt: "IR TX",
@@ -2621,7 +2621,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/ky-004.svg",
+              src: "./static/img/ky-004.svg",
               width: 50,
               height: 50,
               alt: "KY-004",
@@ -2630,7 +2630,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-002.svg",
+              src: "./static/img/ky-002.svg",
               width: 50,
               height: 50,
               alt: "KY-002",
@@ -2639,7 +2639,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-003.svg",
+              src: "./static/img/ky-003.svg",
               width: 50,
               height: 50,
               alt: "KY-003",
@@ -2648,7 +2648,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-010.svg",
+              src: "./static/img/ky-010.svg",
               width: 50,
               height: 50,
               alt: "KY-010",
@@ -2657,7 +2657,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-017.svg",
+              src: "./static/img/ky-017.svg",
               width: 50,
               height: 50,
               alt: "KY-017",
@@ -2666,7 +2666,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-020.svg",
+              src: "./static/img/ky-020.svg",
               width: 50,
               height: 50,
               alt: "KY-020",
@@ -2675,7 +2675,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-021.svg",
+              src: "./static/img/ky-021.svg",
               width: 50,
               height: 50,
               alt: "KY-021",
@@ -2684,7 +2684,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-031.svg",
+              src: "./static/img/ky-031.svg",
               width: 50,
               height: 50,
               alt: "KY-031",
@@ -2693,7 +2693,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/boton_tactil.svg",
+              src: "./static/img/boton_tactil.svg",
               width: 50,
               height: 50,
               alt: "ttp223",
@@ -2848,7 +2848,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/ky-001.svg",
+        src: "./static/img/ky-001.svg",
         width: 50,
         height: 50,
         alt: "Temperatura",
@@ -3015,7 +3015,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/ky-006.svg",
+        src: "./static/img/ky-006.svg",
         width: 50,
         height: 50,
         alt: "Buzzer",
@@ -3279,7 +3279,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/ky-015.svg",
+              src: "./static/img/ky-015.svg",
               width: 50,
               height: 50,
               alt: "DHT11",
@@ -3288,7 +3288,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/dht22.svg",
+              src: "./static/img/dht22.svg",
               width: 50,
               height: 50,
               alt: "DHT22",
@@ -3459,7 +3459,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/ADKeyboard.png",
+              src: "./static/img/ADKeyboard.png",
               width: 50,
               height: 50,
               alt: "ADKeyboard",
@@ -3468,7 +3468,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-013.svg",
+              src: "./static/img/ky-013.svg",
               width: 50,
               height: 50,
               alt: "KY-013",
@@ -3478,7 +3478,7 @@ Blockly.defineBlocksWithJsonArray([
 
           [
             {
-              src: "/static/img/ky-018.svg",
+              src: "./static/img/ky-018.svg",
               width: 50,
               height: 50,
               alt: "KY-018",
@@ -3487,7 +3487,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-035.svg",
+              src: "./static/img/ky-035.svg",
               width: 50,
               height: 50,
               alt: "KY-035",
@@ -3555,7 +3555,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "joystick" },
       {
         type: "field_image",
-        src: "/static/img/ky-023.svg",
+        src: "./static/img/ky-023.svg",
         width: 50,
         height: 50,
         alt: "JOYSTICK",
@@ -3693,7 +3693,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/pot_deslizable.svg",
+        src: "./static/img/pot_deslizable.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -3795,7 +3795,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/ky-024.svg",
+              src: "./static/img/ky-024.svg",
               width: 50,
               height: 50,
               alt: "KY024",
@@ -3804,7 +3804,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-026.svg",
+              src: "./static/img/ky-026.svg",
               width: 50,
               height: 50,
               alt: "KY026",
@@ -3813,7 +3813,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-027.svg",
+              src: "./static/img/ky-027.svg",
               width: 50,
               height: 50,
               alt: "KY027",
@@ -3822,7 +3822,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-028.svg",
+              src: "./static/img/ky-028.svg",
               width: 50,
               height: 50,
               alt: "KY028",
@@ -3832,7 +3832,7 @@ Blockly.defineBlocksWithJsonArray([
 
           [
             {
-              src: "/static/img/ky-036.svg",
+              src: "./static/img/ky-036.svg",
               width: 50,
               height: 50,
               alt: "KY036",
@@ -3842,7 +3842,7 @@ Blockly.defineBlocksWithJsonArray([
 
           [
             {
-              src: "/static/img/ky-037.svg",
+              src: "./static/img/ky-037.svg",
               width: 50,
               height: 50,
               alt: "KY037",
@@ -3851,7 +3851,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/mq2.svg",
+              src: "./static/img/mq2.svg",
               width: 50,
               height: 50,
               alt: "MQ2",
@@ -4026,7 +4026,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/ky-012.svg",
+              src: "./static/img/ky-012.svg",
               width: 50,
               height: 50,
               alt: "ky-012",
@@ -4035,7 +4035,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-019.svg",
+              src: "./static/img/ky-019.svg",
               width: 50,
               height: 50,
               alt: "ky-019",
@@ -4135,7 +4135,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "l298n" },
       {
         type: "field_image",
-        src: "/static/img/l298n.svg",
+        src: "./static/img/l298n.svg",
         width: 50,
         height: 50,
         alt: "M",
@@ -4325,7 +4325,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "l298n" },
       {
         type: "field_image",
-        src: "/static/img/l298n.svg",
+        src: "./static/img/l298n.svg",
         width: 50,
         height: 50,
         alt: "M",
@@ -4424,7 +4424,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "l298n" },
       {
         type: "field_image",
-        src: "/static/img/l298n.svg",
+        src: "./static/img/l298n.svg",
         width: 50,
         height: 50,
         alt: "M",
@@ -4560,7 +4560,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/servoSG90.svg",
+        src: "./static/img/servoSG90.svg",
         width: 50,
         height: 50,
         alt: "S",
@@ -4620,7 +4620,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "motor_pasos" },
       {
         type: "field_image",
-        src: "/static/img/28byj.svg",
+        src: "./static/img/28byj.svg",
         width: 50,
         height: 50,
         alt: "M",
@@ -4729,7 +4729,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/fc-51.svg",
+              src: "./static/img/fc-51.svg",
               width: 50,
               height: 50,
               alt: "FC-51",
@@ -4738,7 +4738,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/ky-033.svg",
+              src: "./static/img/ky-033.svg",
               width: 50,
               height: 50,
               alt: "ky-033",
@@ -4747,7 +4747,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/tcrt5000.svg",
+              src: "./static/img/tcrt5000.svg",
               width: 50,
               height: 50,
               alt: "tcrt5000",
@@ -4845,7 +4845,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "ultrasonico" },
       {
         type: "field_image",
-        src: "/static/img/hcsr04.svg",
+        src: "./static/img/hcsr04.svg",
         width: 50,
         height: 50,
         alt: "US",
@@ -4939,7 +4939,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/ky-022.svg",
+        src: "./static/img/ky-022.svg",
         width: 50,
         height: 50,
         alt: "IR",
@@ -5000,7 +5000,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/hc-06.svg",
+        src: "./static/img/hc-06.svg",
         width: 50,
         height: 50,
         alt: "BT",
@@ -5811,7 +5811,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/espwifi.png",
+        src: "./static/img/espwifi.png",
         width: 50,
         height: 50,
         alt: "W",
@@ -5845,7 +5845,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/espwifi.png",
+        src: "./static/img/espwifi.png",
         width: 50,
         height: 50,
         alt: "US",
@@ -5879,7 +5879,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/espwifi.png",
+        src: "./static/img/espwifi.png",
         width: 50,
         height: 50,
         alt: "AP",
@@ -6026,7 +6026,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/httpclient.png",
+        src: "./static/img/httpclient.png",
         width: 50,
         height: 50,
         alt: "US",
@@ -6226,7 +6226,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/espnow.png",
+        src: "./static/img/espnow.png",
         width: 50,
         height: 50,
         alt: "ESP-NOW",
@@ -6293,7 +6293,7 @@ Blockly.defineBlocksWithJsonArray([
     args0: [
       {
         type: "field_image",
-        src: "/static/img/ble_serial.png",
+        src: "./static/img/ble_serial.png",
         width: 50,
         height: 50,
         alt: "BLE",
@@ -6419,7 +6419,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/display7.svg",
+        src: "./static/img/display7.svg",
         width: 50,
         height: 50,
         alt: "7SEG",
@@ -6686,7 +6686,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/lcd16x2.svg",
+        src: "./static/img/lcd16x2.svg",
         width: 100,
         height: 40,
         alt: "LCD",
@@ -7113,7 +7113,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/lcd_16x2_i2c.svg",
+        src: "./static/img/lcd_16x2_i2c.svg",
         width: 100,
         height: 40,
         alt: "LCD_I2C",
@@ -7297,7 +7297,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/oled.svg",
+        src: "./static/img/oled.svg",
         width: 50,
         height: 50,
         alt: "OLED",
@@ -7653,7 +7653,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/matrix8x8.svg",
+        src: "./static/img/matrix8x8.svg",
         width: 50,
         height: 50,
         alt: "MAX7219",
@@ -7858,7 +7858,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/tm1637.svg",
+        src: "./static/img/tm1637.svg",
         width: 60,
         height: 50,
         alt: "MAX7219",
@@ -8167,7 +8167,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/neopixel5x5.svg",
+        src: "./static/img/neopixel5x5.svg",
         width: 50,
         height: 50,
         alt: "NEOPIXEL55",
@@ -8238,7 +8238,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/neopixel8x8.svg",
+        src: "./static/img/neopixel8x8.svg",
         width: 50,
         height: 50,
         alt: "NEOPIXEL88",
@@ -8600,7 +8600,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/tft240x240.svg",
+        src: "./static/img/tft240x240.svg",
         width: 50,
         height: 50,
         alt: "TFT",
@@ -9032,7 +9032,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "tecladoo_4x3" },
       {
         type: "field_image",
-        src: "/static/img/keypad3x4.svg",
+        src: "./static/img/keypad3x4.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -9151,7 +9151,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "teclado_4x4" },
       {
         type: "field_image",
-        src: "/static/img/keypad4x4.svg",
+        src: "./static/img/keypad4x4.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -9283,7 +9283,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "teclado_4x4_i2c" },
       {
         type: "field_image",
-        src: "/static/img/keypad4x4.svg",
+        src: "./static/img/keypad4x4.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -9340,7 +9340,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "rtc_ds3231" },
       {
         type: "field_image",
-        src: "/static/img/ds3231.svg",
+        src: "./static/img/ds3231.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -9447,7 +9447,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/rfid.svg",
+        src: "./static/img/rfid.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -9678,7 +9678,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/ky-040.svg",
+        src: "./static/img/ky-040.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -9762,7 +9762,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/tcs34725.svg",
+        src: "./static/img/tcs34725.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -9885,7 +9885,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/dfplayer.svg",
+        src: "./static/img/dfplayer.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -10033,7 +10033,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "finger" },
       {
         type: "field_image",
-        src: "/static/img/fpm383c.svg",
+        src: "./static/img/fpm383c.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -10253,7 +10253,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/mpu6050.svg",
+        src: "./static/img/mpu6050.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -10409,7 +10409,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "bh1750" },
       {
         type: "field_image",
-        src: "/static/img/bh1750.svg",
+        src: "./static/img/bh1750.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -10492,7 +10492,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "qmc" },
       {
         type: "field_image",
-        src: "/static/img/hmc5883l.svg",
+        src: "./static/img/hmc5883l.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -10576,7 +10576,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/sd.svg",
+        src: "./static/img/sd.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -10658,7 +10658,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/inmp441.svg",
+        src: "./static/img/inmp441.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -10717,7 +10717,7 @@ Blockly.defineBlocksWithJsonArray([
         options: [
           [
             {
-              src: "/static/img/bmp180.svg",
+              src: "./static/img/bmp180.svg",
               width: 50,
               height: 50,
               alt: "BMP180",
@@ -10726,7 +10726,7 @@ Blockly.defineBlocksWithJsonArray([
           ],
           [
             {
-              src: "/static/img/bmp280.svg",
+              src: "./static/img/bmp280.svg",
               width: 50,
               height: 50,
               alt: "BMP280",
@@ -10812,7 +10812,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/cp2102.svg",
+        src: "./static/img/cp2102.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -10938,7 +10938,7 @@ Blockly.defineBlocksWithJsonArray([
       },
       {
         type: "field_image",
-        src: "/static/img/gps.svg",
+        src: "./static/img/gps.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -11075,7 +11075,7 @@ Blockly.defineBlocksWithJsonArray([
       { type: "field_input", name: "NAME", text: "flow" },
       {
         type: "field_image",
-        src: "/static/img/yf201.svg",
+        src: "./static/img/yf201.svg",
         width: 50,
         height: 50,
         alt: "*",
@@ -11267,7 +11267,7 @@ function iconDropdown() {
   for (let i = 0; i < 80; i++) {
     icons.push([
       {
-        src: `/static/img/icons2/${i}.png`,
+        src: `./static/img/icons2/${i}.png`,
         width: 24,
         height: 24,
         alt: i,
@@ -11314,7 +11314,7 @@ class FieldIconGrid extends Blockly.Field {
         y: 4,
         width: 32,
         height: 32,
-        href: `/static/img/icons2/${this.value_}.png`,
+        href: `./static/img/icons2/${this.value_}.png`,
       },
       this.fieldGroup_,
     );
@@ -11330,7 +11330,7 @@ class FieldIconGrid extends Blockly.Field {
     this.value_ = newValue;
 
     if (this.image_) {
-      this.image_.setAttribute("href", `/static/img/icons2/${newValue}.png`);
+      this.image_.setAttribute("href", `./static/img/icons2/${newValue}.png`);
     }
   }
 
@@ -11352,7 +11352,7 @@ class FieldIconGrid extends Blockly.Field {
     for (let i = 0; i < 361; i++) {
       const icon = document.createElement("img");
 
-      icon.src = `/static/img/icons2/${i}.png`;
+      icon.src = `./static/img/icons2/${i}.png`;
       //icon.loading = "lazy";   // 👈 mejora importante
       icon.width = 32;
       icon.height = 32;
