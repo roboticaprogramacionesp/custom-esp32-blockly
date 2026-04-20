@@ -78,9 +78,12 @@ Blockly.Python["import"] = function (block) {
 };
 
 Blockly.Python["add"] = function (block) {
-  const add = block.getFieldValue("ADD");
+  let add = block.getFieldValue("ADD");
 
-  return [add, Blockly.Python.ORDER_ATOMIC];
+  // Evitar null o vacío
+  if (!add) return "";
+
+  return add + "\n";
 };
 
 Blockly.Python["none"] = function (block) {
