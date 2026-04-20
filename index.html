@@ -493,6 +493,40 @@
     }
   </style>
 
+  <style>
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+      background: #4030cc;
+      color: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 320px;
+      margin: 15% auto;
+      text-align: center;
+    }
+
+    .modal-content input {
+      width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+    }
+
+    .modal-buttons {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -2922,6 +2956,20 @@
     <div class="modal-buttons">
       <button id="modalCancel" class="btn-cancel">Cancelar</button>
       <button id="modalAccept" class="btn-accept">Aceptar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===============================
+     MODAL COMPARTIR
+================================ -->
+<div id="shareModal" class="modal">
+  <div class="modal-content">
+    <h3>Compartir proyecto</h3>
+    <input id="shareInput" readonly />
+    <div class="modal-buttons">
+      <button id="copyBtn">Copiar</button>
+      <button id="closeModal">Cerrar</button>
     </div>
   </div>
 </div>

@@ -1585,6 +1585,8 @@ window.addEventListener("unhandledrejection", function (event) {
   saveLog("PROMISE_ERROR", event.reason?.message || event.reason);
 });
 
+
+
 function generarLinkCompartir() {
   const xml = Blockly.Xml.workspaceToDom(Code.workspace);
   const xmlText = Blockly.Xml.domToText(xml);
@@ -1601,19 +1603,28 @@ function generarLinkCompartir() {
 function compartir() {
   const url = generarLinkCompartir();
 
-  navigator.clipboard.writeText(url)
-    .then(() => {
-      console.log("Link copiado al portapapeles");
-      //alert("Link copiado al portapapeles");
-    })
-    .catch(() => {
-      console.log("No se pudo copiar el link");
-      //alert("No se pudo copiar el link");
-    });
+  const modal = document.getElementById("shareModal");
+  const input = document.getElementById("shareInput");
+
+  input.value = url;
+  modal.style.display = "block";
 }
 
-// 🔥 Evento del botón
-document.getElementById("btnShare").addEventListener("click", compartir);
+document.addEventListener("DOMContentLoaded", () => {
+
+  document.getElementById("btnShare")?.addEventListener("click", compartir);
+
+  document.getElementById("copyBtn")?.addEventListener("click", () => {
+    const input = document.getElementById("shareInput");
+    input.select();
+    navigator.clipboard.writeText(input.value);
+  });
+
+  document.getElementById("closeModal")?.addEventListener("click", () => {
+    document.getElementById("shareModal").style.display = "none";
+  });
+
+});
 
 function cargarDesdeURL() {
   if (window.location.hash.length > 1) {
