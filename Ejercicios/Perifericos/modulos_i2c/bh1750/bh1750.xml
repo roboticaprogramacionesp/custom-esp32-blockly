@@ -1,0 +1,33 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="bh1750_init" id="syW(cv%45O0ott3e0LkW" x="90" y="70">
+    <field name="NAME">bh1750</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x23</field>
+    <next>
+      <block type="controls_whileUntil" id=";q5ecN+-3wVN@A6N/Acs">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="`0Xa[y7=nX6cDX;GlLrv">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="?IswL*`Crv!1lKFGWcry">
+            <value name="TEXT">
+              <block type="bh1750_read_lux" id="|1qrUT:S%90~(hi2*8Cd">
+                <field name="NAME">bh1750</field>
+              </block>
+            </value>
+            <next>
+              <block type="time_sleep" id="!GX*%zA!YnSial?7s;Iv">
+                <field name="VALUE">1</field>
+                <field name="UNIT">S</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

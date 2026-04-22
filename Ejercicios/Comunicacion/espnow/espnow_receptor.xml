@@ -1,0 +1,95 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="qUaV]DHdIeOpcIM7%ted">host</variable>
+    <variable id="%YE$J`4j9uDA9GgFUcMA">msg</variable>
+  </variables>
+  <block type="wifi_init" id="pO$%_/4=pBdPC^xUm-1z" x="110" y="10">
+    <field name="VAR">sta_if</field>
+    <field name="MODE">STA_IF</field>
+    <next>
+      <block type="init_espnow_simple" id="|wR[XzOU,p/b:(Tr$WQy">
+        <next>
+          <block type="espnow_add_peer" id="nA2DrzcG0TL=5tW4f,ne">
+            <value name="PEER">
+              <shadow type="peer" id="%bZ6-kVwL-a2S|Ylw|74">
+                <field name="PEER_BYTES">b'\xff\xff\xff\xff\xff\xff'</field>
+              </shadow>
+              <block type="peer" id="XVStc3(DhJu#eCRlAE*0">
+                <field name="PEER_BYTES">b'\xff\xff\xff\xff\xff\xff'</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_whileUntil" id="%h|3:Txxe|$}hxWuXvPH">
+                <field name="MODE">WHILE</field>
+                <value name="BOOL">
+                  <block type="logic_boolean" id="]#9ld:A[!d5X~LHtCrA#">
+                    <field name="BOOL">TRUE</field>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="espnow_recv" id="82rzfL#PO5q*?e:_3~t_">
+                    <field name="HOST" id="qUaV]DHdIeOpcIM7%ted">host</field>
+                    <field name="MSG" id="%YE$J`4j9uDA9GgFUcMA">msg</field>
+                    <next>
+                      <block type="controls_if" id="Z;?h4-lI;2;,N*=mDk@9">
+                        <value name="IF0">
+                          <block type="variables_get" id="PQJ+.gtk5)oSK#lv6sYZ">
+                            <field name="VAR" id="%YE$J`4j9uDA9GgFUcMA">msg</field>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="text_print" id="naY}RA1BI.b,Pjx1espX">
+                            <value name="TEXT">
+                              <block type="text_join" id=".8;?U/XMpNTjZC|5nO1E">
+                                <mutation items="2"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="3XG,S5*TwwhyfnB8*vA7">
+                                    <field name="TEXT">Host es: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id=")JjD[+o552b@?d?EeqAp">
+                                    <field name="VAR" id="qUaV]DHdIeOpcIM7%ted">host</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="text_print" id="HhX_~jJ.pTX/5XAs$=uw">
+                                <value name="TEXT">
+                                  <block type="text_join" id="y.D`KzA*;u{=IEOQ[U-A">
+                                    <mutation items="2"></mutation>
+                                    <value name="ADD0">
+                                      <block type="text" id="Qa0lxXoCbku}rz*[7N0}">
+                                        <field name="TEXT">Mensaje: </field>
+                                      </block>
+                                    </value>
+                                    <value name="ADD1">
+                                      <block type="variables_get" id="-8PF=yjEQEo,:^6xCJSh">
+                                        <field name="VAR" id="%YE$J`4j9uDA9GgFUcMA">msg</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="time_sleep" id="*6FB?|8*CqNw~c;/CzgH">
+                            <field name="VALUE">1</field>
+                            <field name="UNIT">S</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

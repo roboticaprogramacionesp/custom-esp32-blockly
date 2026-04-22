@@ -1,0 +1,115 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="mpu6050_init" id="z4+RBl[*BcL.NB2*%wJ=" x="210" y="130">
+    <field name="NAME">mpu</field>
+    <field name="ID">1</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x68</field>
+    <next>
+      <block type="mpu6050_set_accel_range" id="s{d2nL3x(H[Vce.0h_m,">
+        <field name="NAME">mpu</field>
+        <field name="RANGE">_ACC_RNG_2G</field>
+        <next>
+          <block type="mpu6050_set_gyro_range" id="YmrCjR=6i1WZw.3~sMqX">
+            <field name="NAME">mpu</field>
+            <field name="RANGE">_GYR_RNG_250DEG</field>
+            <next>
+              <block type="controls_whileUntil" id="#8zVgmg2h97Na1`R/(S{">
+                <field name="MODE">WHILE</field>
+                <value name="BOOL">
+                  <block type="logic_boolean" id="j)8Ot+;cRL%DIa5]q)?{">
+                    <field name="BOOL">TRUE</field>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="text_print" id="9BDb+x|m$ptZQ8Cth_ji">
+                    <value name="TEXT">
+                      <block type="text_join" id="LlQD%._|ZB@]9E=OBN~S">
+                        <mutation items="6"></mutation>
+                        <value name="ADD0">
+                          <block type="text" id="=6UkTHg9pn@$9+Equ.#5">
+                            <field name="TEXT">Acelerometro X: </field>
+                          </block>
+                        </value>
+                        <value name="ADD1">
+                          <block type="mpu6050_accel_x" id="k!UMpGvv8t1QLu2eE!xY">
+                            <field name="NAME">mpu</field>
+                          </block>
+                        </value>
+                        <value name="ADD2">
+                          <block type="text" id="z_;E}E3t,x._4t5`jHZL">
+                            <field name="TEXT"> Acelerometro Y: </field>
+                          </block>
+                        </value>
+                        <value name="ADD3">
+                          <block type="mpu6050_accel_y" id="vJOXQQh(?LSe%Kzun878">
+                            <field name="NAME">mpu</field>
+                          </block>
+                        </value>
+                        <value name="ADD4">
+                          <block type="text" id="Lif.)8Yv6NRq!(JqL`Bh">
+                            <field name="TEXT"> Acelerometro Z: </field>
+                          </block>
+                        </value>
+                        <value name="ADD5">
+                          <block type="mpu6050_accel_z" id="ZX$G]}6Frb$V[W9?1WH1">
+                            <field name="NAME">mpu</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print" id="7ivr;{S!1SHr2-~1S4~D">
+                        <value name="TEXT">
+                          <block type="text_join" id="+U.bztYQ9/|.(-;=S}U#">
+                            <mutation items="6"></mutation>
+                            <value name="ADD0">
+                              <block type="text" id="f!q=P~g{lo`:{!*d,x4Y">
+                                <field name="TEXT">Giro X: </field>
+                              </block>
+                            </value>
+                            <value name="ADD1">
+                              <block type="mpu6050_gyro_x" id="H@U4h@r0.@Uf)SBGi9C(">
+                                <field name="NAME">mpu</field>
+                              </block>
+                            </value>
+                            <value name="ADD2">
+                              <block type="text" id="?~f-KiIA*!{MI7CIfSIB">
+                                <field name="TEXT"> Giro Y: </field>
+                              </block>
+                            </value>
+                            <value name="ADD3">
+                              <block type="mpu6050_gyro_y" id="lH.%BsHZN1%m}bsFkrNS">
+                                <field name="NAME">mpu</field>
+                              </block>
+                            </value>
+                            <value name="ADD4">
+                              <block type="text" id="zy/XcPGfRZxfI{t,Vwh3">
+                                <field name="TEXT"> Giro z: </field>
+                              </block>
+                            </value>
+                            <value name="ADD5">
+                              <block type="mpu6050_gyro_z" id=",yUb*AEY-hmm*_8nb+rl">
+                                <field name="NAME">mpu</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="time_sleep" id="a43hP-]7aXJG:kG?MIKH">
+                            <field name="VALUE">1</field>
+                            <field name="UNIT">S</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

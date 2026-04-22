@@ -1,0 +1,21 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="ky005_init" id="b#Y3?B1{bcGBHD(5=%*2" x="130" y="150">
+    <field name="NAME">ir</field>
+    <field name="PIN">4</field>
+    <next>
+      <block type="ky005_send_nec" id="]B`LsseIKG=/Ai@W;d~%">
+        <field name="NAME">ir</field>
+        <value name="ADDR">
+          <block type="math_number" id="35C2bP@b1mH*hRmUlSq:">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <value name="CMD">
+          <block type="math_number" id="LeIz3@*Jr^/#oNm2;-$-">
+            <field name="NUM">24</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

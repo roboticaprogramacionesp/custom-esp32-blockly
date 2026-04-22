@@ -1,0 +1,51 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="bmp_sensor_init" id="dPgsc}U,.#/RAKGr9*AB" x="110" y="90">
+    <field name="NAME">bmp</field>
+    <field name="MODEL">BMP280</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <next>
+      <block type="controls_whileUntil" id="oTM[/k()CWtVjh%6nA|U">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="c@VP!^;D517kI{CpD.{m">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="time_sleep" id="$;cuY43E`?2*fv-~rQQS">
+            <field name="VALUE">1</field>
+            <field name="UNIT">S</field>
+            <next>
+              <block type="text_print" id="yULF{y_XOtq)x/;_A%99">
+                <value name="TEXT">
+                  <block type="bmp_read_temp" id="B]`|,ZZIe%l;9vSlnnXt">
+                    <field name="NAME">bmp</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print" id="T^X?L$De(7pq-StX2}%$">
+                    <value name="TEXT">
+                      <block type="bmp_read_pressure" id="WE3D`0q10IC^%$Q3ASzZ">
+                        <field name="NAME">bmp</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print" id=")4JCf8(I|$1NNmHlzCvp">
+                        <value name="TEXT">
+                          <block type="bmp_read_altitude" id="lup`1g^HH$WtL8-4*Tco">
+                            <field name="NAME">bmp</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

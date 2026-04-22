@@ -1,0 +1,40 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="0@2i2e=0:5!6zI(?H/)0">datos</variable>
+  </variables>
+  <block type="wifi_init" id="]eEXX~{^]U@I)pm,i4z6" x="30" y="70">
+    <field name="VAR">sta_if</field>
+    <field name="MODE">STA_IF</field>
+    <next>
+      <block type="variables_set" id="Pu;S?-RLw[h8#f.J7B[m">
+        <field name="VAR" id="0@2i2e=0:5!6zI(?H/)0">datos</field>
+        <value name="VALUE">
+          <block type="wifi_scan" id="hecwqt*}RUM~CW5naxn)">
+            <field name="VAR">sta_if</field>
+          </block>
+        </value>
+        <next>
+          <block type="text_print" id="j4n*s8zDe?(i;ag@u0[s">
+            <value name="TEXT">
+              <block type="lists_getIndex" id="oG}$lL~lFL{U4-Doq^TL">
+                <mutation statement="false" at="true"></mutation>
+                <field name="MODE">GET</field>
+                <field name="WHERE">FROM_START</field>
+                <value name="VALUE">
+                  <block type="variables_get" id="DtsP4}mx;+s`qyEes:+?">
+                    <field name="VAR" id="0@2i2e=0:5!6zI(?H/)0">datos</field>
+                  </block>
+                </value>
+                <value name="AT">
+                  <block type="math_number" id="9Q.9lpVaNBBqUoclKwsw">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

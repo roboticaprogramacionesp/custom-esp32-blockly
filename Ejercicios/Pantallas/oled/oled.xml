@@ -1,0 +1,29 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="oled_init" id="7hwwC]65l$[//gn0O/.N" x="130" y="150">
+    <field name="NAME">oled</field>
+    <field name="ID">1</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x27</field>
+    <next>
+      <block type="oled_text" id="YMw7l:fzbr4[o*|WRJIn">
+        <field name="NAME">oled</field>
+        <value name="TEXT">
+          <shadow type="text" id="b+u)N-#}Sn(`Cm3N/sxG">
+            <field name="TEXT">Hola</field>
+          </shadow>
+        </value>
+        <value name="X">
+          <shadow type="math_number" id="jwOJ9i[46M0^(]`M*c1X">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="Y">
+          <shadow type="math_number" id="@nbR;yv|RcIFllA#9/j@">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

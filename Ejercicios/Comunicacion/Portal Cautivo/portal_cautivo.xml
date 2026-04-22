@@ -1,0 +1,56 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="PHW.U?erI3.!]c(4:#Ks">k</variable>
+    <variable id="$j7[zE/2p!)--EAG}$vf">v</variable>
+  </variables>
+  <block type="wifi_ap" id="_`^ntgzXY@Tv#c:}kU-W" x="110" y="170">
+    <field name="AP_SSID">Control-PitCar</field>
+    <field name="AP_PASS"></field>
+    <next>
+      <block type="portal_init" id="StDrTm[rZH|@]sgW1b(3">
+        <next>
+          <block type="DNSQuery" id="B,0jW|3^y[e7.Hp{)mVN">
+            <next>
+              <block type="portal_dns_server" id="Mq@z4;H}fL5ej[:k7C=6">
+                <next>
+                  <block type="portal_http_server" id="pc7}$,v)xyyHK}q5ES9/">
+                    <field name="INDEX">index2</field>
+                    <next>
+                      <block type="portal_main" id="ud19fgluL.bLD(#OP=ME"></block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defnoreturn" id="}LJp4V`rNL/,rekQ4Cx4" x="590" y="170">
+    <mutation>
+      <arg name="k" varid="PHW.U?erI3.!]c(4:#Ks"></arg>
+      <arg name="v" varid="$j7[zE/2p!)--EAG}$vf"></arg>
+    </mutation>
+    <field name="NAME">comandos</field>
+    <comment pinned="false" h="80" w="160">Describe esta función...</comment>
+    <statement name="STACK">
+      <block type="text_print" id="0d7,yC7=rS5Dqm-4YGC6">
+        <value name="TEXT">
+          <block type="variables_get" id="`Xa5+4DqoT;v`nUHQey)">
+            <field name="VAR" id="PHW.U?erI3.!]c(4:#Ks">k</field>
+          </block>
+        </value>
+        <next>
+          <block type="text_print" id="Bj2T7rKk;rULdYGxYv{7">
+            <value name="TEXT">
+              <block type="variables_get" id="2zYz#Yt%|vYcB!*FWEeR">
+                <field name="VAR" id="$j7[zE/2p!)--EAG}$vf">v</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

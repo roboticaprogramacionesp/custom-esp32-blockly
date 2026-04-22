@@ -1,0 +1,83 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="tcs34725_init" id=":*?k/ls6X@RsGe24)A7t" x="50" y="90">
+    <field name="NAME">color</field>
+    <field name="ID">1</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x29</field>
+    <next>
+      <block type="controls_whileUntil" id="1o`^Yj_b};nSDX4f8[*`">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="jenIHC/#8euP877Y+EQg">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="l7Qd!9TuS$e||a7?/$fR">
+            <value name="TEXT">
+              <block type="tcs34725_rgb" id="Gf-eL93E@Wy#8Eh#?p^t">
+                <field name="NAME">color</field>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="3v3s9Xl/(=F}v(**pFSD">
+                <value name="TEXT">
+                  <block type="text_join" id="aj1fi^~4i2}No$NlO=-e">
+                    <mutation items="8"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="v9pgNGYs2d,Z`8D9QGq~">
+                        <field name="TEXT">Rojo: </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="tcs34725_red" id="AQmy86P3O/I[4rcSRC~5">
+                        <field name="NAME">color</field>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="text" id="#9|m`JawxYz{ARtr,?dM">
+                        <field name="TEXT"> Verde: </field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="tcs34725_green" id="n*G~fy4!b(%1~JzD,n5p">
+                        <field name="NAME">color</field>
+                      </block>
+                    </value>
+                    <value name="ADD4">
+                      <block type="text" id="%5TC`_~kKI(vvm3y!H8U">
+                        <field name="TEXT"> Azul:  </field>
+                      </block>
+                    </value>
+                    <value name="ADD5">
+                      <block type="tcs34725_blue" id="d;Ma!)$Gk6N/71oz5@i`">
+                        <field name="NAME">color</field>
+                      </block>
+                    </value>
+                    <value name="ADD6">
+                      <block type="text" id="}1o.7;YEPC;m8@k1Ic{w">
+                        <field name="TEXT"> Luz: </field>
+                      </block>
+                    </value>
+                    <value name="ADD7">
+                      <block type="tcs34725_clear" id="-YA8?K%?h#:=G#*+;:2N">
+                        <field name="NAME">color</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_sleep" id="O7N3aWiyV)xK!45Mv}yh">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

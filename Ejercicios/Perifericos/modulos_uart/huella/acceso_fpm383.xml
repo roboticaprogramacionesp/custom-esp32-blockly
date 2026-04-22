@@ -1,0 +1,156 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="TmQg[d@8}3MB1=[*y+C0">encontrado</variable>
+    <variable id="QY{DLRiL$9})8MP|pCJP">fid</variable>
+    <variable id="Q;i3}u4ZFN9anJf{A4TM">puntaje</variable>
+  </variables>
+  <block type="fpm_init" id="YeSz3kleaya2k|/q?1lJ" x="-70" y="-90">
+    <field name="NAME">finger</field>
+    <field name="UART">2</field>
+    <field name="TX">17</field>
+    <field name="RX">16</field>
+    <field name="BAUD">57600</field>
+    <next>
+      <block type="procedures_callnoreturn" id="J9fcco4])amvxwloEB{p">
+        <mutation name="access_mode"></mutation>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defnoreturn" id=",Am9h^~HVL]UFy:cuj,k" x="430" y="-90">
+    <field name="NAME">access_mode</field>
+    <comment pinned="false" h="80" w="160">Describe esta función...</comment>
+    <statement name="STACK">
+      <block type="controls_whileUntil" id="MRA5W4]T2WMY?8N[Nbe_">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="!~sI/%Q48TiL75Y=EhKR">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="controls_if" id="$XSTA:^A7qNUPzFI.PTu">
+            <value name="IF0">
+              <block type="logic_negate" id="B:_]ll$dtmhmzf~(7|s]">
+                <value name="BOOL">
+                  <block type="fpm_wait_finger" id="oFMm/f.{^u`kg%u4V#%#">
+                    <field name="NAME">finger</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="exceptions_continue" id="~;n|!Ne_h6q`HQ62!t2E"></block>
+            </statement>
+            <next>
+              <block type="controls_if" id="DhH7Cp!mV0~LKiiTEe/o">
+                <value name="IF0">
+                  <block type="logic_compare" id="RcIrEqj/36PxmIQEzCe@">
+                    <field name="OP">NEQ</field>
+                    <value name="A">
+                      <block type="fpm_status" id="{X:Ic$#*=wwCap1,_:#L">
+                        <field name="NAME">finger</field>
+                        <value name="fpm_img2tz">
+                          <block type="fpm_img2tz" id="V^!x#QxjPx#LASVPGR0D">
+                            <field name="NAME">finger</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="math_number" id="`V_sk_U`^:9;=;R1~_7;">
+                        <field name="NUM">0</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="exceptions_continue" id="Hfpbc`=y#Pyn%5x(aZ.b"></block>
+                </statement>
+                <next>
+                  <block type="fpm_search" id="%K}QGQO.^h$wee6C]o]z">
+                    <field name="NAME">finger</field>
+                    <field name="FIND" id="TmQg[d@8}3MB1=[*y+C0">encontrado</field>
+                    <field name="FID" id="QY{DLRiL$9})8MP|pCJP">fid</field>
+                    <field name="SCORE" id="Q;i3}u4ZFN9anJf{A4TM">puntaje</field>
+                    <next>
+                      <block type="controls_if" id="lIv/lRnFq6*yX(cXVv$j">
+                        <mutation else="1"></mutation>
+                        <value name="IF0">
+                          <block type="variables_get" id="*_CUeZN=AgAcQTOB[y7,">
+                            <field name="VAR" id="TmQg[d@8}3MB1=[*y+C0">encontrado</field>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="text_print" id="i)$%;XaP+lFc+XJ00Ji4">
+                            <value name="TEXT">
+                              <block type="text_join" id="+u@%gz+7u5zhdBQ%3XC$">
+                                <mutation items="4"></mutation>
+                                <value name="ADD0">
+                                  <block type="text" id="89`pZ~S4bE5WY$$D%N9q">
+                                    <field name="TEXT">ACCESO ID: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD1">
+                                  <block type="variables_get" id="OY=(kQZ?wUsZ3UmiuU[4">
+                                    <field name="VAR" id="QY{DLRiL$9})8MP|pCJP">fid</field>
+                                  </block>
+                                </value>
+                                <value name="ADD2">
+                                  <block type="text" id="22AN5B-#egtQNb+{/I5$">
+                                    <field name="TEXT"> Puntaje: </field>
+                                  </block>
+                                </value>
+                                <value name="ADD3">
+                                  <block type="variables_get" id="17$iKG(~zQ-(v8Hq+KRZ">
+                                    <field name="VAR" id="Q;i3}u4ZFN9anJf{A4TM">puntaje</field>
+                                  </block>
+                                </value>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="fpm_led" id="_O+{{UC#eVT(Xo_7L}Q}">
+                                <field name="NAME">finger</field>
+                                <field name="COLOR">2</field>
+                                <next>
+                                  <block type="time_sleep" id="l}^fSJ,nlpqwT?0iiak/">
+                                    <field name="VALUE">0.1</field>
+                                    <field name="UNIT">S</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="ELSE">
+                          <block type="text_print" id="4J}i5P4_CMZAa[hq+GCs">
+                            <value name="TEXT">
+                              <block type="text" id="@2ngIX5.E#bOXD+n4i0^">
+                                <field name="TEXT">Denegado</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="fpm_led" id="T.DUBTJHy37U.+}VD^h6">
+                                <field name="NAME">finger</field>
+                                <field name="COLOR">4</field>
+                                <next>
+                                  <block type="time_sleep" id="AX1Tb,;{(77z!DP{7)OE">
+                                    <field name="VALUE">0.1</field>
+                                    <field name="UNIT">S</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>

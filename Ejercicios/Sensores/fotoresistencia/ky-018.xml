@@ -1,0 +1,34 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="analog_sensor_init" id="O@iFrd^uHgt8aTz8uF9M" x="-70" y="90">
+    <field name="NAME">fotoresistencia</field>
+    <field name="MODEL">KY018</field>
+    <field name="PIN">32</field>
+    <field name="ATTEN">ADC.ATTN_0DB</field>
+    <field name="WIDTH">ADC.WIDTH_9BIT</field>
+    <next>
+      <block type="controls_whileUntil" id="eThwLz-IOr4{]5{=Qf}{">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="8NEg~_$X9fK:(ww#huo8">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="yLtfV9T.4M:U$)T:r8Rw">
+            <value name="TEXT">
+              <block type="analog_sensor_read" id="bk|UUfNhSFT0M{f|eXV)">
+                <field name="NAME">fotoresistencia</field>
+              </block>
+            </value>
+            <next>
+              <block type="time_sleep" id="|qNYTyrUN*((ti-w1Lca">
+                <field name="VALUE">1</field>
+                <field name="UNIT">S</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

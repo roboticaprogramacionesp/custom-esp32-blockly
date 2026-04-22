@@ -1,0 +1,43 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="S5TKR{u#FTm}^Dp7%`IL">data</variable>
+    <variable id="w7hrTwJp;a%S7b]N8Eaj">addr</variable>
+    <variable id="}IGOl=7|72}R7Q)},*K+">ctrl</variable>
+  </variables>
+  <block type="init_ir_ky022" id="o(};-0-!XtC=#^EVciEi" x="130" y="50">
+    <field name="PIN">4</field>
+  </block>
+  <block type="ir_ky022_callback_code" id="6HjF(VnX]3GeSY]{q10:" x="130" y="130">
+    <field name="DATA" id="S5TKR{u#FTm}^Dp7%`IL">data</field>
+    <field name="ADDR" id="w7hrTwJp;a%S7b]N8Eaj">addr</field>
+    <field name="CTRL" id="}IGOl=7|72}R7Q)},*K+">ctrl</field>
+    <statement name="CODE">
+      <block type="controls_if" id="rbOhYDF$kL-j(u_~*kiq">
+        <value name="IF0">
+          <block type="logic_compare" id="}oV@:ZC~/q07)}$3S-]-">
+            <field name="OP">GT</field>
+            <value name="A">
+              <block type="variables_get" id="%x/)G1uet+{.kStiiDJ@">
+                <field name="VAR" id="S5TKR{u#FTm}^Dp7%`IL">data</field>
+              </block>
+            </value>
+            <value name="B">
+              <block type="math_number" id="@Nymz*I50]R3`U-LOw1A">
+                <field name="NUM">0</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="text_print" id="9@^aS~pY|c8Mc?wkJ@PF">
+            <value name="TEXT">
+              <block type="variables_get" id="S*H~*P)P#_1M)G;F_x/5">
+                <field name="VAR" id="S5TKR{u#FTm}^Dp7%`IL">data</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>

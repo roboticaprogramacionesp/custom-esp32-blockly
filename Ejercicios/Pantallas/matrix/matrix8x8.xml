@@ -1,0 +1,20 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="matrix8_init" id="8nPYB`l![1b=:B*f{@Sm" x="50" y="90">
+    <field name="NAME">matrix8x8</field>
+    <field name="DIN">13</field>
+    <field name="CS">5</field>
+    <field name="SCK">18</field>
+    <field name="WIDTH">8</field>
+    <field name="HEIGHT">8</field>
+    <next>
+      <block type="matrix8_scroll_text" id="i:o^jKp/(5^1Mkmebdt?">
+        <field name="NAME">matrix8x8</field>
+        <value name="TEXT">
+          <shadow type="text" id="!9irQtc1+QLchC-%ld$N">
+            <field name="TEXT">ESP32</field>
+          </shadow>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

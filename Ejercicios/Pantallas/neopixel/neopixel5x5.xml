@@ -1,0 +1,30 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="neopixel_init_5x5" id="oPYLaZyL1?fTr^L3V_Ch" x="10" y="10">
+    <field name="NAME">neopixel5x5</field>
+    <field name="PIN">14</field>
+    <field name="LAYOUT">1</field>
+    <field name="ROT">0</field>
+    <next>
+      <block type="neopixel_text" id="}s-oX+[f!lrT[^piAL9}">
+        <field name="NAME">neopixel5x5</field>
+        <field name="FG">#ffffff</field>
+        <field name="BG">#000000</field>
+        <value name="TEXT">
+          <shadow type="text" id="/f0xOdTU8F5g*;!h{=!p">
+            <field name="TEXT">Hola</field>
+          </shadow>
+        </value>
+        <value name="X">
+          <shadow type="math_number" id="ShT_7tk4MJlRDbRx:%eO">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="Y">
+          <shadow type="math_number" id="uXNQ^Y_;s*8Dxa8:e9jS">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,54 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="pot_slider_init" id="j4v5={zFs^UH_#:9P|f/" x="-230" y="-150">
+    <field name="NAME">deslizador</field>
+    <field name="PIN_A">35</field>
+    <field name="PIN_B">34</field>
+    <field name="ATTEN">ADC.ATTN_11DB</field>
+    <field name="WIDTH">ADC.WIDTH_10BIT</field>
+    <next>
+      <block type="controls_whileUntil" id="1LI3bC,O5URzw7^8biu!">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="Bh*M4F;-tnu8A=QOSlF,">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="[Dq:^Eduaiv[tsg)uB;6">
+            <value name="TEXT">
+              <block type="text_join" id="Nne9riKk$ccOFDT5C=.H">
+                <mutation items="4"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="E85CUn}:s5u})eBXHg-p">
+                    <field name="TEXT">deslizador A: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="pot_slider_read_x" id="EEcg+8!no.`PrMrebBie">
+                    <field name="NAME">deslizador</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="text" id="5m2vpT]jc5(Rs=*R]~#*">
+                    <field name="TEXT"> deslizador B:  </field>
+                  </block>
+                </value>
+                <value name="ADD3">
+                  <block type="pot_slider_read_y" id="$%Z7BnS^.J~:,jW)G6sy">
+                    <field name="NAME">deslizador</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="time_sleep" id="yj2zK#(F]o%;f2Rhl,C~">
+                <field name="VALUE">1</field>
+                <field name="UNIT">S</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

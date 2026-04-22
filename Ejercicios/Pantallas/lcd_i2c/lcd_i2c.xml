@@ -1,0 +1,21 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="lcd_i2c_init" id="NFME$*e*#WN=FcWNR$]~" x="70" y="70">
+    <field name="NAME">lcd_i2c</field>
+    <field name="ID">1</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x3f</field>
+    <field name="num_lines">2</field>
+    <field name="num_columns">16</field>
+    <next>
+      <block type="lcd_i2c_print" id="MR%WYQ|,67HOjeaT8C_/">
+        <field name="NAME">lcd_i2c</field>
+        <value name="TEXT">
+          <shadow type="text" id="jrvm5V!5M,yvYEs!:`5n">
+            <field name="TEXT">ESP32</field>
+          </shadow>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

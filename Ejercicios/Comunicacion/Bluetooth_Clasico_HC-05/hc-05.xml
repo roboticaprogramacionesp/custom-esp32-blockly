@@ -1,0 +1,38 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="init_hc06" id="uxWJZAM=6AA^)xb1jbiF" x="90" y="-70">
+    <field name="UART">2</field>
+    <field name="TX">17</field>
+    <field name="RX">16</field>
+    <field name="BAUD">9600</field>
+    <next>
+      <block type="controls_whileUntil" id="0#U%)+sWz!PZX7_Sy2R1">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="Ee+iEsP6aGOj|xKXLrM5">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="controls_if" id="VUV!p21HY~fWMmZ$F2]G">
+            <value name="IF0">
+              <block type="hc06_any" id="p%5j=/T{7UgbS}5$9k1M"></block>
+            </value>
+            <statement name="DO0">
+              <block type="text_print" id="^@YksAn%x}VkGhk`{IB+">
+                <value name="TEXT">
+                  <block type="hc06_read" id="*,_+(|o?^t|Y=ujK[t_*"></block>
+                </value>
+                <next>
+                  <block type="time_sleep" id="O_$y?jpv~6}?4X.#HGFZ">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

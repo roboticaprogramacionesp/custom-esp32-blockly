@@ -1,0 +1,68 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="rtc_ds3231_init" id="3saa-z5;_|%~sHE^L_7d" x="-150" y="-49">
+    <field name="NAME">rtc_ds3231</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x68</field>
+    <next>
+      <block type="rtc_ds3231_set_time" id="2?GHtN?Yzur8GL@yg@j?">
+        <field name="NAME">rtc_ds3231</field>
+        <value name="YEAR">
+          <shadow type="math_number" id=":.vs.b1jcZ##^vgfDa;E">
+            <field name="NUM">2025</field>
+          </shadow>
+        </value>
+        <value name="MONTH">
+          <shadow type="math_number" id="*!r|#yR_Ol0vX[*oLTQP">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="DAY">
+          <shadow type="math_number" id="Sl0aS(4f1ZjU3b]C?c.2">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="HOUR">
+          <shadow type="math_number" id="D6h(,$Ssb^R?z*KtFsau">
+            <field name="NUM">12</field>
+          </shadow>
+        </value>
+        <value name="MINUTE">
+          <shadow type="math_number" id="Rmhj;=Guj^jI!$p3u]o4">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="SECOND">
+          <shadow type="math_number" id="Ka[oAXBS#E7_e)sHLjJ:">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="controls_whileUntil" id="o?R8{1`H]H/C0B^#;%OR">
+            <field name="MODE">WHILE</field>
+            <value name="BOOL">
+              <block type="logic_boolean" id="P^6visTgrI(Uy!yGZ[{]">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="text_print" id="X49+ElX*8s]?NJ;8n@ow">
+                <value name="TEXT">
+                  <block type="rtc_ds3231_get_time" id="_*!d98fQ.n7dDh=1fc=P">
+                    <field name="NAME">rtc_ds3231</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_sleep" id="Xy/XF/F,qo.xcwt/hN;+">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

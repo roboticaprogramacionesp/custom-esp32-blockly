@@ -1,0 +1,33 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="=.q_^K~|-)q8$dZ#A)0C">data</variable>
+    <variable id=".76awGHv|lYaYDCj|cJ/">addr</variable>
+    <variable id="#:Q(c,c7:|LJkAiU`/5;">ctrl</variable>
+  </variables>
+  <block type="init_ir_ky022" id="!f`T_eegK4@GAL#MXUlE" x="90" y="50">
+    <field name="PIN">12</field>
+  </block>
+  <block type="ir_ky022_callback_code" id=";;V!@olB-Qy4vP8mAK/t" x="270" y="130">
+    <field name="DATA" id="=.q_^K~|-)q8$dZ#A)0C">data</field>
+    <field name="ADDR" id=".76awGHv|lYaYDCj|cJ/">addr</field>
+    <field name="CTRL" id="#:Q(c,c7:|LJkAiU`/5;">ctrl</field>
+    <statement name="CODE">
+      <block type="controls_if" id="5#rR?H+0BC9l*eZ[gbK#">
+        <value name="IF0">
+          <block type="variables_get" id="9@P?%]haue}]bYl`?*Wr">
+            <field name="VAR" id="=.q_^K~|-)q8$dZ#A)0C">data</field>
+          </block>
+        </value>
+        <statement name="DO0">
+          <block type="text_print" id="m3K8_Y6F0]:$MnLtDw4A">
+            <value name="TEXT">
+              <block type="variables_get" id="?dGLH3R+$@Z}}+zj(8`r">
+                <field name="VAR" id="=.q_^K~|-)q8$dZ#A)0C">data</field>
+              </block>
+            </value>
+          </block>
+        </statement>
+      </block>
+    </statement>
+  </block>
+</xml>

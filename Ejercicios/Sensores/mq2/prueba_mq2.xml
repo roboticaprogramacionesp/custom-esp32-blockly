@@ -1,0 +1,61 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="hybrid_sensor_init" id="+IQ9]S]6IuI|;sF^2Yf$" x="10" y="10">
+    <field name="MODEL">MQ2</field>
+    <field name="APIN">13</field>
+    <field name="DPIN">18</field>
+    <next>
+      <block type="controls_whileUntil" id="`tEok/(pI,d/}-K_yyB@">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="@BKQSl.:2LI+Q2HyI},$">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="*!tOj[P;^$YaQjNXCQJ=">
+            <value name="TEXT">
+              <block type="text_join" id="@*3{+ENClD4e+rx1a]%6">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="#5vTQ.i/jsz4z_Dl@^6I">
+                    <field name="TEXT">Señal Analogica:</field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="hybrid_sensor_read_analog" id="eh^QzKY+C$S|RvHd_rx]">
+                    <field name="APIN">13</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="text_print" id="3%18zT5UYPz2WD@s;i4D">
+                <value name="TEXT">
+                  <block type="text_join" id="fmm}D~Q{B{xd2MqYUqaS">
+                    <mutation items="2"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="A*n0@cwx)9xdxGdw)*/`">
+                        <field name="TEXT">Señal Digital:</field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="hybrid_sensor_read_digital" id="!lED!Iis-5=R8cj.grJ0">
+                        <field name="DPIN">18</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_sleep" id="f6AyI5ze-Y-@}z9^P}M(">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

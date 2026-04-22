@@ -1,0 +1,186 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="k=;6gzp.;kpv!90BLNo*">key</variable>
+    <variable id="2`u`|$pPp{V,jhi2;COL">stat</variable>
+    <variable id="]o$rOP#|BU3$iFV`B+2a">uid</variable>
+    <variable id="9{5Bf{Jl3q~$R8zQqUZy">data</variable>
+    <variable id="7GQm-31l);S[|q5/wM~8">text</variable>
+  </variables>
+  <block type="rfid_mfrc522_init" id="?x6mrp8ReJ.3nth$XyI+" x="-142" y="-87">
+    <field name="NAME">rfid</field>
+    <field name="SCK">18</field>
+    <field name="MOSI">23</field>
+    <field name="MISO">19</field>
+    <field name="RST">22</field>
+    <field name="SDA">21</field>
+    <next>
+      <block type="variables_set" id="U3xq%z@+|}6?)r)2:EW_">
+        <field name="VAR" id="k=;6gzp.;kpv!90BLNo*">key</field>
+        <value name="VALUE">
+          <block type="rfid_key" id=",WO58J0kC.UCr^LkGQ*;">
+            <field name="KEY">[0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_whileUntil" id="l*`u$d,glvPTdpOJSd9P">
+            <field name="MODE">WHILE</field>
+            <value name="BOOL">
+              <block type="logic_boolean" id="$9-T;Z8dc8S8;HcwRm~X">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="controls_if" id="B!A4MywAQo+g]_,:L~yS">
+                <value name="IF0">
+                  <block type="rfid_mfrc522_detect" id="d3QYL3`AzbU]0*#U$Pa$">
+                    <field name="NAME">rfid</field>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="rfid_mfrc522_uid" id="zu4Mb#XDwuRw$0P(6@Wu">
+                    <field name="NAME">rfid</field>
+                    <field name="STAT" id="2`u`|$pPp{V,jhi2;COL">stat</field>
+                    <field name="UID" id="]o$rOP#|BU3$iFV`B+2a">uid</field>
+                    <next>
+                      <block type="controls_if" id="Pr}*P:X}5~zXjpg(g3?3">
+                        <mutation else="1"></mutation>
+                        <value name="IF0">
+                          <block type="rfid_mfrc522_auth" id="~2QzZ5;TzQ;LKS4EG=DD">
+                            <field name="NAME">rfid</field>
+                            <field name="BLOCK">8</field>
+                            <value name="KEY">
+                              <block type="variables_get" id=";$cFhOhn4(^;TGBd8Fj`">
+                                <field name="VAR" id="k=;6gzp.;kpv!90BLNo*">key</field>
+                              </block>
+                            </value>
+                            <value name="UID">
+                              <block type="variables_get" id="=pd.`AI7Y=8Wg+qu~e}+">
+                                <field name="VAR" id="]o$rOP#|BU3$iFV`B+2a">uid</field>
+                              </block>
+                            </value>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="rfid_mfrc522_read_block_vars" id="ZC-k3Wz{ElelVPUT]OC8">
+                            <field name="NAME">rfid</field>
+                            <field name="STAT" id="2`u`|$pPp{V,jhi2;COL">stat</field>
+                            <field name="DATA" id="9{5Bf{Jl3q~$R8zQqUZy">data</field>
+                            <value name="BLOCK">
+                              <shadow type="math_number" id="l/QDnZ2VJG74/2u@|#kj">
+                                <field name="NUM">8</field>
+                              </shadow>
+                            </value>
+                            <next>
+                              <block type="controls_if" id="OEGVlw?qlqY5^V04}JfQ">
+                                <mutation else="1"></mutation>
+                                <value name="IF0">
+                                  <block type="logic_compare" id="r#tTX_.6[G-@n[-Ot|l0">
+                                    <field name="OP">EQ</field>
+                                    <value name="A">
+                                      <block type="variables_get" id="{)Dow:L4zLoPjMl]qBvc">
+                                        <field name="VAR" id="2`u`|$pPp{V,jhi2;COL">stat</field>
+                                      </block>
+                                    </value>
+                                    <value name="B">
+                                      <block type="rfid_mfrc522_ok" id="u:{6a303AT.qC68fp/}U">
+                                        <field name="NAME">rfid</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="text_print" id="S]PJ{z^rnX;%m2rB;[Uw">
+                                    <value name="TEXT">
+                                      <block type="text_join" id="f$D4emU^wP|Osa77RCGy">
+                                        <mutation items="2"></mutation>
+                                        <value name="ADD0">
+                                          <block type="text" id="c*Ty/V.Lj;O.j%,dY7Le">
+                                            <field name="TEXT">Datos: </field>
+                                          </block>
+                                        </value>
+                                        <value name="ADD1">
+                                          <block type="variables_get" id="~S`0Eu)2Q:pOS6X#ivX~">
+                                            <field name="VAR" id="9{5Bf{Jl3q~$R8zQqUZy">data</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="variables_set" id="uwhPe$5pU}:i-J7@A^So">
+                                        <field name="VAR" id="7GQm-31l);S[|q5/wM~8">text</field>
+                                        <value name="VALUE">
+                                          <block type="rfid_data_to_text" id="xv)06pC2LBy*xO1L}~Y:">
+                                            <value name="DATA">
+                                              <block type="variables_get" id="h+7^I?qq71.3?N/.Muv/">
+                                                <field name="VAR" id="9{5Bf{Jl3q~$R8zQqUZy">data</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="controls_if" id="GY)wnoKS)(cc(Oo2%3A8">
+                                            <value name="IF0">
+                                              <block type="variables_get" id="H5eO^,!1yymvOj,ZL1+W">
+                                                <field name="VAR" id="7GQm-31l);S[|q5/wM~8">text</field>
+                                              </block>
+                                            </value>
+                                            <statement name="DO0">
+                                              <block type="text_print" id="ns)Fcv+dT2r(79$URE*e">
+                                                <value name="TEXT">
+                                                  <block type="variables_get" id="Zqgx%Y+`s$Zj5JS#1xc`">
+                                                    <field name="VAR" id="7GQm-31l);S[|q5/wM~8">text</field>
+                                                  </block>
+                                                </value>
+                                              </block>
+                                            </statement>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </statement>
+                                <statement name="ELSE">
+                                  <block type="text_print" id="k)3Z0q72l2jiA%[G{jF0">
+                                    <value name="TEXT">
+                                      <block type="text" id="j#:~;JZD.`X5+m,HUqH0">
+                                        <field name="TEXT">Error al leer</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                                <next>
+                                  <block type="rfid_mfrc522_stop_crypto" id="gY27V7;1F.0l:1hr|g,X">
+                                    <field name="NAME">rfid</field>
+                                  </block>
+                                </next>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <statement name="ELSE">
+                          <block type="text_print" id="~m-~uzoX?op]O0(Cn5F{">
+                            <value name="TEXT">
+                              <block type="text" id="XNK_|b}hJ(i5Yw9%QafT">
+                                <field name="TEXT">Error de autenticación</field>
+                              </block>
+                            </value>
+                          </block>
+                        </statement>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="time_sleep" id="iq.:_lgsqIG~g#O!RXq=">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

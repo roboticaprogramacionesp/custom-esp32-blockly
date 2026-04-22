@@ -1,0 +1,14 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="dfplayer_init" id="h-^_x/I,vn.Kv`ONrdJ~" x="-210" y="-30">
+    <field name="NAME">dfplayer</field>
+    <field name="UART">2</field>
+    <field name="TX">17</field>
+    <field name="RX">16</field>
+    <field name="BAUD">9600</field>
+    <next>
+      <block type="dfplayer_play" id="?B^FzBrSF^GPr@@u]0C,">
+        <field name="NAME">dfplayer</field>
+      </block>
+    </next>
+  </block>
+</xml>

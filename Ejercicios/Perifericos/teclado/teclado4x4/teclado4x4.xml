@@ -1,0 +1,60 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="W2DcP4X`aGrK/E`aBoL%">key</variable>
+  </variables>
+  <block type="init_keypad_4x4" id="dPL`!.gR`)l=fy/]N9JP" x="110" y="130">
+    <field name="NAME">teclado_4x4</field>
+    <field name="R1">26</field>
+    <field name="R2">25</field>
+    <field name="R3">17</field>
+    <field name="R4">16</field>
+    <field name="C1">27</field>
+    <field name="C2">14</field>
+    <field name="C3">12</field>
+    <field name="C4">13</field>
+    <next>
+      <block type="controls_whileUntil" id="^.eXA,?Sm9@ausiRuFp2">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="R4L|Dr.fFNv1B_EqtyHS">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="variables_set" id="4aPpS{pmBDeO4hJ:4arI">
+            <field name="VAR" id="W2DcP4X`aGrK/E`aBoL%">key</field>
+            <value name="VALUE">
+              <block type="keypad_get_key" id="_Pb0#q./HeXYS)|i1`oW">
+                <field name="NAME">teclado_4x4</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if" id="+@EpA%@5$=.._X;F[KhJ">
+                <value name="IF0">
+                  <block type="variables_get" id="6$4]g,o3xvPV|(/wio)T">
+                    <field name="VAR" id="W2DcP4X`aGrK/E`aBoL%">key</field>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="text_print" id="Ee@CV_1jrq`C3#voWhQR">
+                    <value name="TEXT">
+                      <block type="variables_get" id="g1XiP@hAOt;bpt`-FC*,">
+                        <field name="VAR" id="W2DcP4X`aGrK/E`aBoL%">key</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <next>
+                  <block type="time_sleep" id="*my2+hcs2kBZe;uMkOXs">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

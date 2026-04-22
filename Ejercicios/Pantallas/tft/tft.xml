@@ -1,0 +1,33 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="tft_init" id="~71udC%LR^*QU)qYGddP" x="10" y="-30">
+    <field name="NAME">tft</field>
+    <field name="MOSI">23</field>
+    <field name="SCK">18</field>
+    <field name="DC">21</field>
+    <field name="RST">22</field>
+    <field name="ROT">0</field>
+    <next>
+      <block type="tft_text" id="`~hSybnV;QPyxM=WU1nO">
+        <field name="NAME">tft</field>
+        <field name="FONT">vga1_16x32</field>
+        <field name="COLOR">#ff0000</field>
+        <field name="COLOR_BG">#000000</field>
+        <value name="TEXT">
+          <shadow type="text" id="IN2k+h8O-GN5=m1Z64U2">
+            <field name="TEXT">Hola TFT</field>
+          </shadow>
+        </value>
+        <value name="X">
+          <shadow type="math_number" id="IH~g7S}:=;zVO6c/5F%A">
+            <field name="NUM">10</field>
+          </shadow>
+        </value>
+        <value name="Y">
+          <shadow type="math_number" id="uN=g][tR0r;plukSb}7g">
+            <field name="NUM">20</field>
+          </shadow>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

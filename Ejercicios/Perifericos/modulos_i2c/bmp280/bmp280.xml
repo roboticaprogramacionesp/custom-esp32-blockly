@@ -1,0 +1,65 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="bmp_sensor_init" id="3F(^e#g5[2pkQ+r!f5!i" x="10" y="10">
+    <field name="NAME">bmp</field>
+    <field name="MODEL">BMP280</field>
+    <field name="ID">1</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x76</field>
+    <next>
+      <block type="controls_whileUntil" id="feLT1Y?+X;4HU=v8zGNf">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="IzJ$tJQPdz-r.(`72bV-">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="p|?]3ypty8r0TVGd`O0z">
+            <value name="TEXT">
+              <block type="text_join" id="nZ2{7BV4_NbZ~8x=EoCf">
+                <mutation items="6"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="5]uVGM2OOm}|*wKfX~vn">
+                    <field name="TEXT">Temperatura: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="bmp_read_temp" id="c#ae(eF?*v+12RCceoL}">
+                    <field name="NAME">bmp</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="text" id="3/Yovx6S~i;xM9vW:T_p">
+                    <field name="TEXT"> Presion: </field>
+                  </block>
+                </value>
+                <value name="ADD3">
+                  <block type="bmp_read_pressure" id="OFPl(v)2qwnKk!mT-68}">
+                    <field name="NAME">bmp</field>
+                  </block>
+                </value>
+                <value name="ADD4">
+                  <block type="text" id="uW1M/Dj6sT9sh`u;Z*t|">
+                    <field name="TEXT"> Altitud: </field>
+                  </block>
+                </value>
+                <value name="ADD5">
+                  <block type="bmp_read_altitude" id="]Zbkga@L3oJ%=/g/5v96">
+                    <field name="NAME">bmp</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="time_sleep" id="y_$3vUDKenGzVcfQB;!5">
+                <field name="VALUE">1</field>
+                <field name="UNIT">S</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

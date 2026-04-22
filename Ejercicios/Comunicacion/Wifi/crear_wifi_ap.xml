@@ -1,0 +1,9 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="wifi_ap" id="^$X+w@Xf%*eg=RG6]^A{" x="50" y="110">
+    <field name="AP_SSID">ESP32_AP</field>
+    <field name="AP_PASS">12345678</field>
+    <next>
+      <block type="wifi_start_ap" id="/YUG3y#txQ]R:+e6pOs-"></block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,83 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id=":ZPd;!eL.C9%boO7*U#2">x</variable>
+    <variable id="$AS2+v`BFXV[dBdmCRF7">respuesta</variable>
+  </variables>
+  <block type="wifi_define_connect" id="YEZsORx+dYO9O|I-hZ)S" x="90" y="90">
+    <field name="SSID">ESP32_AP</field>
+    <field name="PASS">12345678</field>
+    <next>
+      <block type="wifi_call_connect" id="B@f#fxj_A7]L|!4Z$I(C">
+        <next>
+          <block type="procedures_callnoreturn" id="WCw?2tihn!zC@!?jF46?" inline="true">
+            <mutation name="send_msg">
+              <arg name="x"></arg>
+            </mutation>
+            <value name="ARG0">
+              <block type="text" id="(G!3^uww.2/q]5t0d^*0">
+                <field name="TEXT">Hello 3DPit</field>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defnoreturn" id="qr7Jp?N^G(gVgLM*6QZ-" x="410" y="130">
+    <mutation>
+      <arg name="x" varid=":ZPd;!eL.C9%boO7*U#2"></arg>
+    </mutation>
+    <field name="NAME">send_msg</field>
+    <comment pinned="false" h="80" w="160">Describe esta función...</comment>
+    <statement name="STACK">
+      <block type="socket_create" id="QE=/nK_$9KX2`pOWR?~m">
+        <field name="VAR">s</field>
+        <field name="FAMILY">AF_INET</field>
+        <field name="TYPE">SOCK_STREAM</field>
+        <field name="PROTO">IPPROTO_TCP</field>
+        <next>
+          <block type="socket_connect" id="!uvLJtQEjvKCi@GBo:v@">
+            <field name="VAR">s</field>
+            <field name="IP">192.168.0.1</field>
+            <field name="PORT">80</field>
+            <next>
+              <block type="socket_send" id="mizzTR:2QvyA*EYmxTy[">
+                <field name="VAR">s</field>
+                <value name="DATA">
+                  <block type="variables_get" id="%fo6UdTZsi,#=Kq9%,Vi">
+                    <field name="VAR" id=":ZPd;!eL.C9%boO7*U#2">x</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="variables_set" id="VMupWfbDklVSxhgJ$^Eb">
+                    <field name="VAR" id="$AS2+v`BFXV[dBdmCRF7">respuesta</field>
+                    <value name="VALUE">
+                      <block type="socket_receive" id="il0gT[:HM*Ny=YV[,qEd">
+                        <field name="VAR">s</field>
+                        <field name="SIZE">1024</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print" id="bHlQ0!|;fytt@dR(s!8G">
+                        <value name="TEXT">
+                          <block type="variables_get" id="?}kg$wjbus@vFO]2~B3i">
+                            <field name="VAR" id="$AS2+v`BFXV[dBdmCRF7">respuesta</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="socket_close" id="Mg+5zC=H[lbfqf!1GhVT">
+                            <field name="VAR">s</field>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

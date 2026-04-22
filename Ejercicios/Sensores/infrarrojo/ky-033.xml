@@ -1,0 +1,48 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="init_infrarrojo" id="8UCL`lc=}Gzkqu|^.@bY" x="150" y="150">
+    <field name="SENSOR">ky-033</field>
+    <field name="PIN">12</field>
+    <field name="MODE">Pin.PULL_UP</field>
+    <next>
+      <block type="init_infrarrojo" id="qCxKB2[FZ1LTc%=/1EXy">
+        <field name="SENSOR">ky-033</field>
+        <field name="PIN">13</field>
+        <field name="MODE">Pin.PULL_UP</field>
+        <next>
+          <block type="controls_whileUntil" id="PQL5+v(%s5M-DYQ)P#c:">
+            <field name="MODE">WHILE</field>
+            <value name="BOOL">
+              <block type="logic_boolean" id="p`DtD}Mi*ToM0KrB.}`8">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="text_print" id="K?[CbQ3Y7L`oZ|}.D7QX">
+                <value name="TEXT">
+                  <block type="read_infrarrojo" id="[?s|GDUN*PjKNTA$tD@,">
+                    <field name="PIN">12</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="text_print" id="nI!PYq]^vUV|Vcu41u@I">
+                    <value name="TEXT">
+                      <block type="read_infrarrojo" id="Oxl,rd_fBW7tQb:JoAL0">
+                        <field name="PIN">13</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="time_sleep" id="ph}7[`i/T^QJE{3Jaa}V">
+                        <field name="VALUE">1</field>
+                        <field name="UNIT">S</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

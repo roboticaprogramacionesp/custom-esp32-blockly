@@ -1,0 +1,68 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="qmc5883l_init" id="K^G}4W7l=y]Om?@:qjr=" x="0" y="0">
+    <field name="NAME">qmc</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x2c</field>
+    <next>
+      <block type="controls_whileUntil" id="F*Hhl(l_or[E;NZX5(JZ">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="zXdC~[,TJ+6fl966v7*d">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="qmc5883l_read_xyz" id="_|[$5oN$$N4d``7is6Tn">
+            <field name="NAME">qmc</field>
+            <next>
+              <block type="text_print" id="d_q1Fg%XR8QNb%~+f@MI">
+                <value name="TEXT">
+                  <block type="text_join" id="ACGKaR/9Xk92vcj7ihsc">
+                    <mutation items="6"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="=j?oIH6lPn[I``yTs6mr">
+                        <field name="TEXT">Eje X: </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="qmc5883l_read_x" id="7S#x8.!28GzG6N)RqzZ,">
+                        <field name="NAME">qmc</field>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="text" id="F1en^pFr#p6?7R@fP;9#">
+                        <field name="TEXT"> Eje Y: </field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="qmc5883l_read_y" id="}dTMceE[Vx87jPd0xGF]">
+                        <field name="NAME">qmc</field>
+                      </block>
+                    </value>
+                    <value name="ADD4">
+                      <block type="text" id="u^ois1+vrpU9jb+h}@MV">
+                        <field name="TEXT"> Eje Z: </field>
+                      </block>
+                    </value>
+                    <value name="ADD5">
+                      <block type="qmc5883l_read_z" id="g0t2Xu_q.:X#m4jk`X(x">
+                        <field name="NAME">qmc</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_sleep" id="3:1}db6Le+NPU{uEd^],">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

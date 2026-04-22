@@ -1,0 +1,33 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="init_ultrasonic_hcsr04" id="0?{!s(?0hw,RQ+]:wf|A" x="70" y="-10">
+    <field name="NAME">ultrasonico</field>
+    <field name="TRIG">12</field>
+    <field name="ECHO">13</field>
+    <next>
+      <block type="controls_whileUntil" id="KZBv|I5`=|Os!of|wmvK">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="3j1P)=a)9_/(BhsR^lv:">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="FwXTT5SLW|dU+7,{Td;X">
+            <value name="TEXT">
+              <block type="read_ultrasonic_hcsr04" id="Xg%GN1eI6sSRP}H812nr">
+                <field name="NAME">ultrasonico</field>
+                <field name="UNIT">cm</field>
+              </block>
+            </value>
+            <next>
+              <block type="time_sleep" id="ah.4.|.VQU~,t.hmJcX0">
+                <field name="VALUE">1</field>
+                <field name="UNIT">S</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

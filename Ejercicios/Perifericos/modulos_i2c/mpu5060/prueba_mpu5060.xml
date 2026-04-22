@@ -1,0 +1,63 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="mpu6050_init" id="1Q(m-QI*JsM(dRS;Q}:]" x="70" y="150">
+    <field name="NAME">mpu</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x68</field>
+    <next>
+      <block type="mpu6050_set_accel_range" id="]~i96nfPrT0nOSm|[f!V">
+        <field name="NAME">mpu</field>
+        <field name="RANGE">_ACC_RNG_2G</field>
+        <next>
+          <block type="mpu6050_set_gyro_range" id="{m0GTJY``mYEh#bIs(ue">
+            <field name="NAME">mpu</field>
+            <field name="RANGE">_GYR_RNG_250DEG</field>
+            <next>
+              <block type="controls_whileUntil" id="V!^EpH]O51B$b}iX6L$=">
+                <field name="MODE">WHILE</field>
+                <value name="BOOL">
+                  <block type="logic_boolean" id="+x5_EZeLb`JwqGWH6[ZQ">
+                    <field name="BOOL">TRUE</field>
+                  </block>
+                </value>
+                <statement name="DO">
+                  <block type="text_print" id="LyZ])[LSJP7u6:I,G`wM">
+                    <value name="TEXT">
+                      <block type="mpu6050_accel_x" id=".6t7T8b%I]Mg1R@ZzuI~">
+                        <field name="NAME">mpu</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="text_print" id="$89.i8^PurO40?h1e(.a">
+                        <value name="TEXT">
+                          <block type="mpu6050_gyro_x" id="%eJQ16e5m;r.C.sk!|Iq">
+                            <field name="NAME">mpu</field>
+                          </block>
+                        </value>
+                        <next>
+                          <block type="text_print" id="Oh3!$dxsq:;)$[8GJ,oG">
+                            <value name="TEXT">
+                              <block type="mpu6050_temperature" id="1d67Y$.*`6$S:-a()oC(">
+                                <field name="NAME">mpu</field>
+                              </block>
+                            </value>
+                            <next>
+                              <block type="time_sleep" id="#lX5uPSuQ9dqk)Et4JHm">
+                                <field name="VALUE">1</field>
+                                <field name="UNIT">S</field>
+                              </block>
+                            </next>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

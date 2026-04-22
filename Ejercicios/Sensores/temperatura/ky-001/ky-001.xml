@@ -1,0 +1,53 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="vD66-exa3VS(ESaB9Nuo">ds</variable>
+  </variables>
+  <block type="ky001_init" id="p3X4uhf?K89+sZ;PbzvQ" x="250" y="90">
+    <field name="PIN">12</field>
+    <next>
+      <block type="variables_set" id="qV5~c0bv-JdOyGeU#WIl">
+        <field name="VAR" id="vD66-exa3VS(ESaB9Nuo">ds</field>
+        <value name="VALUE">
+          <block type="ky001_scan" id="Duz?n%=+Cdf|@h%JULpn">
+            <field name="PIN">12</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_whileUntil" id="1px_?NWVm-2abRzDv^mR">
+            <field name="MODE">WHILE</field>
+            <value name="BOOL">
+              <block type="logic_boolean" id="pF~Np:QG#f|!00P9^q;k">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="ky001_convert" id="jC;qQ.nZ;%P`]_SGTde_">
+                <field name="PIN">12</field>
+                <next>
+                  <block type="text_print" id="~.[Gi{5_NnT9%5*ydC_+">
+                    <value name="TEXT">
+                      <block type="ky001_read_index" id="VG?l)f.W$WBjb7@rrIg~">
+                        <field name="PIN">12</field>
+                        <value name="INDEX">
+                          <block type="math_number" id=".n,Q?Cu-tMd#gB+F8z9E">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="time_sleep" id="#ZR$MzL0$1JjMIlxHEDU">
+                        <field name="VALUE">1</field>
+                        <field name="UNIT">S</field>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

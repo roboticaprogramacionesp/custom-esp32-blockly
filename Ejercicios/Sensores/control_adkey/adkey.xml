@@ -1,0 +1,259 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="analog_sensor_init" id="y08/Rc|NiXl~^V0vlK$p" x="150" y="90">
+    <field name="NAME">adkey</field>
+    <field name="MODEL">ADKeyboard</field>
+    <field name="PIN">35</field>
+    <field name="ATTEN">ADC.ATTN_11DB</field>
+    <field name="WIDTH">ADC.WIDTH_10BIT</field>
+    <next>
+      <block type="controls_whileUntil" id=",Q~JZUx2tmV?K@Pm(46H">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="2T{a-;r~{zY{5#+WP*yE">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="W7H:4Dvl-A*a`LatJ0){" disabled="true">
+            <value name="TEXT">
+              <block type="analog_sensor_read" id="IdRauSr}q1jWBdp7hIdl">
+                <field name="NAME">adkey</field>
+              </block>
+            </value>
+            <next>
+              <block type="controls_if" id="M$VLW5W8[;|U^=K=N2je">
+                <mutation elseif="4"></mutation>
+                <value name="IF0">
+                  <block type="logic_operation" id="Xc*10-$KS/dHsMeL`HU:">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="ZFzR**=].OXb%_n,K%R8">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="A+r%R-I2D}o)GpJSQ4Et">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id=".sSVpd$V(}}@pNHnGa0F">
+                            <field name="NUM">0</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="W6MW}-(Bqf5QmCH;^kbl">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="mpAL*9{!t/g8{64O*c$v">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="H2QF3))=(1)C,9KJ/dh!">
+                            <field name="NUM">50</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="text_print" id="E~-EsxvxVWfM~;]Nsk9D">
+                    <value name="TEXT">
+                      <block type="text" id="G!EO/i,?npNUC`x:5:JA">
+                        <field name="TEXT">Izquierda</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <value name="IF1">
+                  <block type="logic_operation" id="t0yVQkW%B:uS)rf3vLB7">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="AdKy)eOKnkb2:4M7So}C">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="5*kZ$jGBP1AO!b*OlbJ[">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="`XD]ok]hwyy!?~+pO3MJ">
+                            <field name="NUM">100</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="f8{]iMC`x}@@6?].!D|c">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id=")8R4jx4BxLSA+)([za(+">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="37Gvx(KKXkJa]cT6;S?#">
+                            <field name="NUM">200</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO1">
+                  <block type="text_print" id="^qbb}z95JAE@|0UK)qNy">
+                    <value name="TEXT">
+                      <block type="text" id="z2!EotHdn!#4IO)j8a5p">
+                        <field name="TEXT">Arriba</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <value name="IF2">
+                  <block type="logic_operation" id="YrYu.k,(~Ov%}~NB;zu8">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id=".!d0?;0lT8Eh*[l4Yejk">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="]ldu6BG-]uWaGP`lbkD=">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="p2rkI?+)D?NviYbS9F+D">
+                            <field name="NUM">200</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="=3Wq%ZfkYR7J;rR)0EIG">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="Wz%lgBqrK}J(#vlyMhO_">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="16zeiFIa3Xd~MAHuE_?#">
+                            <field name="NUM">300</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO2">
+                  <block type="text_print" id="hy}REy~5FJfuJ/2DZSi?">
+                    <value name="TEXT">
+                      <block type="text" id="Pgp48V`7].Q6hBC$3EE_">
+                        <field name="TEXT">Abajo</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <value name="IF3">
+                  <block type="logic_operation" id="SJN=lOfVK7$3Q=Lb.~w.">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="CT^{%V69.V-v~;TG0BhR">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="M7kHJTZ9acWiTENsKH(1">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="lM/1*A6*javGtkZF,Dnu">
+                            <field name="NUM">300</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id="5Yc6EsBGV6AQC4u_MjAa">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="ccsd+(l01T]heU)F$Kid">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="g2.fp{bQXkodXtB0poYi">
+                            <field name="NUM">500</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO3">
+                  <block type="text_print" id="HpoLCsX9}(W$AO+gQ|n~">
+                    <value name="TEXT">
+                      <block type="text" id="~WKzfz_/J4^QCC(bR89+">
+                        <field name="TEXT">Derecha</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <value name="IF4">
+                  <block type="logic_operation" id="$4$1R@fC(G5DmS#LVdEF">
+                    <field name="OP">AND</field>
+                    <value name="A">
+                      <block type="logic_compare" id="Z:|-!?I|O:asiof7}=pS">
+                        <field name="OP">GTE</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="28);x2E:9@+lA_TZQ},U">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="6XV{QM%v?|)RM9!!,jS!">
+                            <field name="NUM">500</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="logic_compare" id=":lXLhEv+Jo|#q+S_X);{">
+                        <field name="OP">LT</field>
+                        <value name="A">
+                          <block type="analog_sensor_read" id="t;3zZF@;?o1n.2upuMyy">
+                            <field name="NAME">adkey</field>
+                          </block>
+                        </value>
+                        <value name="B">
+                          <block type="math_number" id="crVT7VqL2wiD,,dHJtpq">
+                            <field name="NUM">800</field>
+                          </block>
+                        </value>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO4">
+                  <block type="text_print" id="HxROF:mPVYyF|aSe[}0s">
+                    <value name="TEXT">
+                      <block type="text" id="HQZ*H6.BAVU(~04=!9`o">
+                        <field name="TEXT">Enter</field>
+                      </block>
+                    </value>
+                  </block>
+                </statement>
+                <next>
+                  <block type="time_sleep" id="+=qZzSd@JQ*p;e$(5SJj">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="sdcard_init" id="jAY!7|)$~O*_mruUm[qu" x="-210" y="-50">
+    <field name="NAME">sd</field>
+    <field name="SCK">18</field>
+    <field name="MOSI">23</field>
+    <field name="MISO">19</field>
+    <field name="CS">5</field>
+    <next>
+      <block type="text_print" id="LNiu|H!9Ktc|yzJI1(5^">
+        <value name="TEXT">
+          <block type="sdcard_list" id="1FKIy%uG$v!Ag$JpK43M">
+            <field name="NAME">sd</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

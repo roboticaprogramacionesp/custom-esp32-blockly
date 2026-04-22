@@ -1,0 +1,74 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="rtc_ds3231_init" id=".s}gdng:,`JB.F}Fztte" x="170" y="130">
+    <field name="NAME">rtc_ds3231</field>
+    <field name="ID">1</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x68</field>
+    <next>
+      <block type="rtc_ds3231_set_time" id="w|g-dDgDS)-M7PvKV|Iv">
+        <field name="NAME">rtc_ds3231</field>
+        <value name="YEAR">
+          <shadow type="math_number" id="%T,hkD.1eLJ-1](JvUlT">
+            <field name="NUM">2026</field>
+          </shadow>
+        </value>
+        <value name="MONTH">
+          <shadow type="math_number" id="(sG.{h2XylR;/qaFV(74">
+            <field name="NUM">4</field>
+          </shadow>
+        </value>
+        <value name="DAY">
+          <shadow type="math_number" id="$@Ch`301]Tkrx?Lyjl;H">
+            <field name="NUM">7</field>
+          </shadow>
+        </value>
+        <value name="HOUR">
+          <shadow type="math_number" id="Vf9Iygr0h#Vp!b?o^PLv">
+            <field name="NUM">4</field>
+          </shadow>
+        </value>
+        <value name="MINUTE">
+          <shadow type="math_number" id="GFmQWWAQJ8ete20jhC,0">
+            <field name="NUM">50</field>
+          </shadow>
+        </value>
+        <value name="SECOND">
+          <shadow type="math_number" id="+0.;OCkqokE9:hq1~Bl:">
+            <field name="NUM">0</field>
+          </shadow>
+        </value>
+        <value name="WEEKDAY">
+          <shadow type="math_number" id="[NB$FG`NBgesa,pe69cy">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <next>
+          <block type="controls_whileUntil" id="GJB=d/cHcgp$p^YBg;{P">
+            <field name="MODE">WHILE</field>
+            <value name="BOOL">
+              <block type="logic_boolean" id="jLc3{GIL[D]fFYvS;t}$">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="text_print" id="oNw1X~:p0V.$2_^doGrW">
+                <value name="TEXT">
+                  <block type="rtc_ds3231_get_time" id="ED-5%b?GyTH9kI0u)8V|">
+                    <field name="NAME">rtc_ds3231</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_sleep" id="2Uj!mVF*[#Wb4~5VP^_J">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

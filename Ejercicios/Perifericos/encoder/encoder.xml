@@ -1,0 +1,78 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="{@f%8#@q/o)LprgD+/[Y">valor_anterioir</variable>
+  </variables>
+  <block type="encoder_rotary_init" id="gbH7R`.@o0f3H6|L8Jz@" x="-110" y="130">
+    <field name="NAME">encoder</field>
+    <field name="CLK">18</field>
+    <field name="DT">19</field>
+    <field name="IN_VAL">0</field>
+    <field name="MAX_VAL">100</field>
+    <field name="REVERSE">False</field>
+    <field name="RANGE_MODE">RotaryIRQ.RANGE_WRAP</field>
+    <next>
+      <block type="variables_set" id=".`24Jffi,a9=u8wbg67s">
+        <field name="VAR" id="{@f%8#@q/o)LprgD+/[Y">valor_anterioir</field>
+        <value name="VALUE">
+          <block type="math_number" id="!i?-:HX,f]F0Bq(Flet|">
+            <field name="NUM">0</field>
+          </block>
+        </value>
+        <next>
+          <block type="controls_whileUntil" id=".ExXjVTq772v{^VW_=Fp">
+            <field name="MODE">WHILE</field>
+            <value name="BOOL">
+              <block type="logic_boolean" id="}Ut*H0O%@bqH.yTvxM:P">
+                <field name="BOOL">TRUE</field>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="controls_if" id="yPDIILK1af^~(an~yv][">
+                <value name="IF0">
+                  <block type="logic_compare" id="{%sd8~!19GpQ0bRhl?98">
+                    <field name="OP">NEQ</field>
+                    <value name="A">
+                      <block type="variables_get" id=",Er}kw8G+CX=4Wl{c`!o">
+                        <field name="VAR" id="{@f%8#@q/o)LprgD+/[Y">valor_anterioir</field>
+                      </block>
+                    </value>
+                    <value name="B">
+                      <block type="encoder_rotary_value" id="IUmbd(dgqKbQ;s_ZRTP]">
+                        <field name="NAME">encoder</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <statement name="DO0">
+                  <block type="text_print" id="4H|1dl|rGhV.nID=/DZl">
+                    <value name="TEXT">
+                      <block type="encoder_rotary_value" id="!%34xy;yI{%s(?KReSUb">
+                        <field name="NAME">encoder</field>
+                      </block>
+                    </value>
+                    <next>
+                      <block type="variables_set" id=")7-+7{(~)WO:_4^+@ZZI">
+                        <field name="VAR" id="{@f%8#@q/o)LprgD+/[Y">valor_anterioir</field>
+                        <value name="VALUE">
+                          <block type="encoder_rotary_value" id="UWy[~{%L?2%V(EGeH=T^">
+                            <field name="NAME">encoder</field>
+                          </block>
+                        </value>
+                      </block>
+                    </next>
+                  </block>
+                </statement>
+                <next>
+                  <block type="time_sleep" id="`Yq`AUJk?rik!R^Z-T`]">
+                    <field name="VALUE">10</field>
+                    <field name="UNIT">MS</field>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

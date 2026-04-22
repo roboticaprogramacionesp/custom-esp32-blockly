@@ -1,0 +1,32 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="init_infrarrojo" id="=6Jp)jOU)~S@`FxUzwj^" x="10" y="10">
+    <field name="SENSOR">tcrt5000</field>
+    <field name="PIN">27</field>
+    <field name="MODE">None</field>
+    <next>
+      <block type="controls_whileUntil" id="-T;/__iU`Zxw*3$ymJf`">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="n:cNB#jM((W97dWwJCoO">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="g9(kj-J%yoVfG^De*oc;">
+            <value name="TEXT">
+              <block type="read_infrarrojo" id="eXVPIKEI[@Y{f``J-8[C">
+                <field name="PIN">27</field>
+              </block>
+            </value>
+            <next>
+              <block type="time_sleep" id="/RqBA#dT9)VDiny8D9v^">
+                <field name="VALUE">1</field>
+                <field name="UNIT">S</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

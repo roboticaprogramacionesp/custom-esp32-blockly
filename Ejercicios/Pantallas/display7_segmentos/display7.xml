@@ -1,0 +1,19 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="seg7_init" id="W4a6zE!4m`93#|(Zi?6U" x="90" y="230">
+    <field name="NAME">display</field>
+    <field name="TYPE">CC</field>
+    <field name="A">23</field>
+    <field name="B">5</field>
+    <field name="C">13</field>
+    <field name="D">12</field>
+    <field name="E">14</field>
+    <field name="F">19</field>
+    <field name="G">18</field>
+    <next>
+      <block type="seg7_number" id="SG5aqH*NUdB%6rhW!{(`">
+        <field name="NAME">display</field>
+        <field name="NUM">8</field>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,76 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="B`,gcjvWHz]-x6Wc!pvm">tipo</variable>
+    <variable id="H51%5t)*)XLI,PT]UWZ%">valor</variable>
+  </variables>
+  <block type="wifi_ap" id="=/86U^8I_4^}_NuXQqik" x="10" y="-30">
+    <field name="AP_SSID">ESP32_AP</field>
+    <field name="AP_PASS"></field>
+    <field name="AP_IP">192.168.0.1</field>
+    <field name="AP_SUBNET">255.255.255.0</field>
+    <next>
+      <block type="portal_init" id="y/2cdtWMv?HgzN09Oqf1">
+        <next>
+          <block type="DNSQuery" id="%[}5rR9;:CqT=/!k(:@N">
+            <next>
+              <block type="portal_dns_server" id="$vsDK5uJY8-IxK(~.K3F">
+                <next>
+                  <block type="portal_http_server" id="6I7}_WeeWnQFJwG]uAkj">
+                    <field name="INDEX">index</field>
+                    <field name="TIPO" id="B`,gcjvWHz]-x6Wc!pvm">tipo</field>
+                    <field name="VALOR" id="H51%5t)*)XLI,PT]UWZ%">valor</field>
+                    <next>
+                      <block type="portal_main" id="X[u1{Jc0;[pD#b+q(/gQ"></block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defnoreturn" id="k51E*tZ-D|Hu(3p{(/Gs" x="370" y="30">
+    <field name="NAME">comandos</field>
+    <comment pinned="false" h="80" w="160">Describe esta función...</comment>
+    <statement name="STACK">
+      <block type="text_print" id="iAc[dW4CWvg3F%11q/;3">
+        <value name="TEXT">
+          <block type="text_join" id="tqp_UTZga2p(#b%;mTNy">
+            <mutation items="2"></mutation>
+            <value name="ADD0">
+              <block type="text" id="TAck^Ysl^91=PM;X,QV*">
+                <field name="TEXT">Tipo</field>
+              </block>
+            </value>
+            <value name="ADD1">
+              <block type="variables_get" id="q5EjpC!.b,k,e/-VpCh^">
+                <field name="VAR" id="B`,gcjvWHz]-x6Wc!pvm">tipo</field>
+              </block>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="text_print" id="a=Uv}aM5#K[S?S3H{a1o">
+            <value name="TEXT">
+              <block type="text_join" id="eq85|2I*(4-DW6~guiEF">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="4Yah:Qh:-L4dbUOle)A`">
+                    <field name="TEXT"> Valor: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="variables_get" id="hwPF|~AS~/WS$a(HY96E">
+                    <field name="VAR" id="H51%5t)*)XLI,PT]UWZ%">valor</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

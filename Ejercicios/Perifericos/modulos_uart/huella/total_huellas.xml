@@ -1,0 +1,18 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="fpm_init" id=";H,r}/ihYSHOU}K)l{Tc" x="-50" y="-250">
+    <field name="NAME">finger</field>
+    <field name="UART">2</field>
+    <field name="TX">17</field>
+    <field name="RX">16</field>
+    <field name="BAUD">57600</field>
+    <next>
+      <block type="text_print" id="VjW=.]/HMRrxW?#F.3T,">
+        <value name="TEXT">
+          <block type="fpm_count" id="V!V~Ge96Ld8_~ruvY)Io">
+            <field name="NAME">finger</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

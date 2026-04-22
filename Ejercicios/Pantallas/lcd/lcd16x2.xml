@@ -1,0 +1,24 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="lcd_init" id="Kv3}y}?b#3m78G9u~BS7" x="110" y="130">
+    <field name="NAME">lcd</field>
+    <field name="RS">12</field>
+    <field name="EN">13</field>
+    <field name="D4">5</field>
+    <field name="D5">23</field>
+    <field name="D6">19</field>
+    <field name="D7">18</field>
+    <next>
+      <block type="lcd_print" id="+ESLR{-3V3p|#zBrFyOQ">
+        <field name="NAME">lcd</field>
+        <value name="TEXT">
+          <shadow type="text" id=".a=kTxyY=VKRRG}h`66}">
+            <field name="TEXT"></field>
+          </shadow>
+          <block type="text" id="85$`BFY~38S*RZ07^f(}">
+            <field name="TEXT">3DPit</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

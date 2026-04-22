@@ -1,0 +1,61 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="tM!!^y8gPVA86S|C.4:U">rx_buffer</variable>
+  </variables>
+  <block type="ble_init_uart" id="~Rw,~z|@l;mn|.j]Z9-Y" x="130" y="110">
+    <next>
+      <block type="ble_set_name" id="`-QntVo~k{JEgdP8GV2C">
+        <field name="BLE_NAME">P!t_Car_5</field>
+        <next>
+          <block type="ble_on_receive" id="FeYT78loKkX}8^(]Y4wD">
+            <field name="FUNCION">datos_recibidos</field>
+            <field name="RX" id="tM!!^y8gPVA86S|C.4:U">rx_buffer</field>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+  <block type="procedures_defnoreturn" id="ttv^_wPtZthKP_+y3zU6" x="530" y="90">
+    <field name="NAME">datos_recibidos</field>
+    <comment pinned="false" h="80" w="160">Describe esta función...</comment>
+    <statement name="STACK">
+      <block type="variables_set" id="{}mvQx_s98vKq($hKkzz">
+        <field name="VAR" id="tM!!^y8gPVA86S|C.4:U">rx_buffer</field>
+        <value name="VALUE">
+          <block type="ble_read" id="z(isfTh^vtT=AeRD4+*`"></block>
+        </value>
+        <next>
+          <block type="controls_if" id="u+~*{yLWa;-X|Ds~s-ac">
+            <value name="IF0">
+              <block type="variables_get" id="9;.iOHV~bP0Cyy!WaTD^">
+                <field name="VAR" id="tM!!^y8gPVA86S|C.4:U">rx_buffer</field>
+              </block>
+            </value>
+            <statement name="DO0">
+              <block type="text_print" id="]K;$vM$^O-B_lx~!.lNg">
+                <value name="TEXT">
+                  <block type="text_decode" id="W3#H$kQs3h{6`/#q}O#B">
+                    <value name="BYTES">
+                      <block type="variables_get" id="s.JLb4|Uta:!3TX?]7ez">
+                        <field name="VAR" id="tM!!^y8gPVA86S|C.4:U">rx_buffer</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="ble_write" id="Vh;*TeSG^dkTA2m~D^EB">
+                    <value name="DATA">
+                      <block type="text" id="_5^o4):q9Mh3Yaia5{~@">
+                        <field name="TEXT">Datos recibidos</field>
+                      </block>
+                    </value>
+                  </block>
+                </next>
+              </block>
+            </statement>
+          </block>
+        </next>
+      </block>
+    </statement>
+  </block>
+</xml>

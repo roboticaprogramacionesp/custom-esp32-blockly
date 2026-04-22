@@ -1,0 +1,104 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="L%cO)cbzr1FZPJ)G*wd:">conexion</variable>
+    <variable id="7pz+3pR4450I=JcLL;XZ">addr</variable>
+    <variable id="qNs$g`1bj`%u7GILDaU;">respuesta</variable>
+  </variables>
+  <block type="wifi_ap" id="g`#D@y!;B7.M(S-u}MB/" x="-470" y="190">
+    <field name="AP_SSID">ESP32_AP</field>
+    <field name="AP_PASS">12345678</field>
+    <field name="AP_IP">192.168.0.1</field>
+    <field name="AP_SUBNET">255.255.255.0</field>
+    <next>
+      <block type="wifi_start_ap" id="kG6$]tShC,ijbF0op#/r">
+        <next>
+          <block type="time_sleep" id="MNCN|:xy@Gb|%HphN431">
+            <field name="VALUE">1</field>
+            <field name="UNIT">S</field>
+            <next>
+              <block type="socket_create" id="TB0=p,^6#338tx@SKlOT">
+                <field name="VAR">s</field>
+                <field name="FAMILY">AF_INET</field>
+                <field name="TYPE">SOCK_STREAM</field>
+                <field name="PROTO">IPPROTO_TCP</field>
+                <next>
+                  <block type="socket_bind" id="9709m042YO9r$pM,r]=A">
+                    <field name="VAR">s</field>
+                    <field name="IP">0.0.0.0</field>
+                    <field name="PORT">80</field>
+                    <next>
+                      <block type="socket_listen" id="9[=M.^zMLI@$#gsRz6wk">
+                        <field name="VAR">s</field>
+                        <field name="BACKLOG">5</field>
+                        <next>
+                          <block type="controls_whileUntil" id="{?Ve,pvGbAQw6tEDIvJ{">
+                            <field name="MODE">WHILE</field>
+                            <value name="BOOL">
+                              <block type="logic_boolean" id="$%TWh_],`X.t^`Fbg`!s">
+                                <field name="BOOL">TRUE</field>
+                              </block>
+                            </value>
+                            <statement name="DO">
+                              <block type="socket_accept" id="yGEuJS]X8@-H|(=o}vQ_">
+                                <field name="VAR">s</field>
+                                <field name="CONN" id="L%cO)cbzr1FZPJ)G*wd:">conexion</field>
+                                <field name="ADDR" id="7pz+3pR4450I=JcLL;XZ">addr</field>
+                                <next>
+                                  <block type="text_print" id="|0i)9Az-~$$Uh1}`$.~S">
+                                    <value name="TEXT">
+                                      <block type="text" id="AiCajfIo#U]Un=;Px0%;">
+                                        <field name="TEXT">Nueva conexion establecida!</field>
+                                      </block>
+                                    </value>
+                                    <next>
+                                      <block type="text_print" id="}.ZK*99=9eUaQCde+Y7W">
+                                        <value name="TEXT">
+                                          <block type="variables_get" id="%m7Ex_S,k]uT`^l6x_!1">
+                                            <field name="VAR" id="L%cO)cbzr1FZPJ)G*wd:">conexion</field>
+                                          </block>
+                                        </value>
+                                        <next>
+                                          <block type="variables_set" id="!+#Vyw8M:mPvYi+:.QI(">
+                                            <field name="VAR" id="qNs$g`1bj`%u7GILDaU;">respuesta</field>
+                                            <value name="VALUE">
+                                              <block type="socket_receive" id="}ZYEZu2YLMWU*`Llu5j~">
+                                                <field name="VAR">conexion</field>
+                                                <field name="SIZE">1024</field>
+                                              </block>
+                                            </value>
+                                            <next>
+                                              <block type="text_print" id="8n=HnB6}GiqKaFO/VQEL">
+                                                <value name="TEXT">
+                                                  <block type="variables_get" id="Ee5`BNBodu#.G;?6ce^O">
+                                                    <field name="VAR" id="qNs$g`1bj`%u7GILDaU;">respuesta</field>
+                                                  </block>
+                                                </value>
+                                                <next>
+                                                  <block type="socket_close" id="JPEynM0BlE`+M^Op@#Oh">
+                                                    <field name="VAR">conexion</field>
+                                                  </block>
+                                                </next>
+                                              </block>
+                                            </next>
+                                          </block>
+                                        </next>
+                                      </block>
+                                    </next>
+                                  </block>
+                                </next>
+                              </block>
+                            </statement>
+                          </block>
+                        </next>
+                      </block>
+                    </next>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

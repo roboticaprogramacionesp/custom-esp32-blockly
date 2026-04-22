@@ -1,0 +1,66 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="ky023_analog" id="P~mI)6m9^3_h;uZ9BpQY" x="-70" y="50">
+    <field name="NAME">joystick</field>
+    <field name="PIN_X">35</field>
+    <field name="PIN_Y">34</field>
+    <field name="PIN_SW">4</field>
+    <field name="ATTEN">ADC.ATTN_11DB</field>
+    <field name="WIDTH">ADC.WIDTH_10BIT</field>
+    <field name="PULL">None</field>
+    <next>
+      <block type="controls_whileUntil" id="m$HEk5I.1aG1t$}w6w+=">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="ctmV:0Tx5JBC?vtLx)%*">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="sX|Z2dDWpEt11I3v0/s~">
+            <value name="TEXT">
+              <block type="text_join" id="^g0^~IV/qhTml4L2p{YS">
+                <mutation items="6"></mutation>
+                <value name="ADD0">
+                  <block type="text" id="-z5(/AUJAko?ykX:}Ai6">
+                    <field name="TEXT">Joystick X: </field>
+                  </block>
+                </value>
+                <value name="ADD1">
+                  <block type="ky023_read_x" id="r?x=qCQ^dy3x4.kt-v[=">
+                    <field name="NAME">joystick</field>
+                  </block>
+                </value>
+                <value name="ADD2">
+                  <block type="text" id="v4PuTs7/qL,}#aHm3y_C">
+                    <field name="TEXT"> Joystick Y: </field>
+                  </block>
+                </value>
+                <value name="ADD3">
+                  <block type="ky023_read_y" id="zIfa@#U+dVW9ov(uYY%|">
+                    <field name="NAME">joystick</field>
+                  </block>
+                </value>
+                <value name="ADD4">
+                  <block type="text" id="nKaFw6*QBBu/u+UHZk:`">
+                    <field name="TEXT"> Boton: </field>
+                  </block>
+                </value>
+                <value name="ADD5">
+                  <block type="ky023_read_sw" id="4dR4A[#Qs=(hb-TCdosO">
+                    <field name="NAME">joystick</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <next>
+              <block type="time_sleep" id="I.l+:0kqi;C?*n*:xtM#">
+                <field name="VALUE">1</field>
+                <field name="UNIT">S</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

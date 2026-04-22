@@ -1,0 +1,19 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="cp2102_init" id=",#l+U3{L:b!=gj;+0d6f" x="-290" y="-90">
+    <field name="NAME">serial</field>
+    <field name="UART">2</field>
+    <field name="TX">17</field>
+    <field name="RX">16</field>
+    <field name="BAUD">115200</field>
+    <next>
+      <block type="cp2102_write" id="GGytv:..#Z]Sg^r9]@P^">
+        <field name="NAME">serial</field>
+        <value name="DATA">
+          <block type="text" id="/1!$`ng0F/!6+[NAZQUc">
+            <field name="TEXT">3DPit</field>
+          </block>
+        </value>
+      </block>
+    </next>
+  </block>
+</xml>

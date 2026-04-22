@@ -1,0 +1,56 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="dht_init" id="V+u`quc7cuV[-kNw4m+:" x="330" y="70">
+    <field name="MODEL">DHT11</field>
+    <field name="PIN">13</field>
+    <next>
+      <block type="controls_whileUntil" id="rjEF.--z6/1s%Nkc5[T4">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id=")tEW,U,1TR{4#LOl1;eb">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="dht_measure" id="u?bry)?Rqv+9U)/|2[!f">
+            <field name="PIN">13</field>
+            <next>
+              <block type="text_print" id="9a,*yxB(KMghyyK},,]z">
+                <value name="TEXT">
+                  <block type="text_join" id="meVbeSF8Cxvcifo@Kwmz">
+                    <mutation items="4"></mutation>
+                    <value name="ADD0">
+                      <block type="text" id="~Q/1)Mt3~UjJTw:hGs.p">
+                        <field name="TEXT">temperatura: </field>
+                      </block>
+                    </value>
+                    <value name="ADD1">
+                      <block type="dht_temperature" id="2vW?;Rv_-#%,#|sj%+%[">
+                        <field name="PIN">13</field>
+                      </block>
+                    </value>
+                    <value name="ADD2">
+                      <block type="text" id="5yvNeon[;{[q2`l1jLsP">
+                        <field name="TEXT"> humedd: </field>
+                      </block>
+                    </value>
+                    <value name="ADD3">
+                      <block type="dht_humidity" id="W(Q9{ou=c!G5II@9rmGR">
+                        <field name="PIN">13</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <next>
+                  <block type="time_sleep" id="+}jA9Lg8nL~HQ)+xG_[W">
+                    <field name="VALUE">1</field>
+                    <field name="UNIT">S</field>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

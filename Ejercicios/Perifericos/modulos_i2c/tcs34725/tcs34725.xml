@@ -1,0 +1,33 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="tcs34725_init" id="WUn:BhR|wDV{t|IP14*X" x="110" y="90">
+    <field name="NAME">color</field>
+    <field name="SDA">21</field>
+    <field name="SCL">22</field>
+    <field name="ADDR">0x27</field>
+    <next>
+      <block type="controls_whileUntil" id="Wz@1*K{%`17koGx?}{4j">
+        <field name="MODE">WHILE</field>
+        <value name="BOOL">
+          <block type="logic_boolean" id="{pDV/Wci6QIvK#ue{Y6[">
+            <field name="BOOL">TRUE</field>
+          </block>
+        </value>
+        <statement name="DO">
+          <block type="text_print" id="Xl_wVk5C6Ti$|GOTCZHx">
+            <value name="TEXT">
+              <block type="tcs34725_blue" id="Ha2%G3LC9In3G+5!pC7]">
+                <field name="NAME">color</field>
+              </block>
+            </value>
+            <next>
+              <block type="time_sleep" id="%L7^Z41W|l|J|1$M!,5k">
+                <field name="VALUE">1</field>
+                <field name="UNIT">S</field>
+              </block>
+            </next>
+          </block>
+        </statement>
+      </block>
+    </next>
+  </block>
+</xml>

@@ -1,0 +1,31 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <block type="fpm_init" id="#EyfyWGHr)aP%c/zkfEb" x="-10" y="-250">
+    <field name="NAME">finger</field>
+    <field name="UART">2</field>
+    <field name="TX">17</field>
+    <field name="RX">16</field>
+    <field name="BAUD">57600</field>
+    <next>
+      <block type="fpm_led" id="w|^gCrd)|]}.O4Ke9*A=">
+        <field name="NAME">finger</field>
+        <field name="COLOR">0</field>
+        <next>
+          <block type="fpm_enroll" id="7cEkn(S$7p9rc7Q4kvi0">
+            <field name="NAME">finger</field>
+            <value name="ID">
+              <block type="math_number" id="[v^$myvL#l;g4S$(^aHp">
+                <field name="NUM">4</field>
+              </block>
+            </value>
+            <next>
+              <block type="fpm_led" id="`t#S2UFW!IM21-pqh/lL">
+                <field name="NAME">finger</field>
+                <field name="COLOR">3</field>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>

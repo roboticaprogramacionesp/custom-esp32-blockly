@@ -1,0 +1,184 @@
+<xml xmlns="https://developers.google.com/blockly/xml">
+  <variables>
+    <variable id="#ni7t|s!@1A/w4b/8wG3">data</variable>
+    <variable id="*e0wvOkHDPYvwx_k^lL3">clave</variable>
+    <variable id="%m9PiRm)TWrAbTD+PP|%">stat</variable>
+    <variable id="VZOiKMwN-In$MRg]:9|U">uid</variable>
+  </variables>
+  <block type="rfid_mfrc522_init" id="B%{1/0^xPGCp58J@Ruhe" x="-10" y="70">
+    <field name="NAME">rfid</field>
+    <field name="SCK">18</field>
+    <field name="MOSI">23</field>
+    <field name="MISO">19</field>
+    <field name="RST">22</field>
+    <field name="SDA">21</field>
+    <next>
+      <block type="variables_set" id="w~4_Ci$p7ARF!rnK9E}h">
+        <field name="VAR" id="#ni7t|s!@1A/w4b/8wG3">data</field>
+        <value name="VALUE">
+          <block type="text_to_bytes" id="Z-Q!QwPz4fV_TzJ7XGnK">
+            <value name="TEXT">
+              <shadow type="text" id="{gfrZkqzH1m,+$Zf4r*e">
+                <field name="TEXT">Hola</field>
+              </shadow>
+            </value>
+          </block>
+        </value>
+        <next>
+          <block type="controls_whileUntil" id="Xs??r1%Mo}Da8j:8+klH">
+            <field name="MODE">WHILE</field>
+            <value name="BOOL">
+              <block type="logic_compare" id="!a]!!~=NYc#QJFpF1?Ei">
+                <field name="OP">LT</field>
+                <value name="A">
+                  <block type="lists_length" id="Y(M/k#l+fsTRDq{{jNOn">
+                    <value name="VALUE">
+                      <block type="variables_get" id="tWvIQPvu9O{Tg5l_rJ=J">
+                        <field name="VAR" id="#ni7t|s!@1A/w4b/8wG3">data</field>
+                      </block>
+                    </value>
+                  </block>
+                </value>
+                <value name="B">
+                  <block type="math_number" id="W[~g@..ZqGJq+-7D%(%W">
+                    <field name="NUM">16</field>
+                  </block>
+                </value>
+              </block>
+            </value>
+            <statement name="DO">
+              <block type="lists_append" id="MyMFh#1-kq6fhre|9`({">
+                <field name="LIST" id="#ni7t|s!@1A/w4b/8wG3">data</field>
+                <value name="ITEM">
+                  <block type="math_number" id="@5xs3y6#d#I4fCQD%}26">
+                    <field name="NUM">0</field>
+                  </block>
+                </value>
+              </block>
+            </statement>
+            <next>
+              <block type="variables_set" id="hk^55!0WSxE{WdVs%x~F">
+                <field name="VAR" id="*e0wvOkHDPYvwx_k^lL3">clave</field>
+                <value name="VALUE">
+                  <block type="rfid_key" id="e}P^L0w~`vf{F(4mvsuM">
+                    <field name="KEY">[0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF]</field>
+                  </block>
+                </value>
+                <next>
+                  <block type="controls_whileUntil" id=")jLl@^~}hjeN|KdMj_q*">
+                    <field name="MODE">WHILE</field>
+                    <value name="BOOL">
+                      <block type="logic_boolean" id="ULao)f~x9Bn~t$7vXGJ0">
+                        <field name="BOOL">TRUE</field>
+                      </block>
+                    </value>
+                    <statement name="DO">
+                      <block type="controls_if" id="T#6EwV+6Ko5.@nuqW%8u">
+                        <value name="IF0">
+                          <block type="rfid_mfrc522_detect" id="HQz,p#Sl~;$~Jl+?@Uiw">
+                            <field name="NAME">rfid</field>
+                          </block>
+                        </value>
+                        <statement name="DO0">
+                          <block type="rfid_mfrc522_uid" id="Ysa3,|e%zn@oR%V^h/xT">
+                            <field name="NAME">rfid</field>
+                            <field name="STAT" id="%m9PiRm)TWrAbTD+PP|%">stat</field>
+                            <field name="UID" id="VZOiKMwN-In$MRg]:9|U">uid</field>
+                            <next>
+                              <block type="controls_if" id="{tv9jIZ(!mkMKMEn[yC5">
+                                <mutation else="1"></mutation>
+                                <value name="IF0">
+                                  <block type="rfid_mfrc522_auth" id="~dZ)D$X9VqjH[MT`M.8v">
+                                    <field name="NAME">rfid</field>
+                                    <field name="BLOCK">8</field>
+                                    <value name="KEY">
+                                      <block type="variables_get" id="q;a~jZz(CW#By%8ZH3!3">
+                                        <field name="VAR" id="*e0wvOkHDPYvwx_k^lL3">clave</field>
+                                      </block>
+                                    </value>
+                                    <value name="UID">
+                                      <block type="variables_get" id="Tc[.#~M*{Tt@pJenzD|/">
+                                        <field name="VAR" id="VZOiKMwN-In$MRg]:9|U">uid</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </value>
+                                <statement name="DO0">
+                                  <block type="controls_if" id="I2N|sA8gjbTJ6`,~7`BF">
+                                    <mutation else="1"></mutation>
+                                    <value name="IF0">
+                                      <block type="logic_compare" id="}O!%im/x1nnpE:u`dVHc">
+                                        <field name="OP">EQ</field>
+                                        <value name="A">
+                                          <block type="rfid_mfrc522_write_block" id="v/kmm5HsPe2DHLS[Ar8_">
+                                            <field name="NAME">rfid</field>
+                                            <value name="BLOCK">
+                                              <shadow type="math_number" id="m}j?|RArV-n*U4FDI?}+">
+                                                <field name="NUM">8</field>
+                                              </shadow>
+                                            </value>
+                                            <value name="DATA">
+                                              <block type="variables_get" id="=g.*[Lwy+?LC$8vw9dOx">
+                                                <field name="VAR" id="#ni7t|s!@1A/w4b/8wG3">data</field>
+                                              </block>
+                                            </value>
+                                          </block>
+                                        </value>
+                                        <value name="B">
+                                          <block type="rfid_mfrc522_ok" id="Bp|*-)!FN;F+HXywVfT)">
+                                            <field name="NAME">rfid</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </value>
+                                    <statement name="DO0">
+                                      <block type="text_print" id="kOs2V@z@bt`YrI~w/S+@">
+                                        <value name="TEXT">
+                                          <block type="text" id=".~s?noD[OIeHs*?$%S)T">
+                                            <field name="TEXT">Datos escritos correctamente</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                    <statement name="ELSE">
+                                      <block type="text_print" id="?e(@jYVm)ICjecY-++mO">
+                                        <value name="TEXT">
+                                          <block type="text" id="3D^m(7ez%la`v}V[WFI`">
+                                            <field name="TEXT">Error de autenticación</field>
+                                          </block>
+                                        </value>
+                                      </block>
+                                    </statement>
+                                  </block>
+                                </statement>
+                                <statement name="ELSE">
+                                  <block type="text_print" id="b-Q}w$a=m(E@F_VZ#J]S">
+                                    <value name="TEXT">
+                                      <block type="text" id="iRc9zsK)=}ns,NGB`a$2">
+                                        <field name="TEXT">----------------------</field>
+                                      </block>
+                                    </value>
+                                  </block>
+                                </statement>
+                              </block>
+                            </next>
+                          </block>
+                        </statement>
+                        <next>
+                          <block type="time_sleep" id="K?JbOYDbgDn-S6%05xm]">
+                            <field name="VALUE">1</field>
+                            <field name="UNIT">S</field>
+                          </block>
+                        </next>
+                      </block>
+                    </statement>
+                  </block>
+                </next>
+              </block>
+            </next>
+          </block>
+        </next>
+      </block>
+    </next>
+  </block>
+</xml>
