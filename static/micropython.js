@@ -937,27 +937,46 @@ Blockly.Python["touch_read"] = function (block) {
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
+
 Blockly.Python["time_sleep"] = function (block) {
   const value = block.getFieldValue("VALUE");
   const unit = block.getFieldValue("UNIT");
 
-  let a = "";
   let code = "";
+  let imports = [];
 
   if (unit === "S") {
-    a = "sleep";
+    imports.push("sleep");
     code = `sleep(${value})\n`;
+
   } else if (unit === "MS") {
-    a = "sleep_ms";
+    imports.push("sleep_ms");
     code = `sleep_ms(${value})\n`;
-  } else {
-    a = "sleep_us";
+
+  } else if (unit === "US") {
+    imports.push("sleep_us");
     code = `sleep_us(${value})\n`;
   }
 
-  Blockly.Python.definitions_["import_time"] = "from time import " + a;
-  return `${code}`;
+  // Agrega imports sin duplicados
+  if (!Blockly.Python.definitions_["import_time"]) {
+    Blockly.Python.definitions_["import_time"] =
+      `from time import ${imports.join(", ")}`;
+  } else {
+    const current = Blockly.Python.definitions_["import_time"]
+      .replace("from time import ", "")
+      .split(", ")
+      .filter(Boolean);
+
+    const merged = [...new Set([...current, ...imports])];
+
+    Blockly.Python.definitions_["import_time"] =
+      `from time import ${merged.join(", ")}`;
+  }
+
+  return code;
 };
+
 
 Blockly.Python["time_ticks_ms"] = function (block) {
   Blockly.Python.definitions_["import_time"] = "from time import ticks_ms";

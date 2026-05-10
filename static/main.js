@@ -987,6 +987,45 @@ function updateConnectionIcon(connected) {
 }
 
 btnRun.addEventListener("click", async () => {
+
+  if (!isConnected || !serialWriter) {
+    console.log("Conecta la ESP32 primero.");
+    return;
+  }
+
+  const code = getCode(); // 🔥 ya no depende de la pestaña
+
+  if (!code || code.trim() === "") {
+    term.writeln("\r\nNo hay código para ejecutar\r\n");
+    return;
+  }
+
+  try {
+    isSendingCode = true;
+
+    term.writeln("\r\nEjecutando código...\r\n");
+
+    await sendSerial("\x03"); // Ctrl+C
+    await sleep(100);
+
+    await sendSerial("\x05"); // Ctrl+E
+    await sleep(100);
+
+    await sendSerial(code);
+    await sendSerial("\r\n");
+
+    await sendSerial("\x04"); // Ctrl+D
+
+  } catch (error) {
+    term.writeln("\r\nError: " + error + "\r\n");
+  } finally {
+    isSendingCode = false;
+    term.focus();
+  }
+});
+
+/*
+btnRun.addEventListener("click", async () => {
   let codigo = "";
 
   if (isWorkSpace) {
@@ -1035,7 +1074,7 @@ btnRun.addEventListener("click", async () => {
   for (let cmd of commands) {
     await sendSerial(cmd + "\r\n");
   }
-  */
+  
   //term.writeln(`\r\nArchivo main.py guardado correctamente\r\n`); //✅
 
   const code = editor.getValue();
@@ -1075,6 +1114,7 @@ btnRun.addEventListener("click", async () => {
     term.focus();
   }
 });
+*/
 
 // Botón para subir/guardar código
 document.getElementById("btnUploadCode").addEventListener("click", async () => {
