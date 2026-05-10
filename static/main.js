@@ -1699,33 +1699,38 @@ window.addEventListener("load", () => {
   cargarDesdeURL();
 });
 
+document.addEventListener("DOMContentLoaded", () => {
 
-const btnTutorials = document.getElementById("btnTutorials");
-const tutorialSelectorModal = document.getElementById("tutorialSelectorModal");
-const tutorialDropdown = document.getElementById("tutorialSelect");
-const startTutorialBtn = document.getElementById("startTutorialBtn");
-const closeTutorialModal = document.getElementById("closeTutorialModal");
+  const btnTutorials = document.getElementById("btnTutorials");
+  const tutorialSelectorModal = document.getElementById("tutorialSelectorModal");
+  const tutorialDropdown = document.getElementById("tutorialSelect");
+  const startTutorialBtn = document.getElementById("startTutorialBtn");
+  const closeTutorialModal = document.getElementById("closeTutorialModal");
 
-// abrir modal
-btnTutorials.addEventListener("click", () => {
-  tutorialSelectorModal.classList.remove("hidden");
-});
-
-// cerrar modal
-closeTutorialModal.addEventListener("click", () => {
-  tutorialSelectorModal.classList.add("hidden");
-});
-
-// iniciar tutorial
-startTutorialBtn.addEventListener("click", async () => {
-  const selectedTutorial = tutorialDropdown.value;
-
-  if (!selectedTutorial) {
-    alert("Selecciona un tutorial");
+  if (!btnTutorials) {
+    console.log("No se encontró btnTutorials");
     return;
   }
 
-  tutorialSelectorModal.classList.add("hidden");
+  btnTutorials.addEventListener("click", () => {
+    console.log("Abriendo modal...");
+    tutorialSelectorModal.classList.remove("hidden");
+  });
 
-  startTutorial(selectedTutorial);
+  closeTutorialModal.addEventListener("click", () => {
+    tutorialSelectorModal.classList.add("hidden");
+  });
+
+  startTutorialBtn.addEventListener("click", () => {
+    const selectedTutorial = tutorialDropdown.value;
+
+    if (!selectedTutorial) {
+      alert("Selecciona un tutorial");
+      return;
+    }
+
+    tutorialSelectorModal.classList.add("hidden");
+    startTutorial(selectedTutorial);
+  });
+
 });
