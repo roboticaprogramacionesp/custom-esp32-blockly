@@ -1,11 +1,12 @@
 /* ================================================================
-   tutorial-steps.js
-   Modal de tutoriales guiados paso a paso para 3DPit Blocks.
-   Sin imports. Se incluye con <script src="..."> antes de main.js.
-   Se engancha al <select id="tutorialSelect"> existente.
+   tutorial-steps.js  v2
+   ─ Panel arrastrable (no tapa la papelera)
+   ─ Flecha SVG animada apuntando a la categoría del toolbox
+   ─ Highlight del ítem de toolbox con glow
+   ─ Categorías/subcategorías reales del index.html
 ================================================================ */
 
-/* ─── 1. DATOS DE TUTORIALES ───────────────────────────────── */
+/* ─── 1. DATOS CON RUTAS REALES DEL TOOLBOX ─────────────────── */
 
 var TUTORIALS = {
 
@@ -15,33 +16,38 @@ var TUTORIALS = {
     steps: [
       {
         titulo: "Bloque de inicio",
-        desc: "Busca en la categoría <b>Inicio</b> el bloque <em>Al iniciar</em> y arrástralo al área de trabajo. Todos los proyectos empiezan aquí.",
+        desc: "Abre la categoría <b>Inicio</b> y arrastra el bloque <em>runstart</em> al área de trabajo. Es el punto de partida de todos los proyectos.",
         categoria: "Inicio",
-        bloque: "Al iniciar"
+        subcategoria: null,
+        bloque: "runstart (Al iniciar / Repetir siempre)"
       },
       {
-        titulo: "Configura el pin del LED",
-        desc: "Ve a <b>Pines digitales</b> y agrega el bloque <em>Configurar pin como salida</em>. Selecciona el <b>pin 2</b> (el LED integrado del ESP32).",
-        categoria: "Pines digitales",
-        bloque: "Configurar pin como salida"
+        titulo: "Inicializa el LED",
+        desc: "Ve a <b>LEDs</b> › <b>LED</b> y arrastra el bloque <em>Inicializar LED</em>. El pin por defecto es el <b>2</b> (LED integrado del ESP32).",
+        categoria: "LEDs",
+        subcategoria: "LED",
+        bloque: "led_init — Inicializar LED"
       },
       {
         titulo: "Enciende el LED",
-        desc: "Dentro del bloque <em>Repetir siempre</em>, agrega <em>Escribir pin digital</em> con valor <b>ALTO</b> en el pin 2.",
-        categoria: "Pines digitales",
-        bloque: "Escribir pin digital"
+        desc: "Desde <b>LEDs</b> › <b>LED</b> agrega el bloque <em>Establecer LED</em> con estado <b>1</b> (encendido) dentro de <em>Repetir siempre</em>.",
+        categoria: "LEDs",
+        subcategoria: "LED",
+        bloque: "set_led — Establecer LED (1=ON)"
       },
       {
-        titulo: "Pausa 1 segundo",
-        desc: "Ve a la categoría <b>Tiempo</b> y agrega el bloque <em>Esperar</em>. Pon <b>1000</b> milisegundos.",
+        titulo: "Espera 1 segundo",
+        desc: "Ve a la categoría <b>Tiempo</b> y agrega el bloque <em>time.sleep</em>. Pon el valor <b>1</b> segundo.",
         categoria: "Tiempo",
-        bloque: "Esperar ms"
+        subcategoria: null,
+        bloque: "time_sleep — Esperar"
       },
       {
         titulo: "Apaga el LED",
-        desc: "Agrega otro bloque <em>Escribir pin digital</em> con valor <b>BAJO</b> y otro <em>Esperar 1000 ms</em>. ¡El LED parpadeará cada segundo!",
-        categoria: "Pines digitales",
-        bloque: "Escribir pin digital"
+        desc: "Agrega otro <em>Establecer LED</em> con estado <b>0</b> (apagado) y otro <em>time.sleep(1)</em>. ¡El LED parpadeará cada segundo!",
+        categoria: "LEDs",
+        subcategoria: "LED",
+        bloque: "set_led — Establecer LED (0=OFF)"
       }
     ]
   },
@@ -52,33 +58,38 @@ var TUTORIALS = {
     steps: [
       {
         titulo: "Bloque de inicio",
-        desc: "Arrastra el bloque <em>Al iniciar</em> desde la categoría <b>Inicio</b>.",
+        desc: "Arrastra el bloque <em>runstart</em> desde la categoría <b>Inicio</b>.",
         categoria: "Inicio",
-        bloque: "Al iniciar"
+        subcategoria: null,
+        bloque: "runstart"
       },
       {
-        titulo: "Configura los 3 pines",
-        desc: "Ve a <b>Pines digitales</b> y agrega 3 bloques <em>Configurar pin como salida</em>: pin <b>4</b> (rojo), pin <b>5</b> (amarillo), pin <b>18</b> (verde).",
-        categoria: "Pines digitales",
-        bloque: "Configurar pin como salida"
+        titulo: "Inicializa el semáforo",
+        desc: "Ve a <b>LEDs</b> › <b>Semáforo (Leds)</b> y arrastra <em>Inicializar Semáforo</em>. Pines: Verde=18, Amarillo=19, Rojo=23.",
+        categoria: "LEDs",
+        subcategoria: "Semáforo (Leds)",
+        bloque: "init_semaforo — Inicializar Semáforo"
       },
       {
         titulo: "Fase ROJO",
-        desc: "En <em>Repetir siempre</em>: enciende el pin 4 (<b>ALTO</b>) y espera <b>3000 ms</b>. Luego apágalo (<b>BAJO</b>).",
-        categoria: "Pines digitales",
-        bloque: "Escribir pin digital"
+        desc: "Desde <b>LEDs</b> › <b>Semáforo (Leds)</b> agrega <em>Establecer Semáforo</em> con R=1, G=0, Y=0. Luego <em>time.sleep(3)</em> de <b>Tiempo</b>.",
+        categoria: "LEDs",
+        subcategoria: "Semáforo (Leds)",
+        bloque: "set_semaforo — Establecer Semáforo"
       },
       {
         titulo: "Fase AMARILLO",
-        desc: "Enciende el pin 5 (<b>ALTO</b>), espera <b>1000 ms</b> y apágalo (<b>BAJO</b>).",
-        categoria: "Pines digitales",
-        bloque: "Escribir pin digital"
+        desc: "Agrega otro <em>Establecer Semáforo</em> con Y=1, R=0, G=0 y <em>time.sleep(1)</em>.",
+        categoria: "LEDs",
+        subcategoria: "Semáforo (Leds)",
+        bloque: "set_semaforo — Establecer Semáforo"
       },
       {
         titulo: "Fase VERDE",
-        desc: "Enciende el pin 18 (<b>ALTO</b>), espera <b>2000 ms</b> y apágalo (<b>BAJO</b>). El ciclo se repite automáticamente.",
-        categoria: "Pines digitales",
-        bloque: "Escribir pin digital"
+        desc: "Agrega <em>Establecer Semáforo</em> con G=1, R=0, Y=0 y <em>time.sleep(2)</em>. El ciclo se repite automáticamente.",
+        categoria: "LEDs",
+        subcategoria: "Semáforo (Leds)",
+        bloque: "set_semaforo — Establecer Semáforo"
       }
     ]
   },
@@ -88,28 +99,39 @@ var TUTORIALS = {
     icon: "🔘",
     steps: [
       {
-        titulo: "Configura los pines",
-        desc: "En <em>Al iniciar</em> configura el pin <b>15</b> como <em>entrada con pull-up</em> (botón) y el pin <b>2</b> como <em>salida</em> (LED).",
-        categoria: "Pines digitales",
-        bloque: "Configurar pin como entrada"
+        titulo: "Bloque de inicio",
+        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
+        categoria: "Inicio",
+        subcategoria: null,
+        bloque: "runstart"
+      },
+      {
+        titulo: "Inicializa el interruptor",
+        desc: "Ve a <b>Interruptores</b> › <b>Interruptores</b> y arrastra <em>Inicializar interruptor</em>. Asigna el pin del botón (ej. <b>15</b>).",
+        categoria: "Interruptores",
+        subcategoria: "Interruptores",
+        bloque: "interruptor_init — Inicializar interruptor"
+      },
+      {
+        titulo: "Inicializa el LED",
+        desc: "Ve a <b>LEDs</b> › <b>LED</b> y agrega <em>Inicializar LED</em> en el pin <b>2</b>.",
+        categoria: "LEDs",
+        subcategoria: "LED",
+        bloque: "led_init — Inicializar LED"
       },
       {
         titulo: "Lee el botón",
-        desc: "En <em>Repetir siempre</em> ve a <b>Variables</b>, crea <em>estadoBtn</em> y asígnale el bloque <em>Leer pin digital</em> del pin 15.",
-        categoria: "Pines digitales",
-        bloque: "Leer pin digital"
-      },
-      {
-        titulo: "Agrega la condición",
-        desc: "Ve a la categoría <b>Lógica</b> y agrega un bloque <em>Si … hacer</em>. La condición es: <em>estadoBtn = BAJO</em> (el botón envía LOW al presionarse).",
-        categoria: "Lógica",
-        bloque: "Si … hacer"
+        desc: "Desde <b>Interruptores</b> › <b>Interruptores</b> agrega <em>Leer interruptor</em>. Envuélvelo en un <em>Si … hacer</em> de la categoría <b>Lógica</b>.",
+        categoria: "Interruptores",
+        subcategoria: "Interruptores",
+        bloque: "interruptor_read — Leer interruptor"
       },
       {
         titulo: "Controla el LED",
-        desc: "Dentro del <em>Si</em>: enciende el LED (pin 2, ALTO). En el <em>Sino</em>: apágalo (pin 2, BAJO). ¡El LED sigue al botón!",
-        categoria: "Pines digitales",
-        bloque: "Escribir pin digital"
+        desc: "Si el botón está presionado (<em>Si</em>): pon el LED en <b>1</b>. En el <em>Sino</em>: ponlo en <b>0</b>.",
+        categoria: "LEDs",
+        subcategoria: "LED",
+        bloque: "set_led — Establecer LED"
       }
     ]
   },
@@ -119,28 +141,39 @@ var TUTORIALS = {
     icon: "🔊",
     steps: [
       {
-        titulo: "Configura el pin del buzzer",
-        desc: "En <em>Al iniciar</em>, configura el pin <b>19</b> como <em>salida</em>.",
-        categoria: "Pines digitales",
-        bloque: "Configurar pin como salida"
+        titulo: "Bloque de inicio",
+        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
+        categoria: "Inicio",
+        subcategoria: null,
+        bloque: "runstart"
       },
       {
         titulo: "Genera un tono",
-        desc: "Ve a la categoría <b>Buzzer / Tono</b> y agrega el bloque <em>Tono en pin</em>. Usa pin <b>19</b>, frecuencia <b>440 Hz</b> (nota La).",
-        categoria: "Buzzer / Tono",
-        bloque: "Tono en pin"
+        desc: "Ve a <b>Actuadores</b> › <b>Sounds (Buzzer)</b> y arrastra el bloque <em>Tono Buzzer</em>. Frecuencia <b>440 Hz</b> = nota La.",
+        categoria: "Actuadores",
+        subcategoria: "Sounds (Buzzer)",
+        bloque: "buzzer_tone — Tono Buzzer"
       },
       {
-        titulo: "Espera y detén el tono",
-        desc: "Agrega <em>Esperar 500 ms</em> y luego el bloque <em>Detener tono</em> para silenciar el buzzer.",
-        categoria: "Buzzer / Tono",
-        bloque: "Detener tono"
+        titulo: "Espera",
+        desc: "Ve a <b>Tiempo</b> y agrega <em>time.sleep</em> con <b>0.5</b> segundos.",
+        categoria: "Tiempo",
+        subcategoria: null,
+        bloque: "time_sleep — Esperar"
       },
       {
-        titulo: "Crea un ritmo",
-        desc: "Repite los pasos con diferentes frecuencias: <b>262</b> Hz (Do), <b>330</b> Hz (Mi), <b>392</b> Hz (Sol) para crear una melodía sencilla.",
-        categoria: "Buzzer / Tono",
-        bloque: "Tono en pin"
+        titulo: "Detén el tono",
+        desc: "Desde <b>Actuadores</b> › <b>Sounds (Buzzer)</b> agrega <em>Detener Buzzer</em> y otro <em>time.sleep(0.5)</em>.",
+        categoria: "Actuadores",
+        subcategoria: "Sounds (Buzzer)",
+        bloque: "buzzer_stop — Detener Buzzer"
+      },
+      {
+        titulo: "Crea una melodía",
+        desc: "Repite bloques <em>Tono</em> con distintas frecuencias: <b>262</b> Do, <b>330</b> Mi, <b>392</b> Sol, <b>523</b> Do alto.",
+        categoria: "Actuadores",
+        subcategoria: "Sounds (Buzzer)",
+        bloque: "buzzer_tone — Tono Buzzer"
       }
     ]
   },
@@ -150,28 +183,32 @@ var TUTORIALS = {
     icon: "⚙️",
     steps: [
       {
-        titulo: "Inicializa el servo",
-        desc: "Ve a la categoría <b>Servo</b> y arrastra el bloque <em>Inicializar servo en pin</em>. Selecciona el pin <b>13</b> (PWM).",
-        categoria: "Servo",
-        bloque: "Inicializar servo en pin"
+        titulo: "Bloque de inicio",
+        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
+        categoria: "Inicio",
+        subcategoria: null,
+        bloque: "runstart"
+      },
+      {
+        titulo: "Inicializa el Servo",
+        desc: "Ve a <b>Actuadores</b> › <b>Servo</b> y arrastra <em>Inicializar Servo</em>. Selecciona el pin PWM (ej. <b>13</b>).",
+        categoria: "Actuadores",
+        subcategoria: "Servo",
+        bloque: "init_servo — Inicializar Servo"
       },
       {
         titulo: "Mueve a 0°",
-        desc: "En <em>Repetir siempre</em> agrega <em>Mover servo a</em> con ángulo <b>0</b> grados y espera <b>1000 ms</b>.",
-        categoria: "Servo",
-        bloque: "Mover servo a"
+        desc: "Desde <b>Actuadores</b> › <b>Servo</b> agrega <em>Mover Servo</em> con ángulo <b>0</b>. Luego <em>time.sleep(1)</em>.",
+        categoria: "Actuadores",
+        subcategoria: "Servo",
+        bloque: "move_servo — Mover Servo"
       },
       {
-        titulo: "Mueve a 90°",
-        desc: "Agrega otro bloque <em>Mover servo a</em> con ángulo <b>90</b> grados y espera <b>1000 ms</b>.",
-        categoria: "Servo",
-        bloque: "Mover servo a"
-      },
-      {
-        titulo: "Mueve a 180°",
-        desc: "Agrega un tercer bloque <em>Mover servo a</em> con ángulo <b>180</b> grados y espera <b>1000 ms</b>. El servo oscilará entre las tres posiciones.",
-        categoria: "Servo",
-        bloque: "Mover servo a"
+        titulo: "Mueve a 90° y 180°",
+        desc: "Agrega <em>Mover Servo a 90°</em> con delay y <em>Mover Servo a 180°</em> con delay. El servo oscilará entre las tres posiciones.",
+        categoria: "Actuadores",
+        subcategoria: "Servo",
+        bloque: "move_servo — Mover Servo"
       }
     ]
   },
@@ -181,28 +218,32 @@ var TUTORIALS = {
     icon: "📡",
     steps: [
       {
-        titulo: "Configura los pines TRIG y ECHO",
-        desc: "En <em>Al iniciar</em>, configura pin <b>5</b> como salida (TRIG) y pin <b>18</b> como entrada (ECHO).",
-        categoria: "Pines digitales",
-        bloque: "Configurar pin como salida"
+        titulo: "Bloque de inicio",
+        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
+        categoria: "Inicio",
+        subcategoria: null,
+        bloque: "runstart"
       },
       {
-        titulo: "Inicializa el sensor",
-        desc: "Ve a la categoría <b>Sensores</b> y busca el bloque <em>Ultrasonido HC-SR04</em>. Asigna pin TRIG = 5 y ECHO = 18.",
+        titulo: "Inicializa el HC-SR04",
+        desc: "Ve a <b>Sensores</b> › <b>Sensores Digitales</b> › <b>Ultrasonico</b> y arrastra <em>Inicializar HC-SR04</em>. TRIG=<b>12</b>, ECHO=<b>13</b>.",
         categoria: "Sensores",
-        bloque: "Ultrasonido HC-SR04"
+        subcategoria: "Ultrasonico",
+        bloque: "init_ultrasonic_hcsr04"
       },
       {
         titulo: "Lee la distancia",
-        desc: "Crea una variable <em>distancia</em> y asígnale el bloque <em>Leer distancia en cm</em>.",
+        desc: "Desde la misma subcategoría arrastra <em>Leer HC-SR04</em>. Guárdalo en una variable <em>distancia</em> de la categoría <b>Variables</b>.",
         categoria: "Sensores",
-        bloque: "Leer distancia en cm"
+        subcategoria: "Ultrasonico",
+        bloque: "read_ultrasonic_hcsr04 — Leer distancia"
       },
       {
-        titulo: "Muestra el resultado",
-        desc: "Ve a <b>Comunicación Serial</b> y agrega <em>Imprimir en consola</em> para mostrar la variable <em>distancia</em>. Conecta el ESP32 y abre la terminal para ver los datos.",
-        categoria: "Comunicación Serial",
-        bloque: "Imprimir en consola"
+        titulo: "Imprime el resultado",
+        desc: "Ve a <b>Textos</b> y usa <em>print()</em> para mostrar <em>distancia</em>. Abre la terminal para ver los centímetros en tiempo real.",
+        categoria: "Textos",
+        subcategoria: null,
+        bloque: "text_print — print()"
       }
     ]
   },
@@ -212,47 +253,53 @@ var TUTORIALS = {
     icon: "🌈",
     steps: [
       {
-        titulo: "Inicializa la tira NeoPixel",
-        desc: "Ve a la categoría <b>NeoPixel</b> y arrastra el bloque <em>Inicializar NeoPixel</em>. Configura: pin <b>4</b>, cantidad <b>8</b> LEDs.",
-        categoria: "NeoPixel",
-        bloque: "Inicializar NeoPixel"
+        titulo: "Bloque de inicio",
+        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
+        categoria: "Inicio",
+        subcategoria: null,
+        bloque: "runstart"
       },
       {
-        titulo: "Enciende el primer LED en rojo",
-        desc: "En <em>Repetir siempre</em> usa <em>Establecer color del LED</em>: índice <b>0</b>, color <b>rojo</b> (R:255 G:0 B:0).",
-        categoria: "NeoPixel",
-        bloque: "Establecer color del LED"
+        titulo: "Elige un color",
+        desc: "Ve a la categoría <b>Colores</b> y selecciona un color del picker. Combinarás R, G y B para obtener el color que quieras.",
+        categoria: "Colores",
+        subcategoria: null,
+        bloque: "color_picker — Selector de color"
       },
       {
-        titulo: "Muestra los cambios",
-        desc: "Agrega el bloque <em>Mostrar (show)</em>. Sin este bloque los LEDs no se actualizan.",
-        categoria: "NeoPixel",
-        bloque: "Mostrar (show)"
+        titulo: "Inicializa y enciende el NeoPixel",
+        desc: "Busca los bloques de <b>NeoPixel</b> en el toolbox, configura pin=<b>4</b> y cantidad=<b>8</b> LEDs. Luego usa <em>Establecer color</em> y <em>Mostrar (show)</em>.",
+        categoria: "LEDs",
+        subcategoria: null,
+        bloque: "NeoPixel — Inicializar / Establecer color"
       },
       {
-        titulo: "Crea un efecto arcoíris",
-        desc: "Usa un bloque <em>Repetir con i</em> del 0 al 7 para asignar un color diferente a cada LED. Experimenta mezclando los valores R, G, B.",
-        categoria: "Loops",
-        bloque: "Repetir con i"
+        titulo: "Efecto arcoíris",
+        desc: "Usa un bloque <em>Repetir</em> de la categoría <b>Ciclos</b> con variable <em>i</em> del 0 al 7. En cada iteración asigna un color diferente a cada LED.",
+        categoria: "Ciclos",
+        subcategoria: null,
+        bloque: "controls_for — Para i de 0 a 7"
       }
     ]
   }
 };
 
-/* ─── 2. ESTADO DEL TUTORIAL ───────────────────────────────── */
+/* ─── 2. LÓGICA PRINCIPAL ────────────────────────────────────── */
 
 var TutorialSteps = {
   tutorial: null,
   paso: 0,
+  _arrowEl: null,
+  _glowEl:  null,
+  _rafId:   null,
 
-  /* Abre un tutorial por id */
   cargar: function(id) {
     if (!id) { this.cerrar(); return; }
     var tut = TUTORIALS[id];
     if (!tut) return;
     this.tutorial = tut;
     this.paso = 0;
-    this._mostrarPanel();
+    document.getElementById('ts-panel').style.display = 'flex';
     this._renderPaso();
   },
 
@@ -273,6 +320,7 @@ var TutorialSteps = {
   },
 
   cerrar: function() {
+    this._limpiarHighlight();
     this.tutorial = null;
     this.paso = 0;
     var panel = document.getElementById('ts-panel');
@@ -281,57 +329,111 @@ var TutorialSteps = {
     if (sel) sel.value = '';
   },
 
-  /* ── Render interno ──────────────────────────────────────── */
-
-  _mostrarPanel: function() {
-    var panel = document.getElementById('ts-panel');
-    if (panel) panel.style.display = 'flex';
-  },
-
   _renderPaso: function() {
     var tut   = this.tutorial;
     var step  = tut.steps[this.paso];
     var total = tut.steps.length;
 
-    /* Encabezado */
     document.getElementById('ts-icon').textContent  = tut.icon;
     document.getElementById('ts-title').textContent = tut.title;
 
-    /* Progreso */
     var pct = Math.round(((this.paso + 1) / total) * 100);
     document.getElementById('ts-progress-fill').style.width = pct + '%';
     document.getElementById('ts-progress-txt').textContent  =
       'Paso ' + (this.paso + 1) + ' de ' + total;
 
-    /* Contenido */
     document.getElementById('ts-step-num').textContent   = this.paso + 1;
     document.getElementById('ts-step-title').textContent = step.titulo;
     document.getElementById('ts-step-desc').innerHTML    = step.desc;
 
-    /* Pista de categoría + bloque */
-    document.getElementById('ts-cat').innerHTML =
-      '📂 Ve a <strong>' + step.categoria + '</strong> › ' +
-      '<span class="ts-block-chip">' + step.bloque + '</span>';
+    // Ruta de navegación
+    var rutaHTML = '<span class="ts-cat-part">' + step.categoria + '</span>';
+    if (step.subcategoria) {
+      rutaHTML += '<span class="ts-cat-sep">›</span>' +
+                  '<span class="ts-cat-part">' + step.subcategoria + '</span>';
+    }
+    document.getElementById('ts-cat-ruta').innerHTML  = rutaHTML;
+    document.getElementById('ts-bloque-chip').textContent = step.bloque;
 
-    /* Botones */
     document.getElementById('ts-btn-prev').disabled = (this.paso === 0);
     document.getElementById('ts-btn-next').textContent =
       (this.paso === total - 1) ? '¡Terminar! 🎉' : 'Siguiente →';
 
-    /* Animación */
     var body = document.getElementById('ts-body');
     body.classList.remove('ts-anim');
     void body.offsetWidth;
     body.classList.add('ts-anim');
+
+    // Highlight toolbox
+    this._limpiarHighlight();
+    // Intenta resaltar primero la subcategoría, si no la categoría padre
+    var target = null;
+    if (step.subcategoria) target = this._findToolboxItem(step.subcategoria);
+    if (!target) target = this._findToolboxItem(step.categoria);
+    if (target) {
+      target.classList.add('ts-toolbox-glow');
+      this._glowEl = target;
+      this._crearFlecha(target);
+    }
+  },
+
+  _findToolboxItem: function(nombre) {
+    if (!nombre) return null;
+    var rows = document.querySelectorAll('.blocklyTreeRow');
+    for (var i = 0; i < rows.length; i++) {
+      var label = rows[i].querySelector('.blocklyTreeLabel');
+      if (label && label.textContent.trim() === nombre.trim()) {
+        return rows[i];
+      }
+    }
+    return null;
+  },
+
+  _crearFlecha: function(target) {
+    var self = this;
+    if (self._arrowEl)  { self._arrowEl.remove();  self._arrowEl = null; }
+    if (self._rafId)    { cancelAnimationFrame(self._rafId); self._rafId = null; }
+
+    var arrow = document.createElement('div');
+    arrow.id = 'ts-arrow';
+    arrow.innerHTML =
+      '<svg viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">' +
+      '  <defs><filter id="tsgf">' +
+      '    <feGaussianBlur stdDeviation="2.5" result="b"/>' +
+      '    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>' +
+      '  </filter></defs>' +
+      '  <line x1="4" y1="16" x2="48" y2="16" stroke="#7c6af7" stroke-width="4"' +
+      '    stroke-linecap="round" filter="url(#tsgf)"/>' +
+      '  <polygon points="46,6 62,16 46,26" fill="#7c6af7" filter="url(#tsgf)"/>' +
+      '</svg>';
+    document.body.appendChild(arrow);
+    self._arrowEl = arrow;
+
+    function posicionar() {
+      if (!self._arrowEl) return;
+      var r   = target.getBoundingClientRect();
+      var midY = r.top + r.height / 2;
+      arrow.style.left = (r.right + 8) + 'px';
+      arrow.style.top  = (midY - 16) + 'px';
+      self._rafId = requestAnimationFrame(posicionar);
+    }
+    posicionar();
+  },
+
+  _limpiarHighlight: function() {
+    if (this._glowEl)  { this._glowEl.classList.remove('ts-toolbox-glow'); this._glowEl = null; }
+    if (this._arrowEl) { this._arrowEl.remove(); this._arrowEl = null; }
+    if (this._rafId)   { cancelAnimationFrame(this._rafId); this._rafId = null; }
   },
 
   _mostrarFin: function() {
+    this._limpiarHighlight();
     document.getElementById('ts-body').innerHTML =
       '<div class="ts-fin">' +
       '  <div class="ts-fin-icon">🎉</div>' +
       '  <h3>¡Tutorial completado!</h3>' +
       '  <p>Terminaste <strong>' + this.tutorial.title + '</strong>.<br>' +
-      '     Prueba cambiar los valores o carga otro tutorial.</p>' +
+      '     Prueba cambiar valores o elige otro tutorial.</p>' +
       '  <button class="ts-btn ts-btn-primary" onclick="TutorialSteps._reiniciar()">Repetir</button>' +
       '</div>';
     document.getElementById('ts-btn-next').style.display = 'none';
@@ -341,53 +443,91 @@ var TutorialSteps = {
   _reiniciar: function() {
     document.getElementById('ts-btn-next').style.display = '';
     document.getElementById('ts-btn-prev').style.display = '';
-    this._reconstruirBody();
-    this.paso = 0;
-    this._renderPaso();
-  },
-
-  _reconstruirBody: function() {
     document.getElementById('ts-body').innerHTML =
       '<div class="ts-step-header">' +
       '  <span class="ts-step-num" id="ts-step-num">1</span>' +
       '  <h3 class="ts-step-title" id="ts-step-title"></h3>' +
       '</div>' +
       '<p class="ts-step-desc" id="ts-step-desc"></p>' +
-      '<div class="ts-cat" id="ts-cat"></div>';
+      '<div class="ts-cat-box">' +
+      '  <div class="ts-cat-label">📂 Ve al toolbox:</div>' +
+      '  <div class="ts-cat-ruta" id="ts-cat-ruta"></div>' +
+      '  <div class="ts-bloque-row">' +
+      '    <span class="ts-bloque-icon">🧩</span>' +
+      '    <span class="ts-bloque-chip" id="ts-bloque-chip"></span>' +
+      '  </div>' +
+      '</div>';
+    this.paso = 0;
+    this._renderPaso();
   }
 };
 
-/* ─── 3. INICIALIZACIÓN ─────────────────────────────────────── */
+/* ─── 3. DRAG ────────────────────────────────────────────────── */
+
+function makeDraggable(panel) {
+  var header = panel.querySelector('.ts-header');
+  if (!header) return;
+  header.style.cursor = 'grab';
+
+  var drag = false, sx, sy, ol, ot;
+
+  header.addEventListener('mousedown', function(e) {
+    if (e.target.classList.contains('ts-close')) return;
+    drag = true;
+    sx = e.clientX; sy = e.clientY;
+    var r = panel.getBoundingClientRect();
+    ol = r.left; ot = r.top;
+    panel.style.right = panel.style.bottom = 'auto';
+    panel.style.left  = ol + 'px';
+    panel.style.top   = ot + 'px';
+    header.style.cursor = 'grabbing';
+    e.preventDefault();
+  });
+
+  document.addEventListener('mousemove', function(e) {
+    if (!drag) return;
+    panel.style.left = Math.max(0, ol + e.clientX - sx) + 'px';
+    panel.style.top  = Math.max(48, ot + e.clientY - sy) + 'px';
+  });
+
+  document.addEventListener('mouseup', function() {
+    if (drag) { drag = false; header.style.cursor = 'grab'; }
+  });
+}
+
+/* ─── 4. INICIALIZACIÓN ─────────────────────────────────────── */
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  /* Inyectar el HTML del panel en el body */
   var panel = document.createElement('div');
   panel.id = 'ts-panel';
   panel.style.display = 'none';
   panel.innerHTML =
-    /* Cabecera */
     '<div class="ts-header">' +
     '  <span class="ts-icon" id="ts-icon">📖</span>' +
     '  <div class="ts-title-group">' +
-    '    <p class="ts-label">Tutorial guiado</p>' +
+    '    <p class="ts-label">Tutorial guiado &nbsp;·&nbsp; <span class="ts-drag-hint">✥ arrastrar</span></p>' +
     '    <h2 class="ts-title" id="ts-title">—</h2>' +
     '  </div>' +
     '  <button class="ts-close" id="ts-close" title="Cerrar">✕</button>' +
     '</div>' +
-    /* Barra de progreso */
     '<div class="ts-progress-bar"><div class="ts-progress-fill" id="ts-progress-fill"></div></div>' +
     '<p class="ts-progress-txt" id="ts-progress-txt"></p>' +
-    /* Cuerpo */
-    '<div class="ts-body ts-anim" id="ts-body">' +
+    '<div class="ts-body" id="ts-body">' +
     '  <div class="ts-step-header">' +
     '    <span class="ts-step-num" id="ts-step-num">1</span>' +
     '    <h3 class="ts-step-title" id="ts-step-title"></h3>' +
     '  </div>' +
     '  <p class="ts-step-desc" id="ts-step-desc"></p>' +
-    '  <div class="ts-cat" id="ts-cat"></div>' +
+    '  <div class="ts-cat-box">' +
+    '    <div class="ts-cat-label">📂 Ve al toolbox:</div>' +
+    '    <div class="ts-cat-ruta" id="ts-cat-ruta"></div>' +
+    '    <div class="ts-bloque-row">' +
+    '      <span class="ts-bloque-icon">🧩</span>' +
+    '      <span class="ts-bloque-chip" id="ts-bloque-chip"></span>' +
+    '    </div>' +
+    '  </div>' +
     '</div>' +
-    /* Footer */
     '<div class="ts-footer">' +
     '  <button class="ts-btn ts-btn-sec" id="ts-btn-prev">← Anterior</button>' +
     '  <button class="ts-btn ts-btn-primary" id="ts-btn-next">Siguiente →</button>' +
@@ -395,22 +535,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.body.appendChild(panel);
 
-  /* Eventos del panel */
-  document.getElementById('ts-close').addEventListener('click', function() {
-    TutorialSteps.cerrar();
-  });
-  document.getElementById('ts-btn-next').addEventListener('click', function() {
-    TutorialSteps.siguiente();
-  });
-  document.getElementById('ts-btn-prev').addEventListener('click', function() {
-    TutorialSteps.anterior();
-  });
+  document.getElementById('ts-close').addEventListener('click', function()   { TutorialSteps.cerrar();    });
+  document.getElementById('ts-btn-next').addEventListener('click', function() { TutorialSteps.siguiente(); });
+  document.getElementById('ts-btn-prev').addEventListener('click', function() { TutorialSteps.anterior();  });
 
-  /* Select existente en el menú */
   var sel = document.getElementById('tutorialSelect');
-  if (sel) {
-    sel.addEventListener('change', function() {
-      TutorialSteps.cargar(this.value);
-    });
-  }
+  if (sel) sel.addEventListener('change', function() { TutorialSteps.cargar(this.value); });
+
+  makeDraggable(panel);
 });
