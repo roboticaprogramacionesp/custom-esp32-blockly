@@ -986,6 +986,20 @@ function updateConnectionIcon(connected) {
   }
 }
 
+function getCode() {
+  // Si usas Blockly
+  if (typeof Blockly !== "undefined" && Code?.workspace) {
+    return Blockly.Python.workspaceToCode(Code.workspace);
+  }
+
+  // Si usas editor (CodeMirror)
+  if (typeof editor !== "undefined" && editor.getValue) {
+    return editor.getValue();
+  }
+
+  return "";
+}
+
 btnRun.addEventListener("click", async () => {
 
   if (!isConnected || !serialWriter) {
