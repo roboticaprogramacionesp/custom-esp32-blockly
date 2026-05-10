@@ -25,7 +25,7 @@ var TUTORIALS = {
         titulo: "Inicializa el LED",
         desc: "Ve a <b>LEDs</b> › <b>LED</b> y arrastra el bloque <em>Inicializar LED</em>. El pin por defecto es el <b>2</b> (LED integrado del ESP32).",
         categoria: "LEDs",
-        subcategoria: "LED",
+        subcategoria: null,
         bloque: "led_init — Inicializar LED"
       },
       {
