@@ -1698,39 +1698,3 @@ function cargarDesdeURL() {
 window.addEventListener("load", () => {
   cargarDesdeURL();
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  const btnTutorials = document.getElementById("btnTutorials");
-  const tutorialSelectorModal = document.getElementById("tutorialSelectorModal");
-  const tutorialDropdown = document.getElementById("tutorialSelect");
-  const startTutorialBtn = document.getElementById("startTutorialBtn");
-  const closeTutorialModal = document.getElementById("closeTutorialModal");
-
-  if (!btnTutorials) {
-    console.log("No se encontró btnTutorials");
-    return;
-  }
-
-  btnTutorials.addEventListener("click", () => {
-    console.log("Abriendo modal...");
-    tutorialSelectorModal.classList.remove("hidden");
-  });
-
-  closeTutorialModal.addEventListener("click", () => {
-    tutorialSelectorModal.classList.add("hidden");
-  });
-
-  startTutorialBtn.addEventListener("click", () => {
-    const selectedTutorial = tutorialDropdown.value;
-
-    if (!selectedTutorial) {
-      alert("Selecciona un tutorial");
-      return;
-    }
-
-    tutorialSelectorModal.classList.add("hidden");
-    startTutorial(selectedTutorial);
-  });
-
-});

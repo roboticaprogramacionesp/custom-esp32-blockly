@@ -17,6 +17,8 @@
   <script src="static/xterm.js"></script>
   <script src="static/xterm-addon-fit.js"></script>
 
+  <link rel="stylesheet" href="static/tutorial-steps.css" />
+
   <style>
     /* BLOQUE EN EJECUCIÓN */
 
@@ -525,29 +527,6 @@
       display: flex;
       justify-content: space-between;
     }
-
-
-    .hidden {
-      display: none;
-    }
-
-    .tutorial-modal {
-      width: 400px;
-      text-align: center;
-      padding: 20px;
-    }
-
-    .tutorial-modal select {
-      width: 100%;
-      padding: 10px;
-      margin: 20px 0;
-    }
-
-    .modal-buttons {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
   </style>
 
 </head>
@@ -627,32 +606,16 @@
 
       <button id="btnShare">Compartir</button>
 
-      <button id="btnTutorials">Tutoriales</button>
-
-      <!-- Modal selector -->
-      <div id="tutorialSelectorModal" class="modal hidden">
-        <div class="modal-content tutorial-modal">
-
-          <h2>Selecciona un tutorial</h2>
-
-          <select id="tutorialSelect">
-            <option value="">Selecciona un tutorial</option>
-            <option value="led_basico">LED Básico</option>
-            <option value="semaforo">Semáforo</option>
-            <option value="boton">Botón</option>
-            <option value="buzzer">Buzzer</option>
-            <option value="servo">Servo</option>
-            <option value="ultrasonico">Ultrasónico</option>
-            <option value="neopixel_basico">NeoPixel</option>
-          </select>
-
-          <div class="modal-buttons">
-            <button id="startTutorialBtn">Iniciar</button>
-            <button id="closeTutorialModal">Cancelar</button>
-          </div>
-
-        </div>
-      </div>
+      <select id="tutorialSelect">
+        <option value="">Selecciona un tutorial</option>
+        <option value="led_basico">LED Básico</option>
+        <option value="semaforo">Semáforo</option>
+        <option value="boton">Botón</option>
+        <option value="buzzer">Buzzer</option>
+        <option value="servo">Servo</option>
+        <option value="ultrasonico">Ultrasónico</option>
+        <option value="neopixel_basico">NeoPixel</option>
+      </select>
 
     </div>
   </div>
@@ -2992,6 +2955,7 @@
   <script src="static/js-tutorial.js"></script>
   <script src="static/code-tutor.js"></script>
 
+  <script src="static/tutorial-steps.js"></script>
 </body>
 
 <!-- ===============================

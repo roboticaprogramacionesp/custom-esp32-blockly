@@ -1,0 +1,198 @@
+/* ================================================================
+   tutorial-steps.css
+   Panel flotante de pasos guiados para 3DPit Blocks.
+================================================================ */
+
+/* ── Panel principal ─────────────────────────────────────────── */
+#ts-panel {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 340px;
+  max-height: 88vh;
+  overflow-y: auto;
+  display: flex;           /* se activa por JS */
+  flex-direction: column;
+  background: #1a1a2e;
+  border: 1px solid #2e2e50;
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.55);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  font-size: 14px;
+  color: #dde0f5;
+  z-index: 9000;
+}
+
+/* ── Cabecera ────────────────────────────────────────────────── */
+.ts-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 14px 10px;
+  background: linear-gradient(135deg, #22204a, #1a1a2e);
+  border-radius: 12px 12px 0 0;
+  border-bottom: 1px solid #2e2e50;
+}
+.ts-icon  { font-size: 24px; flex-shrink: 0; }
+.ts-title-group { flex: 1; min-width: 0; }
+.ts-label {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: #7c6af7;
+}
+.ts-title {
+  margin: 2px 0 0;
+  font-size: 15px;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ts-close {
+  background: none;
+  border: none;
+  color: #7777aa;
+  font-size: 15px;
+  cursor: pointer;
+  padding: 4px 7px;
+  border-radius: 6px;
+  transition: background .18s, color .18s;
+  flex-shrink: 0;
+}
+.ts-close:hover { background: rgba(255,255,255,.09); color: #dde0f5; }
+
+/* ── Barra de progreso ───────────────────────────────────────── */
+.ts-progress-bar {
+  height: 3px;
+  background: #2e2e50;
+}
+.ts-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #7c6af7, #4ecdc4);
+  transition: width .35s ease;
+  width: 0%;
+}
+.ts-progress-txt {
+  margin: 5px 14px 0;
+  font-size: 11px;
+  color: #6666aa;
+}
+
+/* ── Cuerpo ──────────────────────────────────────────────────── */
+.ts-body {
+  padding: 14px;
+  flex: 1;
+}
+.ts-step-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 9px;
+}
+.ts-step-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #7c6af7;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.ts-step-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.ts-step-desc {
+  margin: 0 0 12px;
+  line-height: 1.65;
+  color: #bbbbd8;
+}
+.ts-step-desc b      { color: #4ecdc4; }
+.ts-step-desc em     { color: #ffdf7e; font-style: normal; font-weight: 600; }
+.ts-step-desc strong { color: #4ecdc4; }
+
+/* ── Pista de categoría ──────────────────────────────────────── */
+.ts-cat {
+  background: rgba(124,106,247,.12);
+  border: 1px solid rgba(124,106,247,.28);
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #bbbbd8;
+}
+.ts-cat strong { color: #dde0f5; }
+.ts-block-chip {
+  display: inline-block;
+  background: rgba(78,205,196,.15);
+  border: 1px solid rgba(78,205,196,.3);
+  border-radius: 5px;
+  padding: 1px 7px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4ecdc4;
+  margin-top: 2px;
+}
+
+/* ── Footer ──────────────────────────────────────────────────── */
+.ts-footer {
+  display: flex;
+  gap: 8px;
+  padding: 10px 14px 14px;
+  border-top: 1px solid #2e2e50;
+}
+.ts-btn {
+  flex: 1;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .18s;
+}
+.ts-btn:disabled { opacity: .3; cursor: not-allowed; }
+.ts-btn-primary {
+  background: #7c6af7;
+  color: #fff;
+}
+.ts-btn-primary:hover:not(:disabled) {
+  background: #9181f9;
+  transform: translateY(-1px);
+}
+.ts-btn-sec {
+  background: #22204a;
+  color: #dde0f5;
+  border: 1px solid #2e2e50;
+}
+.ts-btn-sec:hover:not(:disabled) { background: #2e2e50; }
+
+/* ── Pantalla de fin ─────────────────────────────────────────── */
+.ts-fin {
+  text-align: center;
+  padding: 20px 0;
+}
+.ts-fin-icon { font-size: 44px; margin-bottom: 10px; }
+.ts-fin h3   { margin: 0 0 8px; font-size: 16px; }
+.ts-fin p    { color: #7777aa; margin: 0 0 18px; line-height: 1.6; }
+
+/* ── Animación de paso ───────────────────────────────────────── */
+@keyframes tsStepIn {
+  from { opacity: 0; transform: translateX(10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.ts-anim { animation: tsStepIn .22s ease; }
+
+/* ── Scrollbar del panel ─────────────────────────────────────── */
+#ts-panel::-webkit-scrollbar       { width: 4px; }
+#ts-panel::-webkit-scrollbar-track { background: transparent; }
+#ts-panel::-webkit-scrollbar-thumb { background: #3a3a60; border-radius: 4px; }
