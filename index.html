@@ -604,20 +604,55 @@
 
       <button id="btnShare">Compartir</button>
 
+      <!-- Botón tutoriales -->
+      <button id="btnTutorialSelector">
+        <span class="icon-btn icon-help"></span>
+      </button>
 
+      <!-- Modal selector de tutorial -->
       <div id="tutorialSelectorModal" class="modal">
         <div class="modal-content">
+
           <h2>Selecciona un tutorial</h2>
 
           <select id="tutorialSelect">
-            <option value="led_basico">LED Básico</option>
-            <option value="neopixel_basico">NeoPixel Básico</option>
+
+            <option value="">-- Selecciona un tutorial --</option>
+
+            <!-- Básicos -->
+            <option value="led_basico">💡 LED Básico</option>
+            <option value="semaforo_basico">🚦 Semáforo</option>
+            <option value="boton_basico">🔘 Botón</option>
+
+            <!-- Sensores -->
+            <option value="ultrasonico">📏 Sensor Ultrasonico</option>
+            <option value="dht11">🌡️ Sensor Temperatura DHT11</option>
+            <option value="infrarrojo">📡 Sensor Infrarrojo</option>
+
+            <!-- Actuadores -->
+            <option value="servo_motor">⚙️ Servo Motor</option>
+            <option value="motor_dc">🔄 Motor DC</option>
+            <option value="buzzer">🔊 Buzzer</option>
+
+            <!-- Pantallas -->
+            <option value="oled">🖥️ Pantalla OLED</option>
+            <option value="lcd">📺 Pantalla LCD</option>
+
+            <!-- NeoPixel -->
+            <option value="neopixel_basico">🌈 NeoPixel Básico</option>
+            <option value="neopixel_5x5">🟦 NeoPixel 5x5</option>
+
+            <!-- Avanzados -->
+            <option value="wifi">📶 WiFi ESP32</option>
+            <option value="mqtt">☁️ MQTT IoT</option>
+
           </select>
 
           <div class="modal-buttons">
             <button id="startTutorialBtn">Iniciar</button>
             <button id="closeTutorialModal">Cancelar</button>
           </div>
+
         </div>
       </div>
 
