@@ -1704,7 +1704,7 @@ const btnTutor = document.getElementById("btnTutor");
 const tutorialModal = document.getElementById("tutorialSelectorModal");
 
 btnTutor.addEventListener("click", () => {
-    tutorialModal.style.display = "block";
+  tutorialModal.style.display = "block";
 });
 
 document.getElementById("closeTutorialModal").addEventListener("click", () => {
@@ -1715,8 +1715,8 @@ let tutorialsData = {};
 let currentTutorial = null;
 
 async function loadTutorials() {
-    const response = await fetch("static/tutorials.json");
-    tutorialsData = await response.json();
+  const response = await fetch("static/tutorials.json");
+  tutorialsData = await response.json();
 }
 
 loadTutorials();
@@ -1729,7 +1729,7 @@ document.getElementById("startTutorialBtn").addEventListener("click", () => {
   tutorialModal.style.display = "none";
 
   if (currentTutorial) {
-      startTutorial(currentTutorial.steps);
+    startTutorial(currentTutorial.steps);
   }
 });
 
@@ -1737,9 +1737,9 @@ let tutorialSteps = [];
 let currentStep = 0;
 
 function startTutorial(steps) {
-    tutorialSteps = steps;
-    currentStep = 0;
-    showStep();
+  tutorialSteps = steps;
+  currentStep = 0;
+  showStep();
 }
 
 function showStep() {
@@ -1751,14 +1751,14 @@ function showStep() {
   const target = document.querySelector(step.target);
 
   if (target) {
-      const rect = target.getBoundingClientRect();
+    const rect = target.getBoundingClientRect();
 
-      const cutout = document.getElementById("tutorialCutout");
+    const cutout = document.getElementById("tutorialCutout");
 
-      cutout.style.top = rect.top + "px";
-      cutout.style.left = rect.left + "px";
-      cutout.style.width = rect.width + "px";
-      cutout.style.height = rect.height + "px";
+    cutout.style.top = rect.top + "px";
+    cutout.style.left = rect.left + "px";
+    cutout.style.width = rect.width + "px";
+    cutout.style.height = rect.height + "px";
   }
 
   document.getElementById("tutorialOverlay").classList.remove("hidden");
@@ -1768,9 +1768,35 @@ document.getElementById("tutorialNext").addEventListener("click", () => {
   currentStep++;
 
   if (currentStep >= tutorialSteps.length) {
-      endTutorial();
-      return;
+    endTutorial();
+    return;
   }
 
   showStep();
 });
+
+const tutorialModal = document.getElementById("tutorialSelectorModal");
+
+document.getElementById("btnTutorialSelector").addEventListener("click", () => {
+  tutorialModal.style.display = "block";
+});
+
+document.getElementById("closeTutorialModal").addEventListener("click", () => {
+  tutorialModal.style.display = "none";
+});
+
+document.getElementById("startTutorialBtn").addEventListener("click", () => {
+  const tutorial = document.getElementById("tutorialSelect").value;
+
+  if (!tutorial) {
+    alert("Selecciona un tutorial");
+    return;
+  }
+
+  console.log("Tutorial seleccionado:", tutorial);
+
+  tutorialModal.style.display = "none";
+
+  // Aquí después llamarás:
+  // startTutorial(tutorial)
+}); 
