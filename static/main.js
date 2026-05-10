@@ -1699,113 +1699,33 @@ window.addEventListener("load", () => {
   cargarDesdeURL();
 });
 
-document.addEventListener("DOMContentLoaded", async () => {
 
-  const btnTutor = document.getElementById("btnTutor");
-  const tutorialModal = document.getElementById("tutorialSelectorModal");
-  const closeTutorialModal = document.getElementById("closeTutorialModal");
-  const startTutorialBtn = document.getElementById("startTutorialBtn");
-  const tutorialSelect = document.getElementById("tutorialSelect");
+const btnTutorials = document.getElementById("btnTutorials");
+const tutorialSelectorModal = document.getElementById("tutorialSelectorModal");
+const tutorialDropdown = document.getElementById("tutorialSelect");
+const startTutorialBtn = document.getElementById("startTutorialBtn");
+const closeTutorialModal = document.getElementById("closeTutorialModal");
 
-  let tutorialsData = {};
-  let tutorialSteps = [];
-  let currentStep = 0;
+// abrir modal
+btnTutorials.addEventListener("click", () => {
+  tutorialSelectorModal.classList.remove("hidden");
+});
 
-  // cargar JSON
-  async function loadTutorials() {
-    try {
-      const response = await fetch("static/tutorials.json");
-      tutorialsData = await response.json();
-      console.log("Tutoriales cargados:", tutorialsData);
-    } catch (error) {
-      console.error("Error cargando tutorials.json", error);
-    }
+// cerrar modal
+closeTutorialModal.addEventListener("click", () => {
+  tutorialSelectorModal.classList.add("hidden");
+});
+
+// iniciar tutorial
+startTutorialBtn.addEventListener("click", async () => {
+  const selectedTutorial = tutorialDropdown.value;
+
+  if (!selectedTutorial) {
+    alert("Selecciona un tutorial");
+    return;
   }
 
-  await loadTutorials();
+  tutorialSelectorModal.classList.add("hidden");
 
-  // abrir modal
-  btnTutor.addEventListener("click", () => {
-    tutorialModal.style.display = "block";
-  });
-
-  // cerrar modal
-  closeTutorialModal.addEventListener("click", () => {
-    tutorialModal.style.display = "none";
-  });
-
-
-  // iniciar tutorial seleccionado
-  startTutorialBtn.addEventListener("click", () => {
-    const selected = tutorialSelect.value;
-
-    if (!selected) {
-      alert("Selecciona un tutorial");
-      return;
-    }
-
-    const currentTutorial = tutorialsData[selected];
-
-    tutorialModal.style.display = "none";
-
-    if (currentTutorial) {
-      startTutorial(currentTutorial.steps);
-    } else {
-      console.log("Tutorial no encontrado");
-    }
-  });
-
-  function startTutorial(steps) {
-    tutorialSteps = steps;
-    currentStep = 0;
-    showStep();
-  }
-
-  function showStep() {
-    const step = tutorialSteps[currentStep];
-
-    document.getElementById("tutorialTitle").textContent = step.title;
-    document.getElementById("tutorialText").textContent = step.text;
-
-    const target = document.querySelector(step.target);
-
-    if (target) {
-      const rect = target.getBoundingClientRect();
-      const cutout = document.getElementById("tutorialCutout");
-
-      cutout.style.top = rect.top + "px";
-      cutout.style.left = rect.left + "px";
-      cutout.style.width = rect.width + "px";
-      cutout.style.height = rect.height + "px";
-    }
-
-    document.getElementById("tutorialOverlay").classList.remove("hidden");
-  }
-
-  document.getElementById("tutorialNext").addEventListener("click", () => {
-    currentStep++;
-
-    if (currentStep >= tutorialSteps.length) {
-      endTutorial();
-      return;
-    }
-
-    showStep();
-  });
-
-  document.getElementById("tutorialPrev").addEventListener("click", () => {
-    if (currentStep > 0) {
-      currentStep--;
-      showStep();
-    }
-  });
-
-  document.getElementById("tutorialClose").addEventListener("click", () => {
-    endTutorial();
-  });
-
-  function endTutorial() {
-    document.getElementById("tutorialOverlay").classList.add("hidden");
-  }
-
+  startTutorial(selectedTutorial);
 });

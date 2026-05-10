@@ -1,53 +1,66 @@
 {
-  "led_basico": {
-    "title": "Encender un LED",
-    "steps": [
-      {
-        "title": "Ir a categoría LED",
-        "text": "Haz clic en la categoría LEDs",
-        "target": "[aria-label='LEDs']",
-        "action": "click"
-      },
-      {
-        "title": "Seleccionar bloque LED",
-        "text": "Arrastra el bloque 'led_init'",
-        "target": "[data-type='led_init']",
-        "action": "drag"
-      },
-      {
-        "title": "Encender LED",
-        "text": "Ahora agrega el bloque 'set_led'",
-        "target": "[data-type='set_led']",
-        "action": "drag"
-      },
-      {
-        "title": "Conectar ESP32",
-        "text": "Haz clic en conectar",
-        "target": "#btnConnection",
-        "action": "click"
-      },
-      {
-        "title": "Ejecutar programa",
-        "text": "Haz clic en ejecutar",
-        "target": "#btnRun",
-        "action": "click"
-      }
-    ]
-  },
-
-  "neopixel_basico": {
-    "title": "NeoPixel básico",
-    "steps": [
-      {
-        "title": "Ir a NeoPixel",
-        "text": "Selecciona la categoría NeoPixel",
-        "target": "[aria-label='NeoPixel']"
-      },
-      {
-        "title": "Inicializar NeoPixel",
-        "text": "Arrastra el bloque neopixel_init",
-        "target": "[data-type='neopixel_init']"
-      }
-    ]
-  }
+    "led_basico": {
+        "title": "Encender y apagar un LED",
+        "steps": [
+            {
+                "title": "Abrir categoría LEDs",
+                "text": "Haz clic en la categoría LEDs",
+                "target": "[aria-label='LEDs']",
+                "action": "click"
+            },
+            {
+                "title": "Inicializar LED",
+                "text": "Arrastra el bloque 'led_init'",
+                "target": "[data-type='led_init']",
+                "action": "drag"
+            },
+            {
+                "title": "Encender LED",
+                "text": "Arrastra el bloque 'set_led' y selecciona ON",
+                "target": "[data-type='set_led']",
+                "action": "drag"
+            },
+            {
+                "title": "Esperar",
+                "text": "Agrega un bloque de espera de 1 segundo",
+                "target": "[data-type='time_sleep']",
+                "action": "drag"
+            },
+            {
+                "title": "Apagar LED",
+                "text": "Agrega nuevamente el bloque 'set_led' y selecciona OFF",
+                "target": "[data-type='set_led']",
+                "action": "drag"
+            },
+            {
+                "title": "Conectar ESP32",
+                "text": "Haz clic en conectar",
+                "target": "#btnConnection",
+                "action": "click"
+            },
+            {
+                "title": "Ejecutar código",
+                "text": "Haz clic en ejecutar",
+                "target": "#btnRun",
+                "action": "click"
+            }
+        ]
+    },
+    "neopixel_basico": {
+        "title": "NeoPixel básico",
+        "steps": [
+            {
+                "title": "Ir a NeoPixel",
+                "text": "Selecciona la categoría NeoPixel",
+                "target": "[aria-label='NeoPixel']",
+                "action": "click"
+            },
+            {
+                "title": "Inicializar NeoPixel",
+                "text": "Arrastra el bloque neopixel_init",
+                "target": "[data-type='neopixel_init']",
+                "action": "drag"
+            }
+        ]
+    }
 }
