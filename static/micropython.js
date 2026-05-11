@@ -802,6 +802,12 @@ Blockly.Python["pin_off"] = function (block) {
   return `p${pin}.off()\n`;
 };
 
+Blockly.Python["set_value_pin"] = function (block) {
+  const pin = block.getFieldValue("PIN");
+  const value = block.getFieldValue("VALUE");
+  return `p${pin}.value(${value}\n`;
+};
+
 Blockly.Python["pin_value"] = function (block) {
   const pin = block.getFieldValue("PIN");
   return [`p${pin}.value()`, Blockly.Python.ORDER_ATOMIC];
