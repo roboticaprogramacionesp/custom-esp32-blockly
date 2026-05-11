@@ -869,6 +869,7 @@ Blockly.Python["pwm_init"] = function (block) {
 Blockly.Python["pwm_freq"] = function (block) {
   const pin = block.getFieldValue("PIN");
   const freq = block.getFieldValue("FREQ");
+  console.log(freq);
   return `pwm${pin}.freq(${freq})\n`;
 };
 
@@ -878,15 +879,6 @@ Blockly.Python["pwm_duty"] = function (block) {
   return `pwm${pin}.duty(${duty})\n`;
 };
 
-Blockly.Python["pwm_freq"] = function (block) {
-  const pin = block.getFieldValue("PIN");
-  return `pwm${pin}.freq()\n`;
-};
-
-Blockly.Python["pwm_duty"] = function (block) {
-  const pin = block.getFieldValue("PIN");
-  return `pwm${pin}.duty()\n`;
-};
 
 Blockly.Python["read_pwm_freq"] = function (block) {
   const pin = block.getFieldValue("PIN");
