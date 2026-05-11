@@ -1,299 +1,606 @@
 /* ================================================================
-   tutorial-steps.js  v2
-   ─ Panel arrastrable (no tapa la papelera)
-   ─ Flecha SVG animada apuntando a la categoría del toolbox
-   ─ Highlight del ítem de toolbox con glow
-   ─ Categorías/subcategorías reales del index.html
+   tutorial-steps.js  v5
+   ─ Highlight en workspace principal
+   ─ Highlight en flyout (los bloques del panel lateral al abrirse)
+   ─ MutationObserver para aplicar glow cuando el flyout aparece
+   ─ Sin flecha, panel arrastrable
 ================================================================ */
-
-/* ─── 1. DATOS CON RUTAS REALES DEL TOOLBOX ─────────────────── */
 
 var TUTORIALS = {
 
   led_basico: {
-    title: "LED Básico",
-    icon: "💡",
+    title: "LED Básico", icon: "💡",
     steps: [
       {
-        titulo: "Bloque de inicio",
-        desc: "Abre la categoría <b>Inicio</b> y arrastra el bloque <em>runstart</em> al área de trabajo. Es el punto de partida de todos los proyectos.",
-        categoria: "Inicio",
-        subcategoria: null,
-        bloque: "runstart (Al iniciar / Repetir siempre)"
+        titulo: "Abre la categoría LEDs",
+        desc: "Haz clic en <b>LEDs</b> en el toolbox para desplegarlo.",
+        highlightCat: "LEDs", expandCat: null, bloque: null
       },
       {
-        titulo: "Inicializa el LED",
-        desc: "Ve a <b>LEDs</b> › <b>LED</b> y arrastra el bloque <em>Inicializar LED</em>. El pin por defecto es el <b>2</b> (LED integrado del ESP32).",
-        categoria: "LEDs",
-        subcategoria: null,
-        bloque: "led_init — Inicializar LED"
+        titulo: "Selecciona la subcategoría LED",
+        desc: "Dentro de <b>LEDs</b> haz clic en <b>LED</b> para ver sus bloques.",
+        highlightCat: "LED", expandCat: "LEDs", bloque: null
       },
       {
-        titulo: "Enciende el LED",
-        desc: "Desde <b>LEDs</b> › <b>LED</b> agrega el bloque <em>Establecer LED</em> con estado <b>1</b> (encendido) dentro de <em>Repetir siempre</em>.",
-        categoria: "LEDs",
-        subcategoria: "LED",
-        bloque: "set_led — Establecer LED (1=ON)"
+        titulo: "Arrastra: Inicializar LED",
+        desc: "Arrastra el bloque <em>led_init</em> al área de trabajo. Pin <b>2</b> = LED integrado del ESP32.",
+        highlightCat: "LED", expandCat: "LEDs", bloque: "led_init"
       },
       {
-        titulo: "Espera 1 segundo",
-        desc: "Ve a la categoría <b>Tiempo</b> y agrega el bloque <em>time.sleep</em>. Pon el valor <b>1</b> segundo.",
-        categoria: "Tiempo",
-        subcategoria: null,
-        bloque: "time_sleep — Esperar"
+        titulo: "Arrastra: Establecer LED",
+        desc: "Arrastra <em>set_led</em> al área. Estado <b>on</b> enciende, <b>off</b> apaga.",
+        highlightCat: "LED", expandCat: "LEDs", bloque: "set_led"
       },
       {
-        titulo: "Apaga el LED",
-        desc: "Agrega otro <em>Establecer LED</em> con estado <b>0</b> (apagado) y otro <em>time.sleep(1)</em>. ¡El LED parpadeará cada segundo!",
-        categoria: "LEDs",
-        subcategoria: "LED",
-        bloque: "set_led — Establecer LED (0=OFF)"
-      }
+        titulo: "Conecta tu tarjeta ESP32",
+        desc: `
+          Haz clic en el botón <b>Conectar</b> 
+          <span class="icon-btn icon-disconect"></span> 
+          para seleccionar tu tarjeta ESP32 desde el puerto serial.
+          
+          Cuando la conexión sea exitosa, presiona el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para enviar el código a la tarjeta.
+        `,
+        highlightElement: "#btnConnection"
+      },
+      {
+        titulo: "Selecciona tu puerto",
+        desc: `
+          El navegador mostrará una ventana para elegir el puerto serial 
+          de tu ESP32. Selecciona el puerto correcto y presiona <b>Conectar</b>.
+        `,
+        waitForAction: "connect"
+      },
+      {
+        titulo: "Ejecuta tu programa",
+        desc: `
+          Ahora haz clic en el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para correr el programa en la ESP32.
+        `,
+        highlightElement: "#btnRun",
+        waitForAction: "run"
+      },
+    ]
+  },
+
+  led_infinito: {
+    title: "LED Infinito (parpadeo)", icon: "🔁",
+    steps: [
+      {
+        titulo: "Abre la categoría LEDs",
+        desc: "Haz clic en <b>LEDs</b> en el toolbox para desplegarlo.",
+        highlightCat: "LEDs", expandCat: null, bloque: "LED"
+      },
+      {
+        titulo: "Selecciona la subcategoría LED",
+        desc: "Dentro de <b>LEDs</b> haz clic en <b>LED</b> para ver sus bloques.",
+        highlightCat: "LED", expandCat: "LEDs", bloque: null
+      },
+      {
+        titulo: "Arrastra: Inicializar LED",
+        desc: "Arrastra el bloque <em>led_init</em> al área de trabajo. Pin <b>2</b> = LED integrado del ESP32.",
+        highlightCat: "LED", expandCat: "LEDs", bloque: "led_init"
+      },
+      {
+        titulo: "Abre la categoría Ciclos",
+        desc: "Haz clic en <b>Ciclos</b> en el toolbox.",
+        highlightCat: "Ciclos", expandCat: null, bloque: null
+      },
+      {
+        titulo: "Arrastra: mientras … Verdadero",
+        desc: "Arrastra <em>controls_whileUntil</em>. El código dentro se repetirá <b>infinitamente</b>.",
+        highlightCat: "Ciclos", expandCat: null, bloque: "controls_whileUntil"
+      },
+      {
+        titulo: "Dentro del ciclo: Encender LED",
+        desc: "Ve a <b>LEDs › LED</b> y arrastra <em>set_led</em> <b>dentro</b> del bloque mientras. Estado = <b>on</b>.",
+        highlightCat: "LED", expandCat: "LEDs", bloque: "set_led"
+      },
+      {
+        titulo: "Dentro del ciclo: Esperar",
+        desc: "Ve a <b>Tiempo</b> y arrastra <em>time_sleep</em> después del set_led. Valor: <b>1</b> segundo.",
+        highlightCat: "Tiempo", expandCat: null, bloque: "time_sleep"
+      },
+      {
+        titulo: "Apagar LED",
+        desc: "Arrastra otro <em>set_led</em> con estado <b>off</b>.",
+        highlightCat: "LED", expandCat: "LEDs", bloque: ["set_led", "time_sleep"]
+      },
+      {
+        titulo: "Dentro del ciclo: Esperar",
+        desc: "Ve a <b>Tiempo</b> y arrastra <em>time_sleep</em> después del set_led. Valor: <b>1</b> segundo.",
+        highlightCat: "Tiempo", expandCat: null, bloque: "time_sleep"
+      },
+      {
+        titulo: "Conecta tu tarjeta ESP32",
+        desc: `
+          Haz clic en el botón <b>Conectar</b> 
+          <span class="icon-btn icon-disconect"></span> 
+          para seleccionar tu tarjeta ESP32 desde el puerto serial.
+          
+          Cuando la conexión sea exitosa, presiona el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para enviar el código a la tarjeta.
+        `,
+        highlightElement: "#btnConnection"
+      },
+      {
+        titulo: "Selecciona tu puerto",
+        desc: `
+          El navegador mostrará una ventana para elegir el puerto serial 
+          de tu ESP32. Selecciona el puerto correcto y presiona <b>Conectar</b>.
+        `,
+        waitForAction: "connect"
+      },
+      {
+        titulo: "Ejecuta tu programa",
+        desc: `
+          Ahora haz clic en el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para correr el programa en la ESP32.
+        `,
+        highlightElement: "#btnRun",
+        waitForAction: "run"
+      },
     ]
   },
 
   semaforo: {
-    title: "Semáforo",
-    icon: "🚦",
+    title: "Semáforo", icon: "🚦",
     steps: [
       {
-        titulo: "Bloque de inicio",
-        desc: "Arrastra el bloque <em>runstart</em> desde la categoría <b>Inicio</b>.",
-        categoria: "Inicio",
-        subcategoria: null,
-        bloque: "runstart"
+        titulo: "Abre LEDs › Semáforo (Leds)",
+        desc: "Expande <b>LEDs</b> y selecciona <b>Semáforo (Leds)</b>.",
+        highlightCat: "Semáforo (Leds)", expandCat: "LEDs", bloque: null
       },
       {
-        titulo: "Inicializa el semáforo",
-        desc: "Ve a <b>LEDs</b> › <b>Semáforo (Leds)</b> y arrastra <em>Inicializar Semáforo</em>. Pines: Verde=18, Amarillo=19, Rojo=23.",
-        categoria: "LEDs",
-        subcategoria: "Semáforo (Leds)",
-        bloque: "init_semaforo — Inicializar Semáforo"
+        titulo: "Arrastra: Inicializar Semáforo",
+        desc: "Arrastra <em>init_semaforo</em>. Pines: Verde=18, Amarillo=19, Rojo=23.",
+        highlightCat: "Semáforo (Leds)", expandCat: "LEDs", bloque: "init_semaforo"
+      },
+      {
+        titulo: "Ciclo infinito",
+        desc: "Ve a <b>Ciclos</b> y arrastra <em>mientras … Verdadero</em>. Todo el semáforo irá dentro.",
+        highlightCat: "Ciclos", expandCat: null, bloque: "controls_whileUntil"
       },
       {
         titulo: "Fase ROJO",
-        desc: "Desde <b>LEDs</b> › <b>Semáforo (Leds)</b> agrega <em>Establecer Semáforo</em> con R=1, G=0, Y=0. Luego <em>time.sleep(3)</em> de <b>Tiempo</b>.",
-        categoria: "LEDs",
-        subcategoria: "Semáforo (Leds)",
-        bloque: "set_semaforo — Establecer Semáforo"
+        desc: "Arrastra <em>set_semaforo</em> con R=1, G=0, Y=0. Luego <em>time_sleep(3)</em> de <b>Tiempo</b>.",
+        highlightCat: "Semáforo (Leds)", expandCat: "LEDs", bloque: "set_semaforo"
       },
       {
         titulo: "Fase AMARILLO",
-        desc: "Agrega otro <em>Establecer Semáforo</em> con Y=1, R=0, G=0 y <em>time.sleep(1)</em>.",
-        categoria: "LEDs",
-        subcategoria: "Semáforo (Leds)",
-        bloque: "set_semaforo — Establecer Semáforo"
+        desc: "Otro <em>set_semaforo</em> con Y=1, R=0, G=0 y <em>time_sleep(1)</em>.",
+        highlightCat: "Semáforo (Leds)", expandCat: "LEDs", bloque: "set_semaforo"
       },
       {
         titulo: "Fase VERDE",
-        desc: "Agrega <em>Establecer Semáforo</em> con G=1, R=0, Y=0 y <em>time.sleep(2)</em>. El ciclo se repite automáticamente.",
-        categoria: "LEDs",
-        subcategoria: "Semáforo (Leds)",
-        bloque: "set_semaforo — Establecer Semáforo"
-      }
+        desc: "Último <em>set_semaforo</em> con G=1, R=0, Y=0 y <em>time_sleep(2)</em>.",
+        highlightCat: "Semáforo (Leds)", expandCat: "LEDs", bloque: "set_semaforo"
+      },
+      {
+        titulo: "Conecta tu tarjeta ESP32",
+        desc: `
+          Haz clic en el botón <b>Conectar</b> 
+          <span class="icon-btn icon-disconect"></span> 
+          para seleccionar tu tarjeta ESP32 desde el puerto serial.
+          
+          Cuando la conexión sea exitosa, presiona el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para enviar el código a la tarjeta.
+        `,
+        highlightElement: "#btnConnection"
+      },
+      {
+        titulo: "Selecciona tu puerto",
+        desc: `
+          El navegador mostrará una ventana para elegir el puerto serial 
+          de tu ESP32. Selecciona el puerto correcto y presiona <b>Conectar</b>.
+        `,
+        waitForAction: "connect"
+      },
+      {
+        titulo: "Ejecuta tu programa",
+        desc: `
+          Ahora haz clic en el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para correr el programa en la ESP32.
+        `,
+        highlightElement: "#btnRun",
+        waitForAction: "run"
+      },
     ]
   },
 
   boton: {
-    title: "Botón",
+    title: "Botón Contador",
     icon: "🔘",
     steps: [
       {
-        titulo: "Bloque de inicio",
-        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
-        categoria: "Inicio",
-        subcategoria: null,
-        bloque: "runstart"
+        titulo: "Abre Interruptores",
+        desc: "Expande <b>Interruptores</b> y selecciona la subcategoría <b>Interruptores</b>.",
+        highlightCat: "Interruptores",
+        expandCat: "Interruptores",
+        bloque: null
+      },
+
+      {
+        titulo: "Inicializa el botón",
+        desc: "Arrastra el bloque <em>interruptor_init</em> y selecciona el pin <b>0</b> con configuración <b>PULL_UP</b>.",
+        highlightCat: "Interruptores",
+        expandCat: "Interruptores",
+        bloque: "interruptor_init"
+      },
+
+      {
+        titulo: "Crear variable contador",
+        desc: "Ve a <b>Variables</b>, crea una variable llamada <b>contador</b> y usa el bloque <em>establecer contador a 0</em>.",
+        highlightCat: "Variables",
+        highlightFlyoutButton: "create_variable",
+        expandCat: null,
+        bloque: null
       },
       {
-        titulo: "Inicializa el interruptor",
-        desc: "Ve a <b>Interruptores</b> › <b>Interruptores</b> y arrastra <em>Inicializar interruptor</em>. Asigna el pin del botón (ej. <b>15</b>).",
-        categoria: "Interruptores",
-        subcategoria: "Interruptores",
-        bloque: "interruptor_init — Inicializar interruptor"
+        titulo: "Crear variable para botón",
+        desc: "Ve a <b>Variables</b>, crea una variable llamada <b>btn</b> y usa el bloque <em>establecer btn a 0</em>.",
+        highlightCat: "Variables",
+        expandCat: null,
+        bloque: null
+      },
+
+      {
+        titulo: "Agregar ciclo infinito",
+        desc: "Desde <b>Ciclos</b>, arrastra el bloque <em>repetir mientras verdadero</em>.",
+        highlightCat: "Ciclos",
+        expandCat: null,
+        bloque: "controls_whileUntil"
       },
       {
-        titulo: "Inicializa el LED",
-        desc: "Ve a <b>LEDs</b> › <b>LED</b> y agrega <em>Inicializar LED</em> en el pin <b>2</b>.",
-        categoria: "LEDs",
-        subcategoria: "LED",
-        bloque: "led_init — Inicializar LED"
+        titulo: "Establecer variable btn",
+        desc: "Establece su valor inicial en",
+        highlightCat: "Variables",
+        bloque: "variables_set"
       },
       {
-        titulo: "Lee el botón",
-        desc: "Desde <b>Interruptores</b> › <b>Interruptores</b> agrega <em>Leer interruptor</em>. Envuélvelo en un <em>Si … hacer</em> de la categoría <b>Lógica</b>.",
-        categoria: "Interruptores",
-        subcategoria: "Interruptores",
-        bloque: "interruptor_read — Leer interruptor"
+        titulo: "Leer el botón",
+        desc: "Dentro del ciclo, agrega un bloque de variable para guardar el estado del botón usando <em>no leer Pin 17</em>.",
+        highlightCat: "Interruptores",
+        expandCat: "Interruptores",
+        bloque: "interruptor_read"
       },
+
       {
-        titulo: "Controla el LED",
-        desc: "Si el botón está presionado (<em>Si</em>): pon el LED en <b>1</b>. En el <em>Sino</em>: ponlo en <b>0</b>.",
-        categoria: "LEDs",
-        subcategoria: "LED",
-        bloque: "set_led — Establecer LED"
+        titulo: "Agregar condición",
+        desc: "Ve a <b>Lógica</b> y arrastra el bloque <em>Si hacer</em>. Después agrega una comparación <em>btn = 1</em>.",
+        highlightCat: "Lógica",
+        expandCat: null,
+        bloque: "controls_if"
+      },
+
+      {
+        titulo: "Comparar valor",
+        desc: "Usa el bloque <em>=</em> desde <b>Lógica</b> para verificar si el botón fue presionado.",
+        highlightCat: "Lógica",
+        expandCat: null,
+        bloque: "logic_compare"
+      },
+
+      {
+        titulo: "Usar operador NO",
+        desc: "Agrega el bloque <em>no</em> para invertir la lectura del botón debido al uso de <b>PULL_UP</b>.",
+        highlightCat: "Lógica",
+        expandCat: null,
+        bloque: "logic_negate"
+      },
+
+      {
+        titulo: "Imprimir texto",
+        desc: "Ve a <b>Texto</b> y arrastra <em>crear texto con</em> para mostrar <b>'Contador:'</b> junto con el valor del botón.",
+        highlightCat: "Texto",
+        expandCat: null,
+        bloque: "text_join"
+      },
+
+      {
+        titulo: "Agregar mensaje en consola",
+        desc: "Usa el bloque <em>imprimir</em> para mostrar el resultado en la terminal serial.",
+        highlightCat: "Texto",
+        expandCat: null,
+        bloque: "text_print"
+      },
+
+      {
+        titulo: "Agregar espera",
+        desc: "Desde <b>Tiempo</b>, agrega <em>esperar 1 segundo</em> para evitar múltiples lecturas rápidas.",
+        highlightCat: "Tiempo",
+        expandCat: null,
+        bloque: "time_sleep"
+      },
+
+      {
+        titulo: "Conecta tu ESP32",
+        desc: `
+          Haz clic en <b>Conectar</b> 
+          <span class="icon-btn icon-disconect"></span> 
+          para seleccionar tu tarjeta ESP32.
+        `,
+        highlightElement: "#btnConnection"
+      },
+
+      {
+        titulo: "Selecciona puerto",
+        desc: `
+          Selecciona el puerto serial correcto de tu ESP32 y presiona <b>Conectar</b>.
+        `,
+        waitForAction: "connect"
+      },
+
+      {
+        titulo: "Ejecuta tu programa",
+        desc: `
+          Presiona el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para enviar el código.
+        `,
+        highlightElement: "#btnRun",
+        waitForAction: "run"
       }
     ]
   },
 
   buzzer: {
-    title: "Buzzer",
-    icon: "🔊",
+    title: "Buzzer", icon: "🔊",
     steps: [
       {
-        titulo: "Bloque de inicio",
-        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
-        categoria: "Inicio",
-        subcategoria: null,
-        bloque: "runstart"
+        titulo: "Abre Actuadores › Sounds (Buzzer)",
+        desc: "Expande <b>Actuadores</b> y selecciona <b>Sounds (Buzzer)</b>.",
+        highlightCat: "Sounds (Buzzer)", expandCat: "Actuadores", bloque: null
       },
       {
-        titulo: "Genera un tono",
-        desc: "Ve a <b>Actuadores</b> › <b>Sounds (Buzzer)</b> y arrastra el bloque <em>Tono Buzzer</em>. Frecuencia <b>440 Hz</b> = nota La.",
-        categoria: "Actuadores",
-        subcategoria: "Sounds (Buzzer)",
-        bloque: "buzzer_tone — Tono Buzzer"
+        titulo: "Arrastra: Tono Buzzer",
+        desc: "Arrastra <em>buzzer_tone</em>. <b>440 Hz</b> = La, <b>262 Hz</b> = Do.",
+        highlightCat: "Sounds (Buzzer)", expandCat: "Actuadores", bloque: "buzzer_tone"
       },
       {
-        titulo: "Espera",
-        desc: "Ve a <b>Tiempo</b> y agrega <em>time.sleep</em> con <b>0.5</b> segundos.",
-        categoria: "Tiempo",
-        subcategoria: null,
-        bloque: "time_sleep — Esperar"
+        titulo: "Esperar",
+        desc: "Ve a <b>Tiempo</b> y arrastra <em>time_sleep</em> con <b>0.5</b> segundos.",
+        highlightCat: "Tiempo", expandCat: null, bloque: "time_sleep"
       },
       {
-        titulo: "Detén el tono",
-        desc: "Desde <b>Actuadores</b> › <b>Sounds (Buzzer)</b> agrega <em>Detener Buzzer</em> y otro <em>time.sleep(0.5)</em>.",
-        categoria: "Actuadores",
-        subcategoria: "Sounds (Buzzer)",
-        bloque: "buzzer_stop — Detener Buzzer"
+        titulo: "Detener el buzzer",
+        desc: "Arrastra <em>buzzer_stop</em> y otro <em>time_sleep(0.5)</em>.",
+        highlightCat: "Sounds (Buzzer)", expandCat: "Actuadores", bloque: "buzzer_stop"
       },
       {
-        titulo: "Crea una melodía",
-        desc: "Repite bloques <em>Tono</em> con distintas frecuencias: <b>262</b> Do, <b>330</b> Mi, <b>392</b> Sol, <b>523</b> Do alto.",
-        categoria: "Actuadores",
-        subcategoria: "Sounds (Buzzer)",
-        bloque: "buzzer_tone — Tono Buzzer"
-      }
+        titulo: "Conecta tu tarjeta ESP32",
+        desc: `
+          Haz clic en el botón <b>Conectar</b> 
+          <span class="icon-btn icon-disconect"></span> 
+          para seleccionar tu tarjeta ESP32 desde el puerto serial.
+          
+          Cuando la conexión sea exitosa, presiona el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para enviar el código a la tarjeta.
+        `,
+        highlightElement: "#btnConnection"
+      },
+      {
+        titulo: "Selecciona tu puerto",
+        desc: `
+          El navegador mostrará una ventana para elegir el puerto serial 
+          de tu ESP32. Selecciona el puerto correcto y presiona <b>Conectar</b>.
+        `,
+        waitForAction: "connect"
+      },
+      {
+        titulo: "Ejecuta tu programa",
+        desc: `
+          Ahora haz clic en el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para correr el programa en la ESP32.
+        `,
+        highlightElement: "#btnRun",
+        waitForAction: "run"
+      },
     ]
   },
 
   servo: {
-    title: "Servo Motor",
-    icon: "⚙️",
+    title: "Servo Motor", icon: "⚙️",
     steps: [
       {
-        titulo: "Bloque de inicio",
-        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
-        categoria: "Inicio",
-        subcategoria: null,
-        bloque: "runstart"
+        titulo: "Abre Actuadores › Servo",
+        desc: "Expande <b>Actuadores</b> y selecciona <b>Servo</b>.",
+        highlightCat: "Servo", expandCat: "Actuadores", bloque: null
       },
       {
         titulo: "Inicializa el Servo",
-        desc: "Ve a <b>Actuadores</b> › <b>Servo</b> y arrastra <em>Inicializar Servo</em>. Selecciona el pin PWM (ej. <b>13</b>).",
-        categoria: "Actuadores",
-        subcategoria: "Servo",
-        bloque: "init_servo — Inicializar Servo"
+        desc: "Arrastra <em>init_servo</em>. Selecciona el pin PWM (ej. <b>13</b>).",
+        highlightCat: "Servo", expandCat: "Actuadores", bloque: "init_servo"
       },
       {
-        titulo: "Mueve a 0°",
-        desc: "Desde <b>Actuadores</b> › <b>Servo</b> agrega <em>Mover Servo</em> con ángulo <b>0</b>. Luego <em>time.sleep(1)</em>.",
-        categoria: "Actuadores",
-        subcategoria: "Servo",
-        bloque: "move_servo — Mover Servo"
+        titulo: "Ciclo infinito",
+        desc: "Ve a <b>Ciclos</b> y arrastra <em>mientras … Verdadero</em>.",
+        highlightCat: "Ciclos", expandCat: null, bloque: "controls_whileUntil"
       },
       {
-        titulo: "Mueve a 90° y 180°",
-        desc: "Agrega <em>Mover Servo a 90°</em> con delay y <em>Mover Servo a 180°</em> con delay. El servo oscilará entre las tres posiciones.",
-        categoria: "Actuadores",
-        subcategoria: "Servo",
-        bloque: "move_servo — Mover Servo"
-      }
+        titulo: "Mueve a 0°, 90° y 180°",
+        desc: "3 bloques <em>move_servo</em> con ángulos <b>0</b>, <b>90</b> y <b>180</b>, cada uno con <em>time_sleep(1)</em>.",
+        highlightCat: "Servo", expandCat: "Actuadores", bloque: "move_servo"
+      },
+      {
+        titulo: "Conecta tu tarjeta ESP32",
+        desc: `
+          Haz clic en el botón <b>Conectar</b> 
+          <span class="icon-btn icon-disconect"></span> 
+          para seleccionar tu tarjeta ESP32 desde el puerto serial.
+          
+          Cuando la conexión sea exitosa, presiona el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para enviar el código a la tarjeta.
+        `,
+        highlightElement: "#btnConnection"
+      },
+      {
+        titulo: "Selecciona tu puerto",
+        desc: `
+          El navegador mostrará una ventana para elegir el puerto serial 
+          de tu ESP32. Selecciona el puerto correcto y presiona <b>Conectar</b>.
+        `,
+        waitForAction: "connect"
+      },
+      {
+        titulo: "Ejecuta tu programa",
+        desc: `
+          Ahora haz clic en el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para correr el programa en la ESP32.
+        `,
+        highlightElement: "#btnRun",
+        waitForAction: "run"
+      },
     ]
   },
 
   ultrasonico: {
-    title: "Sensor Ultrasónico",
-    icon: "📡",
+    title: "Sensor Ultrasónico", icon: "📡",
     steps: [
       {
-        titulo: "Bloque de inicio",
-        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
-        categoria: "Inicio",
-        subcategoria: null,
-        bloque: "runstart"
+        titulo: "Abre Sensores › Ultrasonico",
+        desc: "Expande <b>Sensores</b> › <b>Sensores Digitales</b> y selecciona <b>Ultrasonico</b>.",
+        highlightCat: "Ultrasonico", expandCat: "Sensores", bloque: null
       },
       {
         titulo: "Inicializa el HC-SR04",
-        desc: "Ve a <b>Sensores</b> › <b>Sensores Digitales</b> › <b>Ultrasonico</b> y arrastra <em>Inicializar HC-SR04</em>. TRIG=<b>12</b>, ECHO=<b>13</b>.",
-        categoria: "Sensores",
-        subcategoria: "Ultrasonico",
-        bloque: "init_ultrasonic_hcsr04"
+        desc: "Arrastra <em>init_ultrasonic_hcsr04</em>. TRIG=<b>12</b>, ECHO=<b>13</b>.",
+        highlightCat: "Ultrasonico", expandCat: "Sensores", bloque: "init_ultrasonic_hcsr04"
       },
       {
         titulo: "Lee la distancia",
-        desc: "Desde la misma subcategoría arrastra <em>Leer HC-SR04</em>. Guárdalo en una variable <em>distancia</em> de la categoría <b>Variables</b>.",
-        categoria: "Sensores",
-        subcategoria: "Ultrasonico",
-        bloque: "read_ultrasonic_hcsr04 — Leer distancia"
+        desc: "Arrastra <em>read_ultrasonic_hcsr04</em> y guárdalo en una variable <em>distancia</em>.",
+        highlightCat: "Ultrasonico", expandCat: "Sensores", bloque: "read_ultrasonic_hcsr04"
       },
       {
         titulo: "Imprime el resultado",
-        desc: "Ve a <b>Textos</b> y usa <em>print()</em> para mostrar <em>distancia</em>. Abre la terminal para ver los centímetros en tiempo real.",
-        categoria: "Textos",
-        subcategoria: null,
-        bloque: "text_print — print()"
-      }
+        desc: "Ve a <b>Textos</b> y arrastra <em>print()</em>. Conecta la variable <em>distancia</em> dentro.",
+        highlightCat: "Textos", expandCat: null, bloque: "text_print"
+      },
+      {
+        titulo: "Conecta tu tarjeta ESP32",
+        desc: `
+          Haz clic en el botón <b>Conectar</b> 
+          <span class="icon-btn icon-disconect"></span> 
+          para seleccionar tu tarjeta ESP32 desde el puerto serial.
+          
+          Cuando la conexión sea exitosa, presiona el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para enviar el código a la tarjeta.
+        `,
+        highlightElement: "#btnConnection"
+      },
+      {
+        titulo: "Selecciona tu puerto",
+        desc: `
+          El navegador mostrará una ventana para elegir el puerto serial 
+          de tu ESP32. Selecciona el puerto correcto y presiona <b>Conectar</b>.
+        `,
+        waitForAction: "connect"
+      },
+      {
+        titulo: "Ejecuta tu programa",
+        desc: `
+          Ahora haz clic en el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para correr el programa en la ESP32.
+        `,
+        highlightElement: "#btnRun",
+        waitForAction: "run"
+      },
     ]
   },
 
   neopixel_basico: {
-    title: "NeoPixel RGB",
-    icon: "🌈",
+    title: "NeoPixel RGB", icon: "🌈",
     steps: [
       {
-        titulo: "Bloque de inicio",
-        desc: "Arrastra el bloque <em>runstart</em> desde <b>Inicio</b>.",
-        categoria: "Inicio",
-        subcategoria: null,
-        bloque: "runstart"
-      },
-      {
         titulo: "Elige un color",
-        desc: "Ve a la categoría <b>Colores</b> y selecciona un color del picker. Combinarás R, G y B para obtener el color que quieras.",
-        categoria: "Colores",
-        subcategoria: null,
-        bloque: "color_picker — Selector de color"
+        desc: "Ve a <b>Colores</b> y arrastra un <em>color_picker</em>.",
+        highlightCat: "Colores", expandCat: null, bloque: "color_picker"
       },
       {
-        titulo: "Inicializa y enciende el NeoPixel",
-        desc: "Busca los bloques de <b>NeoPixel</b> en el toolbox, configura pin=<b>4</b> y cantidad=<b>8</b> LEDs. Luego usa <em>Establecer color</em> y <em>Mostrar (show)</em>.",
-        categoria: "LEDs",
-        subcategoria: null,
-        bloque: "NeoPixel — Inicializar / Establecer color"
+        titulo: "Inicializa la tira NeoPixel",
+        desc: "Expande <b>LEDs</b> y busca los bloques NeoPixel. Pin=<b>4</b>, cantidad=<b>8</b>.",
+        highlightCat: "LEDs", expandCat: null, bloque: null
       },
       {
-        titulo: "Efecto arcoíris",
-        desc: "Usa un bloque <em>Repetir</em> de la categoría <b>Ciclos</b> con variable <em>i</em> del 0 al 7. En cada iteración asigna un color diferente a cada LED.",
-        categoria: "Ciclos",
-        subcategoria: null,
-        bloque: "controls_for — Para i de 0 a 7"
-      }
+        titulo: "Ciclo de colores",
+        desc: "Ve a <b>Ciclos</b> y usa <em>para</em> del <b>0</b> al <b>7</b>. En cada iteración asigna un color a cada LED.",
+        highlightCat: "Ciclos", expandCat: null, bloque: "controls_for"
+      },
+      {
+        titulo: "Conecta tu tarjeta ESP32",
+        desc: `
+          Haz clic en el botón <b>Conectar</b> 
+          <span class="icon-btn icon-disconect"></span> 
+          para seleccionar tu tarjeta ESP32 desde el puerto serial.
+          
+          Cuando la conexión sea exitosa, presiona el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para enviar el código a la tarjeta.
+        `,
+        highlightElement: "#btnConnection"
+      },
+      {
+        titulo: "Selecciona tu puerto",
+        desc: `
+          El navegador mostrará una ventana para elegir el puerto serial 
+          de tu ESP32. Selecciona el puerto correcto y presiona <b>Conectar</b>.
+        `,
+        waitForAction: "connect"
+      },
+      {
+        titulo: "Ejecuta tu programa",
+        desc: `
+          Ahora haz clic en el botón 
+          <b>Ejecutar</b> 
+          <span class="icon-btn icon-run"></span> 
+          para correr el programa en la ESP32.
+        `,
+        highlightElement: "#btnRun",
+        waitForAction: "run"
+      },
     ]
   }
 };
 
-/* ─── 2. LÓGICA PRINCIPAL ────────────────────────────────────── */
+/* ─── LÓGICA ─────────────────────────────────────────────────── */
 
 var TutorialSteps = {
   tutorial: null,
   paso: 0,
-  _arrowEl: null,
-  _glowEl:  null,
-  _rafId:   null,
+  _glowToolbox: null,
+  _glowBlocks: [],     // SVG roots resaltados (workspace + flyout)
+  _flyoutObs: null,   // MutationObserver del flyout
+  _currentTipos: [],    // tipos del paso actual, para el observer
 
-  cargar: function(id) {
+  /* ── API pública ─────────────────────────────────────────── */
+  cargar: function (id) {
     if (!id) { this.cerrar(); return; }
     var tut = TUTORIALS[id];
     if (!tut) return;
@@ -303,7 +610,7 @@ var TutorialSteps = {
     this._renderPaso();
   },
 
-  siguiente: function() {
+  siguiente: function () {
     if (!this.tutorial) return;
     if (this.paso < this.tutorial.steps.length - 1) {
       this.paso++;
@@ -313,14 +620,14 @@ var TutorialSteps = {
     }
   },
 
-  anterior: function() {
+  anterior: function () {
     if (!this.tutorial || this.paso === 0) return;
     this.paso--;
     this._renderPaso();
   },
 
-  cerrar: function() {
-    this._limpiarHighlight();
+  cerrar: function () {
+    this._limpiarTodo();
     this.tutorial = null;
     this.paso = 0;
     var panel = document.getElementById('ts-panel');
@@ -329,175 +636,347 @@ var TutorialSteps = {
     if (sel) sel.value = '';
   },
 
-  _renderPaso: function() {
-    var tut   = this.tutorial;
-    var step  = tut.steps[this.paso];
+  /* ── Render ──────────────────────────────────────────────── */
+  _renderPaso: function () {
+    var tut = this.tutorial;
+    var step = tut.steps[this.paso];
     var total = tut.steps.length;
 
-    document.getElementById('ts-icon').textContent  = tut.icon;
+    document.getElementById('ts-icon').textContent = tut.icon;
     document.getElementById('ts-title').textContent = tut.title;
 
     var pct = Math.round(((this.paso + 1) / total) * 100);
     document.getElementById('ts-progress-fill').style.width = pct + '%';
-    document.getElementById('ts-progress-txt').textContent  =
+    document.getElementById('ts-progress-txt').textContent =
       'Paso ' + (this.paso + 1) + ' de ' + total;
 
-    document.getElementById('ts-step-num').textContent   = this.paso + 1;
+    document.getElementById('ts-step-num').textContent = this.paso + 1;
     document.getElementById('ts-step-title').textContent = step.titulo;
-    document.getElementById('ts-step-desc').innerHTML    = step.desc;
+    document.getElementById('ts-step-desc').innerHTML = step.desc;
 
-    // Ruta de navegación
-    var rutaHTML = '<span class="ts-cat-part">' + step.categoria + '</span>';
-    if (step.subcategoria) {
-      rutaHTML += '<span class="ts-cat-sep">›</span>' +
-                  '<span class="ts-cat-part">' + step.subcategoria + '</span>';
+    // verificar si el body fue reemplazado por _mostrarFin()
+    let stepNum = document.getElementById('ts-step-num');
+    let stepTitle = document.getElementById('ts-step-title');
+    let stepDesc = document.getElementById('ts-step-desc');
+
+    if (!stepNum || !stepTitle || !stepDesc) {
+      document.getElementById('ts-body').innerHTML = this._bodyTpl();
+
+      // volver a obtener referencias
+      stepNum = document.getElementById('ts-step-num');
+      stepTitle = document.getElementById('ts-step-title');
+      stepDesc = document.getElementById('ts-step-desc');
     }
-    document.getElementById('ts-cat-ruta').innerHTML  = rutaHTML;
-    document.getElementById('ts-bloque-chip').textContent = step.bloque;
 
+    // Ruta del toolbox
+    var html = '';
+    if (step.expandCat && step.expandCat !== step.highlightCat) {
+      html += '<span class="ts-cat-part">' + step.expandCat + '</span>' +
+        '<span class="ts-cat-sep">›</span>';
+    }
+    if (step.highlightCat) {
+      html += '<span class="ts-cat-part ts-cat-active">' + step.highlightCat + '</span>';
+    }
+    document.getElementById('ts-cat-ruta').innerHTML = html;
+
+    // Chip del bloque
+    var chipRow = document.getElementById('ts-bloque-row');
+    var chip = document.getElementById('ts-bloque-chip');
+    if (step.bloque) {
+      var tipos = Array.isArray(step.bloque) ? step.bloque : [step.bloque];
+      chip.textContent = tipos.join('  +  ');
+      chipRow.style.display = 'flex';
+    } else {
+      chipRow.style.display = 'none';
+    }
+
+    // Botones
     document.getElementById('ts-btn-prev').disabled = (this.paso === 0);
     document.getElementById('ts-btn-next').textContent =
       (this.paso === total - 1) ? '¡Terminar! 🎉' : 'Siguiente →';
 
+    // Animación
     var body = document.getElementById('ts-body');
     body.classList.remove('ts-anim');
     void body.offsetWidth;
     body.classList.add('ts-anim');
 
-    // Highlight toolbox
-    this._limpiarHighlight();
-    // Intenta resaltar primero la subcategoría, si no la categoría padre
-    var target = null;
-    if (step.subcategoria) target = this._findToolboxItem(step.subcategoria);
-    if (!target) target = this._findToolboxItem(step.categoria);
-    if (target) {
-      target.classList.add('ts-toolbox-glow');
-      this._glowEl = target;
-      this._crearFlecha(target);
+    // Highlights
+    this._limpiarTodo();
+    this._highlightToolbox(step.highlightCat);
+
+    if (step.highlightElement) {
+      this._highlightHTMLElement(step.highlightElement);
+    }
+
+    if (step.highlightFlyoutButton === "create_variable") {
+      highlightCreateVariableButton();
+    }
+
+    if (step.bloque) {
+      var tipos = Array.isArray(step.bloque) ? step.bloque : [step.bloque];
+      this._currentTipos = tipos;
+      this._aplicarGlowWorkspace(tipos);   // bloques ya en workspace
+      this._aplicarGlowFlyout(tipos);      // bloques en el flyout abierto
+      this._iniciarFlyoutObserver(tipos);  // observer para cuando abra el flyout
+    } else {
+      this._currentTipos = [];
     }
   },
 
-  _findToolboxItem: function(nombre) {
-    if (!nombre) return null;
+  /* ── Highlight toolbox ───────────────────────────────────── */
+  _highlightToolbox: function (nombre) {
+    if (!nombre) return;
     var rows = document.querySelectorAll('.blocklyTreeRow');
     for (var i = 0; i < rows.length; i++) {
       var label = rows[i].querySelector('.blocklyTreeLabel');
       if (label && label.textContent.trim() === nombre.trim()) {
-        return rows[i];
+        rows[i].classList.add('ts-toolbox-glow');
+        this._glowToolbox = rows[i];
+        rows[i].scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        break;
       }
     }
+  },
+
+  _highlightHTMLElement: function (selector) {
+    const el = document.querySelector(selector);
+
+    if (!el) {
+      console.warn("Elemento no encontrado:", selector);
+      return;
+    }
+
+    el.classList.add("ts-html-glow");
+
+    this._glowHtmlElement = el;
+
+    el.scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+  },
+
+  /* ── Highlight bloques en el workspace principal ─────────── */
+  _aplicarGlowWorkspace: function (tipos) {
+    var ws = this._getWorkspace();
+    if (!ws) return;
+    var self = this;
+    ws.getAllBlocks(false).forEach(function (block) {
+      if (tipos.indexOf(block.type) !== -1) {
+        var svg = block.getSvgRoot();
+        if (svg && !svg.classList.contains('ts-block-glow')) {
+          svg.classList.add('ts-block-glow');
+          self._glowBlocks.push(svg);
+        }
+      }
+    });
+  },
+
+  /* ── Highlight bloques en el flyout (si está abierto) ───── */
+  _aplicarGlowFlyout: function (tipos) {
+    var self = this;
+    // Busca todos los <g class="blocklyDraggable"> dentro de .blocklyFlyout
+    var flyoutSvg = document.querySelector('.blocklyFlyout');
+    if (!flyoutSvg) return;
+
+    // Intenta via API de Blockly primero (más limpio)
+    var ws = this._getWorkspace();
+    if (ws && ws.getFlyout && ws.getFlyout()) {
+      var flyoutWs = ws.getFlyout().getWorkspace ? ws.getFlyout().getWorkspace() : null;
+      if (flyoutWs) {
+        flyoutWs.getAllBlocks(false).forEach(function (block) {
+          if (tipos.indexOf(block.type) !== -1) {
+            var svg = block.getSvgRoot();
+            if (svg && !svg.classList.contains('ts-block-glow')) {
+              svg.classList.add('ts-block-glow');
+              self._glowBlocks.push(svg);
+            }
+          }
+        });
+        return;  // éxito vía API
+      }
+    }
+
+    // Fallback: buscar por data-id en el DOM del flyout
+    // Blockly pone el type en el atributo data-block-type o en la clase,
+    // pero lo más confiable es buscar via getSvgRoot del workspace del flyout.
+    // Si el fallback es necesario, marcamos todos los <g.blocklyDraggable>
+    // del flyout que correspondan al tipo — comparando con los del workspace.
+    this._aplicarGlowFlyoutDOM(tipos, flyoutSvg);
+  },
+
+  /* Fallback DOM: compara data-id del flyout con el registro de Blockly */
+  _aplicarGlowFlyoutDOM: function (tipos, flyoutSvg) {
+    var self = this;
+    var ws = this._getWorkspace();
+    if (!ws || !ws.getFlyout) return;
+
+    var flyout = ws.getFlyout();
+    if (!flyout) return;
+
+    // Blockly guarda un mapa id→block en el flyout
+    // Intentamos acceder a flyout.workspace_ (API privada, muy estable)
+    var fws = flyout.workspace_ || (flyout.getWorkspace && flyout.getWorkspace());
+    if (!fws) return;
+
+    var blockMap = fws.blockDB_ || {};
+    Object.keys(blockMap).forEach(function (id) {
+      var block = blockMap[id];
+      if (block && tipos.indexOf(block.type) !== -1) {
+        var svg = block.getSvgRoot ? block.getSvgRoot() : null;
+        if (svg && !svg.classList.contains('ts-block-glow')) {
+          svg.classList.add('ts-block-glow');
+          self._glowBlocks.push(svg);
+        }
+      }
+    });
+  },
+
+  /* ── MutationObserver: aplica glow cuando el flyout se abre ─
+     El flyout cambia su atributo display/transform al abrirse.
+     Observamos el padre del .blocklyFlyout para detectarlo.      */
+  _iniciarFlyoutObserver: function (tipos) {
+    var self = this;
+    this._detenerFlyoutObserver();
+
+    // Observa el blocklyDiv para detectar cuando aparece o cambia el flyout
+    var blocklyDiv = document.getElementById('blocklyDiv');
+    if (!blocklyDiv) return;
+
+    var debounceTimer = null;
+    this._flyoutObs = new MutationObserver(function () {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(function () {
+        // Quita glow viejo del flyout y reaplicar
+        // (no quitamos el del workspace, solo el del flyout anterior)
+        var toRemove = [];
+        self._glowBlocks = self._glowBlocks.filter(function (svg) {
+          // Si el SVG ya no está en el flyout activo, lo dejamos
+          // Si está en el flyout, lo removemos para reaplicar
+          var inFlyout = svg.closest && svg.closest('.blocklyFlyout');
+          if (inFlyout) {
+            svg.classList.remove('ts-block-glow');
+            return false;
+          }
+          return true;
+        });
+        self._aplicarGlowFlyout(tipos);
+      }, 60);
+    });
+
+    this._flyoutObs.observe(blocklyDiv, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style', 'transform', 'display']
+    });
+  },
+
+  _detenerFlyoutObserver: function () {
+    if (this._flyoutObs) {
+      this._flyoutObs.disconnect();
+      this._flyoutObs = null;
+    }
+  },
+
+  /* ── Limpieza total ──────────────────────────────────────── */
+  _limpiarTodo: function () {
+    this._detenerFlyoutObserver();
+    this._currentTipos = [];
+
+    if (this._glowToolbox) {
+      this._glowToolbox.classList.remove('ts-toolbox-glow');
+      this._glowToolbox = null;
+    }
+    this._glowBlocks.forEach(function (svg) {
+      svg.classList.remove('ts-block-glow');
+    });
+    this._glowBlocks = [];
+
+    if (this._glowHtmlElement) {
+      this._glowHtmlElement.classList.remove("ts-html-glow");
+      this._glowHtmlElement = null;
+    }
+  },
+
+  /* ── Helpers ─────────────────────────────────────────────── */
+  _getWorkspace: function () {
+    if (typeof Code !== 'undefined' && Code.workspace) return Code.workspace;
+    if (typeof Blockly !== 'undefined') return Blockly.getMainWorkspace();
     return null;
   },
 
-  _crearFlecha: function(target) {
-    var self = this;
-    if (self._arrowEl)  { self._arrowEl.remove();  self._arrowEl = null; }
-    if (self._rafId)    { cancelAnimationFrame(self._rafId); self._rafId = null; }
-
-    var arrow = document.createElement('div');
-    arrow.id = 'ts-arrow';
-    arrow.innerHTML =
-      '<svg viewBox="0 0 64 32" xmlns="http://www.w3.org/2000/svg">' +
-      '  <defs><filter id="tsgf">' +
-      '    <feGaussianBlur stdDeviation="2.5" result="b"/>' +
-      '    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>' +
-      '  </filter></defs>' +
-      '  <line x1="4" y1="16" x2="48" y2="16" stroke="#7c6af7" stroke-width="4"' +
-      '    stroke-linecap="round" filter="url(#tsgf)"/>' +
-      '  <polygon points="46,6 62,16 46,26" fill="#7c6af7" filter="url(#tsgf)"/>' +
-      '</svg>';
-    document.body.appendChild(arrow);
-    self._arrowEl = arrow;
-
-    function posicionar() {
-      if (!self._arrowEl) return;
-      var r   = target.getBoundingClientRect();
-      var midY = r.top + r.height / 2;
-      arrow.style.left = (r.right + 8) + 'px';
-      arrow.style.top  = (midY - 16) + 'px';
-      self._rafId = requestAnimationFrame(posicionar);
-    }
-    posicionar();
-  },
-
-  _limpiarHighlight: function() {
-    if (this._glowEl)  { this._glowEl.classList.remove('ts-toolbox-glow'); this._glowEl = null; }
-    if (this._arrowEl) { this._arrowEl.remove(); this._arrowEl = null; }
-    if (this._rafId)   { cancelAnimationFrame(this._rafId); this._rafId = null; }
-  },
-
-  _mostrarFin: function() {
-    this._limpiarHighlight();
+  /* ── Fin ─────────────────────────────────────────────────── */
+  _mostrarFin: function () {
+    this._limpiarTodo();
     document.getElementById('ts-body').innerHTML =
       '<div class="ts-fin">' +
       '  <div class="ts-fin-icon">🎉</div>' +
       '  <h3>¡Tutorial completado!</h3>' +
       '  <p>Terminaste <strong>' + this.tutorial.title + '</strong>.<br>' +
-      '     Prueba cambiar valores o elige otro tutorial.</p>' +
+      '     Prueba modificar valores o elige otro tutorial.</p>' +
       '  <button class="ts-btn ts-btn-primary" onclick="TutorialSteps._reiniciar()">Repetir</button>' +
       '</div>';
     document.getElementById('ts-btn-next').style.display = 'none';
     document.getElementById('ts-btn-prev').style.display = 'none';
   },
 
-  _reiniciar: function() {
+  _reiniciar: function () {
     document.getElementById('ts-btn-next').style.display = '';
     document.getElementById('ts-btn-prev').style.display = '';
-    document.getElementById('ts-body').innerHTML =
+    document.getElementById('ts-body').innerHTML = TutorialSteps._bodyTpl();
+    this.paso = 0;
+    this._renderPaso();
+  },
+
+  _bodyTpl: function () {
+    return (
       '<div class="ts-step-header">' +
-      '  <span class="ts-step-num" id="ts-step-num">1</span>' +
-      '  <h3 class="ts-step-title" id="ts-step-title"></h3>' +
+      '  <span class="ts-step-num"  id="ts-step-num">1</span>' +
+      '  <h3  class="ts-step-title" id="ts-step-title"></h3>' +
       '</div>' +
       '<p class="ts-step-desc" id="ts-step-desc"></p>' +
       '<div class="ts-cat-box">' +
-      '  <div class="ts-cat-label">📂 Ve al toolbox:</div>' +
-      '  <div class="ts-cat-ruta" id="ts-cat-ruta"></div>' +
-      '  <div class="ts-bloque-row">' +
+      '  <div class="ts-cat-label">📂 Ir al toolbox:</div>' +
+      '  <div class="ts-cat-ruta"  id="ts-cat-ruta"></div>' +
+      '  <div class="ts-bloque-row" id="ts-bloque-row" style="display:none">' +
       '    <span class="ts-bloque-icon">🧩</span>' +
       '    <span class="ts-bloque-chip" id="ts-bloque-chip"></span>' +
       '  </div>' +
-      '</div>';
-    this.paso = 0;
-    this._renderPaso();
+      '</div>'
+    );
   }
 };
 
-/* ─── 3. DRAG ────────────────────────────────────────────────── */
-
-function makeDraggable(panel) {
+/* ─── DRAG ───────────────────────────────────────────────────── */
+function _tsMakeDraggable(panel) {
   var header = panel.querySelector('.ts-header');
   if (!header) return;
   header.style.cursor = 'grab';
-
   var drag = false, sx, sy, ol, ot;
-
-  header.addEventListener('mousedown', function(e) {
+  header.addEventListener('mousedown', function (e) {
     if (e.target.classList.contains('ts-close')) return;
-    drag = true;
-    sx = e.clientX; sy = e.clientY;
+    drag = true; sx = e.clientX; sy = e.clientY;
     var r = panel.getBoundingClientRect();
     ol = r.left; ot = r.top;
     panel.style.right = panel.style.bottom = 'auto';
-    panel.style.left  = ol + 'px';
-    panel.style.top   = ot + 'px';
+    panel.style.left = ol + 'px'; panel.style.top = ot + 'px';
     header.style.cursor = 'grabbing';
     e.preventDefault();
   });
-
-  document.addEventListener('mousemove', function(e) {
+  document.addEventListener('mousemove', function (e) {
     if (!drag) return;
     panel.style.left = Math.max(0, ol + e.clientX - sx) + 'px';
-    panel.style.top  = Math.max(48, ot + e.clientY - sy) + 'px';
+    panel.style.top = Math.max(48, ot + e.clientY - sy) + 'px';
   });
-
-  document.addEventListener('mouseup', function() {
+  document.addEventListener('mouseup', function () {
     if (drag) { drag = false; header.style.cursor = 'grab'; }
   });
 }
 
-/* ─── 4. INICIALIZACIÓN ─────────────────────────────────────── */
-
-document.addEventListener('DOMContentLoaded', function() {
+/* ─── INIT ───────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', function () {
 
   var panel = document.createElement('div');
   panel.id = 'ts-panel';
@@ -513,34 +992,42 @@ document.addEventListener('DOMContentLoaded', function() {
     '</div>' +
     '<div class="ts-progress-bar"><div class="ts-progress-fill" id="ts-progress-fill"></div></div>' +
     '<p class="ts-progress-txt" id="ts-progress-txt"></p>' +
-    '<div class="ts-body" id="ts-body">' +
-    '  <div class="ts-step-header">' +
-    '    <span class="ts-step-num" id="ts-step-num">1</span>' +
-    '    <h3 class="ts-step-title" id="ts-step-title"></h3>' +
-    '  </div>' +
-    '  <p class="ts-step-desc" id="ts-step-desc"></p>' +
-    '  <div class="ts-cat-box">' +
-    '    <div class="ts-cat-label">📂 Ve al toolbox:</div>' +
-    '    <div class="ts-cat-ruta" id="ts-cat-ruta"></div>' +
-    '    <div class="ts-bloque-row">' +
-    '      <span class="ts-bloque-icon">🧩</span>' +
-    '      <span class="ts-bloque-chip" id="ts-bloque-chip"></span>' +
-    '    </div>' +
-    '  </div>' +
-    '</div>' +
+    '<div class="ts-body" id="ts-body">' + TutorialSteps._bodyTpl() + '</div>' +
     '<div class="ts-footer">' +
-    '  <button class="ts-btn ts-btn-sec" id="ts-btn-prev">← Anterior</button>' +
+    '  <button class="ts-btn ts-btn-sec"     id="ts-btn-prev">← Anterior</button>' +
     '  <button class="ts-btn ts-btn-primary" id="ts-btn-next">Siguiente →</button>' +
     '</div>';
 
   document.body.appendChild(panel);
 
-  document.getElementById('ts-close').addEventListener('click', function()   { TutorialSteps.cerrar();    });
-  document.getElementById('ts-btn-next').addEventListener('click', function() { TutorialSteps.siguiente(); });
-  document.getElementById('ts-btn-prev').addEventListener('click', function() { TutorialSteps.anterior();  });
+  document.getElementById('ts-close').addEventListener('click', function () { TutorialSteps.cerrar(); });
+  document.getElementById('ts-btn-next').addEventListener('click', function () { TutorialSteps.siguiente(); });
+  document.getElementById('ts-btn-prev').addEventListener('click', function () { TutorialSteps.anterior(); });
 
   var sel = document.getElementById('tutorialSelect');
-  if (sel) sel.addEventListener('change', function() { TutorialSteps.cargar(this.value); });
+  if (sel) sel.addEventListener('change', function () { TutorialSteps.cargar(this.value); });
 
-  makeDraggable(panel);
+  _tsMakeDraggable(panel);
 });
+
+function highlightCreateVariableButton() {
+  const buttons = document.querySelectorAll(".blocklyFlyoutButton");
+  alert("Busca el botón 'Crear variable' en el flyout de Variables. Si no lo ves, abre el menú de Variables para que aparezca.");
+  for (const btn of buttons) {
+    const text = btn.textContent?.toLowerCase();
+
+    if (
+      text.includes("crear variable") ||
+      text.includes("create variable")
+    ) {
+      btn.classList.add("tutorial-highlight");
+      btn.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+      return btn;
+    }
+  }
+
+  return null;
+}

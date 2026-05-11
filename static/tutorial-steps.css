@@ -1,8 +1,8 @@
 /* ================================================================
-   tutorial-steps.css  v2
+   tutorial-steps.css  v4
 ================================================================ */
 
-/* ── Panel principal ─────────────────────────────────────────── */
+/* ── Panel ───────────────────────────────────────────────────── */
 #ts-panel {
   position: fixed;
   bottom: 20px;
@@ -15,27 +15,35 @@
   background: #1a1a2e;
   border: 1px solid #2e2e50;
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0,0,0,.6);
+  box-shadow: 0 8px 36px rgba(0, 0, 0, .65);
   font-family: 'Segoe UI', system-ui, sans-serif;
   font-size: 14px;
   color: #dde0f5;
   z-index: 9000;
-  /* permite que el usuario lo mueva libremente */
 }
 
-/* ── Cabecera (zona de drag) ─────────────────────────────────── */
+/* ── Cabecera / zona drag ────────────────────────────────────── */
 .ts-header {
   display: flex;
   align-items: center;
   gap: 10px;
   padding: 13px 13px 9px;
-  background: linear-gradient(135deg, #22204a, #1a1a2e);
+  background: linear-gradient(135deg, #24224e, #1a1a2e);
   border-radius: 12px 12px 0 0;
   border-bottom: 1px solid #2e2e50;
-  user-select: none; /* evita seleccionar texto al arrastrar */
+  user-select: none;
 }
-.ts-icon        { font-size: 23px; flex-shrink: 0; }
-.ts-title-group { flex: 1; min-width: 0; }
+
+.ts-icon {
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.ts-title-group {
+  flex: 1;
+  min-width: 0;
+}
+
 .ts-label {
   margin: 0;
   font-size: 10px;
@@ -44,13 +52,15 @@
   text-transform: uppercase;
   color: #7c6af7;
 }
+
 .ts-drag-hint {
   font-weight: 400;
-  letter-spacing: 0;
   text-transform: none;
-  color: #4d4d80;
+  letter-spacing: 0;
+  color: #44447a;
   font-size: 10px;
 }
+
 .ts-title {
   margin: 2px 0 0;
   font-size: 15px;
@@ -59,10 +69,11 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .ts-close {
   background: none;
   border: none;
-  color: #5555aa;
+  color: #55558a;
   font-size: 15px;
   cursor: pointer;
   padding: 4px 7px;
@@ -70,19 +81,25 @@
   transition: background .15s, color .15s;
   flex-shrink: 0;
 }
-.ts-close:hover { background: rgba(255,255,255,.09); color: #dde0f5; }
+
+.ts-close:hover {
+  background: rgba(255, 255, 255, .08);
+  color: #dde0f5;
+}
 
 /* ── Progreso ────────────────────────────────────────────────── */
 .ts-progress-bar {
   height: 3px;
-  background: #2e2e50;
+  background: #252545;
 }
+
 .ts-progress-fill {
   height: 100%;
   background: linear-gradient(90deg, #7c6af7, #4ecdc4);
-  transition: width .35s ease;
+  transition: width .3s ease;
   width: 0%;
 }
+
 .ts-progress-txt {
   margin: 5px 14px 0;
   font-size: 11px;
@@ -94,12 +111,14 @@
   padding: 14px;
   flex: 1;
 }
+
 .ts-step-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 9px;
 }
+
 .ts-step-num {
   display: inline-flex;
   align-items: center;
@@ -113,70 +132,110 @@
   font-weight: 700;
   flex-shrink: 0;
 }
+
 .ts-step-title {
   margin: 0;
   font-size: 14px;
   font-weight: 600;
   line-height: 1.3;
 }
+
 .ts-step-desc {
   margin: 0 0 12px;
   line-height: 1.65;
   color: #aaaace;
 }
-.ts-step-desc b, .ts-step-desc strong { color: #4ecdc4; }
-.ts-step-desc em { color: #ffdf7e; font-style: normal; font-weight: 600; }
 
-/* ── Caja de navegación al toolbox ──────────────────────────── */
+.ts-step-desc b,
+.ts-step-desc strong {
+  color: #4ecdc4;
+}
+
+.ts-step-desc em {
+  color: #ffdf7e;
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ── Caja toolbox ────────────────────────────────────────────── */
 .ts-cat-box {
-  background: rgba(124,106,247,.10);
-  border: 1px solid rgba(124,106,247,.25);
+  background: rgba(124, 106, 247, .09);
+  border: 1px solid rgba(124, 106, 247, .22);
   border-radius: 9px;
   padding: 10px 12px;
 }
+
 .ts-cat-label {
   font-size: 10px;
   font-weight: 700;
   letter-spacing: .06em;
   text-transform: uppercase;
-  color: #6666aa;
-  margin-bottom: 6px;
+  color: #55558a;
+  margin-bottom: 7px;
 }
+
 .ts-cat-ruta {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   margin-bottom: 8px;
 }
+
 .ts-cat-part {
-  background: rgba(124,106,247,.22);
-  border: 1px solid rgba(124,106,247,.4);
+  background: rgba(124, 106, 247, .18);
+  border: 1px solid rgba(124, 106, 247, .3);
   border-radius: 5px;
-  padding: 2px 8px;
+  padding: 3px 9px;
   font-size: 12px;
   font-weight: 600;
-  color: #c8c0ff;
+  color: #b0a8f0;
 }
+
+.ts-cat-active {
+  background: rgba(124, 106, 247, .38);
+  border-color: #7c6af7;
+  color: #fff;
+  animation: tsChipPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes tsChipPulse {
+
+  0%,
+  100% {
+    box-shadow: 0 0 6px rgba(124, 106, 247, .4);
+  }
+
+  50% {
+    box-shadow: 0 0 14px rgba(124, 106, 247, .9);
+  }
+}
+
 .ts-cat-sep {
-  color: #4444aa;
+  color: #3a3a6a;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
 }
+
 .ts-bloque-row {
   display: flex;
   align-items: center;
   gap: 6px;
 }
-.ts-bloque-icon { font-size: 13px; }
+
+.ts-bloque-icon {
+  font-size: 13px;
+}
+
 .ts-bloque-chip {
-  background: rgba(78,205,196,.13);
-  border: 1px solid rgba(78,205,196,.3);
+  background: rgba(78, 205, 196, .12);
+  border: 1px solid rgba(78, 205, 196, .28);
   border-radius: 5px;
-  padding: 2px 8px;
+  padding: 3px 9px;
   font-size: 11px;
   font-weight: 600;
   color: #4ecdc4;
+  font-family: 'Cascadia Code', 'Fira Code', monospace;
   word-break: break-all;
 }
 
@@ -187,6 +246,7 @@
   padding: 10px 13px 13px;
   border-top: 1px solid #2e2e50;
 }
+
 .ts-btn {
   flex: 1;
   padding: 8px 12px;
@@ -195,51 +255,97 @@
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
-  transition: all .17s;
+  transition: all .16s;
 }
-.ts-btn:disabled { opacity: .28; cursor: not-allowed; }
-.ts-btn-primary { background: #7c6af7; color: #fff; }
-.ts-btn-primary:hover:not(:disabled) { background: #9080ff; transform: translateY(-1px); }
+
+.ts-btn:disabled {
+  opacity: .25;
+  cursor: not-allowed;
+}
+
+.ts-btn-primary {
+  background: #7c6af7;
+  color: #fff;
+}
+
+.ts-btn-primary:hover:not(:disabled) {
+  background: #9080ff;
+  transform: translateY(-1px);
+}
+
 .ts-btn-sec {
-  background: #1f1f3a;
+  background: #1e1e38;
   color: #dde0f5;
   border: 1px solid #2e2e50;
 }
-.ts-btn-sec:hover:not(:disabled) { background: #2a2a4a; }
 
-/* ── Fin del tutorial ────────────────────────────────────────── */
-.ts-fin { text-align: center; padding: 20px 0; }
-.ts-fin-icon { font-size: 44px; margin-bottom: 10px; }
-.ts-fin h3   { margin: 0 0 8px; font-size: 16px; }
-.ts-fin p    { color: #6666aa; margin: 0 0 18px; line-height: 1.6; }
-
-/* ── Animación de paso ───────────────────────────────────────── */
-@keyframes tsStepIn {
-  from { opacity: 0; transform: translateX(8px); }
-  to   { opacity: 1; transform: translateX(0); }
+.ts-btn-sec:hover:not(:disabled) {
+  background: #28284a;
 }
-.ts-anim { animation: tsStepIn .2s ease; }
+
+/* ── Fin ─────────────────────────────────────────────────────── */
+.ts-fin {
+  text-align: center;
+  padding: 22px 0;
+}
+
+.ts-fin-icon {
+  font-size: 44px;
+  margin-bottom: 10px;
+}
+
+.ts-fin h3 {
+  margin: 0 0 8px;
+  font-size: 16px;
+}
+
+.ts-fin p {
+  color: #55558a;
+  margin: 0 0 18px;
+  line-height: 1.6;
+}
+
+/* ── Animación de cambio de paso ─────────────────────────────── */
+@keyframes tsStepIn {
+  from {
+    opacity: 0;
+    transform: translateX(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ts-anim {
+  animation: tsStepIn .2s ease;
+}
 
 /* ── Scrollbar ───────────────────────────────────────────────── */
-#ts-panel::-webkit-scrollbar       { width: 4px; }
-#ts-panel::-webkit-scrollbar-track { background: transparent; }
-#ts-panel::-webkit-scrollbar-thumb { background: #3a3a60; border-radius: 4px; }
-
-/* ════════════════════════════════════════════════════════════════
-   HIGHLIGHT DEL TOOLBOX DE BLOCKLY
-   Blockly renderiza el toolbox con .blocklyTreeRow y .blocklyTreeLabel
-   ════════════════════════════════════════════════════════════════ */
-
-/* Categoría resaltada: fondo + borde brillante */
-.ts-toolbox-glow {
-  background: rgba(124, 106, 247, 0.22) !important;
-  box-shadow: inset 3px 0 0 #7c6af7,
-              0 0 0 1px rgba(124,106,247,.35) !important;
-  border-radius: 4px;
-  transition: background .25s, box-shadow .25s;
+#ts-panel::-webkit-scrollbar {
+  width: 4px;
 }
 
-/* Pulso de atención en el label */
+#ts-panel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#ts-panel::-webkit-scrollbar-thumb {
+  background: #3a3a60;
+  border-radius: 4px;
+}
+
+/* ════════════════════════════════════════════════════════════════
+   HIGHLIGHT — TOOLBOX
+   Blockly renderiza cada categoría como .blocklyTreeRow
+════════════════════════════════════════════════════════════════ */
+.ts-toolbox-glow {
+  background: rgba(124, 106, 247, .25) !important;
+  border-radius: 4px;
+  box-shadow: inset 3px 0 0 #7c6af7 !important;
+}
+
 .ts-toolbox-glow .blocklyTreeLabel {
   color: #fff !important;
   font-weight: 700 !important;
@@ -247,29 +353,55 @@
 }
 
 @keyframes tsLabelPulse {
-  0%, 100% { text-shadow: none; }
-  50%       { text-shadow: 0 0 8px #b8afff, 0 0 14px #7c6af7; }
+
+  0%,
+  100% {
+    text-shadow: 0 0 4px rgba(124, 106, 247, .4);
+  }
+
+  50% {
+    text-shadow: 0 0 14px #7c6af7, 0 0 22px rgba(124, 106, 247, .6);
+  }
 }
 
-/* ────────────────────────────────────────────────────────────────
-   FLECHA SVG FLOTANTE
-   ──────────────────────────────────────────────────────────────── */
-#ts-arrow {
-  position: fixed;
-  width: 64px;
-  height: 32px;
-  pointer-events: none;
-  z-index: 9500;
-  animation: tsArrowBounce 0.7s ease-in-out infinite alternate;
+/* ════════════════════════════════════════════════════════════════
+   HIGHLIGHT — BLOQUES EN EL WORKSPACE
+   Se aplica al <g> raíz del bloque Blockly via getSvgRoot()
+   Usamos filter: drop-shadow para rodear TODO el bloque con glow,
+   y una animación que pulsa para llamar la atención.
+════════════════════════════════════════════════════════════════ */
+.ts-block-glow {
+  animation: tsBlockGlow 1s ease-in-out infinite alternate;
 }
 
-@keyframes tsArrowBounce {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-6px); }
+@keyframes tsBlockGlow {
+  from {
+    filter: drop-shadow(0 0 4px #7c6af7) drop-shadow(0 0 8px rgba(124, 106, 247, .6));
+  }
+
+  to {
+    filter: drop-shadow(0 0 10px #7c6af7) drop-shadow(0 0 20px rgba(124, 106, 247, .9)) drop-shadow(0 0 30px rgba(124, 106, 247, .4));
+  }
 }
 
-#ts-arrow svg {
-  width: 100%;
-  height: 100%;
-  overflow: visible;
+.ts-html-glow {
+  animation: pulseBtn 1s infinite;
+  box-shadow: 0 0 15px #00d4ff;
+  border-radius: 12px;
+  position: relative;
+  z-index: 1000;
+}
+
+@keyframes pulseBtn {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
 }

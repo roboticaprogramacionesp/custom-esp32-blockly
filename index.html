@@ -608,14 +608,22 @@
 
       <select id="tutorialSelect">
         <option value="">Selecciona un tutorial</option>
-        <option value="led_basico">LED Básico</option>
-        <option value="semaforo">Semáforo</option>
-        <option value="boton">Botón</option>
-        <option value="buzzer">Buzzer</option>
-        <option value="servo">Servo</option>
-        <option value="ultrasonico">Ultrasónico</option>
-        <option value="neopixel_basico">NeoPixel</option>
+        <optgroup label="💡 LEDs">
+          <option value="led_basico">LED Básico</option>
+          <option value="led_infinito">LED Infinito (parpadeo)</option>
+          <option value="semaforo">Semáforo</option>
+        </optgroup>
+        <optgroup label="🔧 Entradas / Actuadores">
+          <option value="boton">Botón</option>
+          <option value="buzzer">Buzzer</option>
+          <option value="servo">Servo</option>
+        </optgroup>
+        <optgroup label="📡 Sensores / Avanzado">
+          <option value="ultrasonico">Ultrasónico</option>
+          <option value="neopixel_basico">NeoPixel</option>
+        </optgroup>
       </select>
+
 
     </div>
   </div>
@@ -1168,11 +1176,9 @@
       </category>
 
       <category name="Interruptores" colour="230">
-        <category name="Interruptores">
-          <block type="interruptor_init"></block>
-          <block type="interruptor_read"></block>
-          <block type="interruptor_irq"></block>
-        </category>
+        <block type="interruptor_init"></block>
+        <block type="interruptor_read"></block>
+        <block type="interruptor_irq"></block>
       </category>
 
       <category name="Actuadores" colour="20">
