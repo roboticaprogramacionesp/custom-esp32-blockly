@@ -816,12 +816,6 @@ Blockly.Python["pin_value"] = function (block) {
 Blockly.Python["pin_set_value"] = function (block) {
   const pin = block.getFieldValue("PIN");
   const value = block.getFieldValue("VALUE");
-  return [`p${pin}.value(${value})`, Blockly.Python.ORDER_ATOMIC];
-};
-
-Blockly.Python["pin_set_value"] = function (block) {
-  const pin = block.getFieldValue("PIN");
-  const value = block.getFieldValue("VALUE");
 
   return `p${pin}.value(${value})\n`;
 };
