@@ -3722,6 +3722,45 @@ Blockly.Python["tft_polygon_center"] = function (block) {
   return [code, Blockly.Python.ORDER_ATOMIC];
 };
 
+Blockly.Python["shield_set_motor"] = function(block) {
+  const pinA = block.getFieldValue("PINA");
+  const pinSpeedA = block.getFieldValue("PINPWMA");
+  const pinB = block.getFieldValue("PINB");
+  const pinSpeedB = block.getFieldValue("PINPWMB");
+
+  Blockly.Python.definitions_["import_machine"] =
+    "from machine import Pin, PWM";
+
+  return `
+motorA_dir = Pin(${pinA}, Pin.OUT)
+motorA_pwm = PWM(Pin(${pinSpeedA}), freq=2000, duty=0)
+
+motorB_dir = Pin(${pinB}, Pin.OUT)
+motorB_pwm = PWM(Pin(${pinSpeedB}), freq=2000, duty=0)
+
+`;
+};
+
+Blockly.Python["set_speed_motorA"] = function(block) {
+  const dir = block.getFieldValue("DIR");
+  const speed = block.getFieldValue("SPEED");
+
+  return `
+motorA_dir.value(${dir})
+motorA_pwm.duty(${speed})
+`;
+};
+
+Blockly.Python["set_speed_motorB"] = function(block) {
+  const dir = block.getFieldValue("DIR");
+  const speed = block.getFieldValue("SPEED");
+
+  return `
+motorB_dir.value(${dir})
+motorB_pwm.duty(${speed})
+`;
+};
+
 Blockly.Python["init_keypad_3x4"] = function (block) {
   const name = block.getFieldValue("NAME");
   const r1 = block.getFieldValue("R1");
