@@ -1448,7 +1448,7 @@ Blockly.defineBlocksWithJsonArray([
   },
   {
     type: "pwm_init",
-    message0: "PWM(Pin(%1))",
+    message0: "PWM(Pin(%1), freq=%2, duty=%3)",
     args0: [
       {
         type: "field_dropdown",
@@ -1476,6 +1476,13 @@ Blockly.defineBlocksWithJsonArray([
           ["34", "34"],
           ["35", "35"],
         ],
+      },
+      {
+        type: "field_number",
+        name: "FREQ",
+        min: 0,
+        max: 20000,
+        precision: 1,
       },
     ],
     previousStatement: null,
@@ -1518,6 +1525,13 @@ Blockly.defineBlocksWithJsonArray([
         name: "FREQ",
         min: 0,
         max: 20000,
+        precision: 1,
+      },
+      {
+        type: "field_number",
+        name: "DUTY",
+        min: 0,
+        max: 1023,
         precision: 1,
       },
     ],

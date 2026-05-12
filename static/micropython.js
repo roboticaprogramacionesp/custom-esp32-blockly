@@ -860,10 +860,12 @@ Blockly.Python["adc_read_uv"] = function (block) {
 
 Blockly.Python["pwm_init"] = function (block) {
   const pin = block.getFieldValue("PIN");
+  const freq = block.getFieldValue("FREQ");
+  const duty = block.getFieldValue("DUTY");
 
   Blockly.Python.definitions_["import_pwm"] = "from machine import Pin, PWM";
 
-  return `pwm${pin} = PWM(Pin(${pin}), freq=5000, duty=512)\n`;
+  return `pwm${pin} = PWM(Pin(${pin}), freq=${freq}, duty=${duty})\n`;
 };
 
 Blockly.Python["pwm_freq"] = function (block) {
