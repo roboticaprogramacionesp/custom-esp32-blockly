@@ -871,7 +871,7 @@ Blockly.Python["pwm_init"] = function (block) {
 Blockly.Python["pwm_freq"] = function (block) {
   const pin = block.getFieldValue("PIN");
   const freq = block.getFieldValue("FREQ");
-  console.log(freq);
+
   return `pwm${pin}.freq(${freq})\n`;
 };
 

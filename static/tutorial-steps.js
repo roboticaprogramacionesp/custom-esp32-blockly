@@ -242,20 +242,39 @@ var TUTORIALS = {
 
       {
         titulo: "Crear variable contador",
-        desc: "Ve a <b>Variables</b>, crea una variable llamada <b>contador</b> y usa el bloque <em>establecer contador a 0</em>.",
+        desc: "Ve a <b>Variables</b>, crea una variable llamada <b>contador</b>.",
         highlightCat: "Variables",
         highlightFlyoutButton: "create_variable",
         expandCat: null,
         bloque: null
       },
       {
-        titulo: "Crear variable para botón",
-        desc: "Ve a <b>Variables</b>, crea una variable llamada <b>btn</b> y usa el bloque <em>establecer btn a 0</em>.",
+        titulo: "Establecer variable contador",
+        desc: "Ve a establecer contador a</em>.",
         highlightCat: "Variables",
+        expandCat: null,
+        bloque: "variables_set"
+      },
+      {
+        titulo: "Establecer 0 en contador",
+        desc: "Ve a Matemáticas y selecciona el bloque 0.",
+        highlightCat: "Matemáticas",
+        bloque: "math_number"
+      },
+      {
+        titulo: "Crear variable btn",
+        desc: "Ve a <b>Variables</b>, crea una variable llamada <b>btn</b>.",
+        highlightCat: "Variables",
+        highlightFlyoutButton: "create_variable",
         expandCat: null,
         bloque: null
       },
-
+      {
+        titulo: "Establecer 0 en btn",
+        desc: "Ve a Matemáticas y selecciona el bloque 0.",
+        highlightCat: "Matemáticas",
+        bloque: "math_number"
+      },
       {
         titulo: "Agregar ciclo infinito",
         desc: "Desde <b>Ciclos</b>, arrastra el bloque <em>repetir mientras verdadero</em>.",
@@ -270,13 +289,19 @@ var TUTORIALS = {
         bloque: "variables_set"
       },
       {
+        titulo: "Invertir la lectura usando No",
+        desc: "<em>no leer Pin 17</em>.",
+        highlightCat: "Lógica",
+        expandCat: null,
+        bloque: "logic_negate"
+      },
+      {
         titulo: "Leer el botón",
-        desc: "Dentro del ciclo, agrega un bloque de variable para guardar el estado del botón usando <em>no leer Pin 17</em>.",
+        desc: "Leer el estado del botón usando <em>leer Pin 17</em>.",
         highlightCat: "Interruptores",
         expandCat: "Interruptores",
         bloque: "interruptor_read"
       },
-
       {
         titulo: "Agregar condición",
         desc: "Ve a <b>Lógica</b> y arrastra el bloque <em>Si hacer</em>. Después agrega una comparación <em>btn = 1</em>.",
@@ -284,47 +309,73 @@ var TUTORIALS = {
         expandCat: null,
         bloque: "controls_if"
       },
-
       {
-        titulo: "Comparar valor",
-        desc: "Usa el bloque <em>=</em> desde <b>Lógica</b> para verificar si el botón fue presionado.",
-        highlightCat: "Lógica",
+        titulo: "Comparar valor primera posición",
+        desc: "Usa el bloque <em>=</em> en la primera posición desde <b>Variables</b> para consultar el estado del botón (btn).",
+        highlightCat: "Variables",
         expandCat: null,
-        bloque: "logic_compare"
+        bloque: {
+          tipo: "variables_get",
+          valor: "btn"
+        }
       },
-
       {
-        titulo: "Usar operador NO",
-        desc: "Agrega el bloque <em>no</em> para invertir la lectura del botón debido al uso de <b>PULL_UP</b>.",
-        highlightCat: "Lógica",
+        titulo: "Comparar valor segunda posición",
+        desc: "Usa el bloque <em>=</em> en la segunda posición establecer el valor de 1.",
+        highlightCat: "Matemáticas",
         expandCat: null,
-        bloque: "logic_negate"
+        bloque: "math_number"
       },
-
       {
-        titulo: "Imprimir texto",
-        desc: "Ve a <b>Texto</b> y arrastra <em>crear texto con</em> para mostrar <b>'Contador:'</b> junto con el valor del botón.",
-        highlightCat: "Texto",
-        expandCat: null,
-        bloque: "text_join"
-      },
-
-      {
-        titulo: "Agregar mensaje en consola",
-        desc: "Usa el bloque <em>imprimir</em> para mostrar el resultado en la terminal serial.",
-        highlightCat: "Texto",
+        titulo: "Imprimir un mensaje",
+        desc: "Ve a <b>Textos</b> y arrastra <em>crear texto con</em> quitar el bloque dice 3DPit.",
+        highlightCat: "Textos",
         expandCat: null,
         bloque: "text_print"
       },
-
+      {
+        titulo: "Unir dos textos para imprimir un unico mensaje.",
+        desc: "Usa el bloque <em>crear texto con</em> para unir dos textos: el mensaje 'Contador: ' y el valor de la variable contador.",
+        highlightCat: "Textos",
+        expandCat: null,
+        bloque: "text_join"
+      },
+      {
+        titulo: "Texto Contador.",
+        desc: "Usa el bloque <em>texto</em> para poner el mensaje 'Contador: ' y conéctalo a la primera posición del bloque <em>crear texto con</em>.",
+        highlightCat: "Textos",
+        expandCat: null,
+        bloque: "text"
+      },
+      {
+        titulo: "Tomar el valor de contador.",
+        desc: "Leer el valor de la variable contador usando el bloque <em>obtener contador</em> desde <b>Variables</b> Colocarlo en la segunda posición del bloque <em>crear texto con</em>..",
+        highlightCat: "Variables",
+        bloque: {
+          tipo: "variables_get",
+          valor: "contador"
+        }
+      },
+      {
+        titulo: "Establecer variable contador.",
+        desc: "En la parte de hacer del bloque Si, establece contador a contador + 1 usando el bloque <em>variables_change</em> y el bloque de suma <em>+</em> de Matemáticas.",
+        highlightCat: "Variables",
+        bloque: "math_change"
+      },
+      {
+        titulo: "Comparar valor segunda posición",
+        desc: "Usa el bloque <em>=</em> en la segunda posición establecer el valor de 1.",
+        highlightCat: "Matemáticas",
+        expandCat: null,
+        bloque: "math_number"
+      },
       {
         titulo: "Agregar espera",
-        desc: "Desde <b>Tiempo</b>, agrega <em>esperar 1 segundo</em> para evitar múltiples lecturas rápidas.",
+        desc: "Desde <b>Tiempo</b>, agrega <em>esperar 1 segundo</em> debajo de hacer para evitar múltiples lecturas rápidas.",
         highlightCat: "Tiempo",
         expandCat: null,
         bloque: "time_sleep"
       },
-
       {
         titulo: "Conecta tu ESP32",
         desc: `
@@ -710,18 +761,131 @@ var TutorialSteps = {
     }
 
     if (step.highlightFlyoutButton === "create_variable") {
-      highlightCreateVariableButton();
+      this._waitForCreateVariableButton();
     }
 
     if (step.bloque) {
-      var tipos = Array.isArray(step.bloque) ? step.bloque : [step.bloque];
-      this._currentTipos = tipos;
-      this._aplicarGlowWorkspace(tipos);   // bloques ya en workspace
-      this._aplicarGlowFlyout(tipos);      // bloques en el flyout abierto
-      this._iniciarFlyoutObserver(tipos);  // observer para cuando abra el flyout
+      // Normalizar SIEMPRE a array de objetos { tipo, valor? }
+      var bloques = this._normalizarBloques(step.bloque);
+
+      this._currentBloques = bloques;
+
+      this._aplicarGlowWorkspaceBloques(bloques);
+      this._aplicarGlowFlyoutBloques(bloques);
+      this._iniciarFlyoutObserverBloques(bloques);
     } else {
-      this._currentTipos = [];
+      this._currentBloques = [];
     }
+  },
+
+  /* Convierte string | objeto | array mixto → array de { tipo, valor? } */
+  _normalizarBloques: function (bloque) {
+    var arr = Array.isArray(bloque) ? bloque : [bloque];
+    return arr.map(function (b) {
+      if (typeof b === 'string') return { tipo: b };
+      return b;
+    });
+  },
+
+  /*
+   * Comprueba si un bloque de Blockly coincide con el descriptor { tipo, valor? }.
+   * Para variables_get / variables_set, getFieldValue("VAR") devuelve el ID
+   * interno (UUID), NO el nombre visible. Resolvemos el nombre real con el
+   * modelo de variables del workspace y varios fallbacks.
+   */
+  _bloqueCoincide: function (block, b) {
+    if (block.type !== b.tipo) return false;
+    if (!b.valor) return true;
+
+    try {
+      // 1. FieldVariable expone getVariable() → { name, id, type }
+      var varField = block.getField('VAR');
+      if (varField && varField.getVariable) {
+        var varModel = varField.getVariable();
+        if (varModel && varModel.name === b.valor) return true;
+      }
+      // 2. Resolver ID → nombre via workspace.getVariableById()
+      var rawId = block.getFieldValue('VAR');
+      var bws = block.workspace;
+      if (bws && bws.getVariableById) {
+        var model = bws.getVariableById(rawId);
+        if (model && model.name === b.valor) return true;
+      }
+      // 3. Algunos bloques usan el campo "NAME" directamente
+      var nameVal = block.getFieldValue('NAME');
+      if (nameVal === b.valor) return true;
+      // 4. Último recurso: texto renderizado del dropdown
+      if (varField && typeof varField.getText === 'function') {
+        if (varField.getText() === b.valor) return true;
+      }
+    } catch (e) { /* ignorar errores de campos inexistentes */ }
+
+    return false;
+  },
+
+  _aplicarGlowFlyoutBloques: function (bloques) {
+    var ws = this._getWorkspace();
+    if (!ws || !ws.getFlyout) return;
+
+    var flyout = ws.getFlyout();
+    if (!flyout) return;
+
+    // Intentar vía getWorkspace() primero, luego workspace_ (API privada estable)
+    var fws = (flyout.getWorkspace && flyout.getWorkspace()) || flyout.workspace_;
+    if (!fws) return;
+
+    var self = this;
+
+    // Usar getAllBlocks si está disponible (más fiable que blockDB_)
+    var allBlocks = fws.getAllBlocks ? fws.getAllBlocks(false)
+      : Object.values(fws.blockDB_ || {});
+
+    allBlocks.forEach(function (block) {
+      if (!block) return;
+
+      bloques.forEach(function (b) {
+        if (!self._bloqueCoincide(block, b)) return;
+
+        var svg = block.getSvgRoot ? block.getSvgRoot() : null;
+        if (svg && !svg.classList.contains('ts-block-glow')) {
+          svg.classList.add('ts-block-glow');
+          self._glowBlocks.push(svg);
+        }
+      });
+    });
+  },
+
+  _iniciarFlyoutObserverBloques: function (bloques) {
+    var self = this;
+    this._detenerFlyoutObserver();
+
+    var blocklyDiv = document.getElementById('blocklyDiv');
+    if (!blocklyDiv) return;
+
+    var debounce;
+    this._flyoutObs = new MutationObserver(function () {
+      clearTimeout(debounce);
+      debounce = setTimeout(function () {
+        // Quitar glow viejo del flyout y reaplicar
+        self._glowBlocks = self._glowBlocks.filter(function (svg) {
+          var inFlyout = svg.closest && svg.closest('.blocklyFlyout');
+          if (inFlyout) {
+            svg.classList.remove('ts-block-glow');
+            return false;
+          }
+          return true;
+        });
+        // bloques ya está normalizado — aplicar directamente
+        self._aplicarGlowFlyoutBloques(bloques);
+      }, 60);
+    });
+
+    this._flyoutObs.observe(blocklyDiv, {
+      childList: true,
+      subtree: true,
+      attributes: true,
+      attributeFilter: ['style', 'transform', 'display']
+    });
   },
 
   /* ── Highlight toolbox ───────────────────────────────────── */
@@ -758,12 +922,18 @@ var TutorialSteps = {
   },
 
   /* ── Highlight bloques en el workspace principal ─────────── */
-  _aplicarGlowWorkspace: function (tipos) {
+  _aplicarGlowWorkspaceBloques: function (bloques) {
     var ws = this._getWorkspace();
     if (!ws) return;
+
     var self = this;
+
     ws.getAllBlocks(false).forEach(function (block) {
-      if (tipos.indexOf(block.type) !== -1) {
+
+      for (var i = 0; i < bloques.length; i++) {
+        var b = bloques[i];
+        if (!self._bloqueCoincide(block, b)) continue;
+
         var svg = block.getSvgRoot();
         if (svg && !svg.classList.contains('ts-block-glow')) {
           svg.classList.add('ts-block-glow');
@@ -880,7 +1050,7 @@ var TutorialSteps = {
     }
   },
 
-  /* ── Limpieza total ──────────────────────────────────────── */
+
   _limpiarTodo: function () {
     this._detenerFlyoutObserver();
     this._currentTipos = [];
@@ -889,10 +1059,16 @@ var TutorialSteps = {
       this._glowToolbox.classList.remove('ts-toolbox-glow');
       this._glowToolbox = null;
     }
+
     this._glowBlocks.forEach(function (svg) {
       svg.classList.remove('ts-block-glow');
     });
+
     this._glowBlocks = [];
+
+    document.querySelectorAll(".blocklyFlyoutButtonBackground").forEach(btn => {
+      btn.classList.remove("ts-block-glow");
+    });
 
     if (this._glowHtmlElement) {
       this._glowHtmlElement.classList.remove("ts-html-glow");
@@ -946,7 +1122,43 @@ var TutorialSteps = {
       '  </div>' +
       '</div>'
     );
-  }
+  },
+
+
+  _waitForCreateVariableButton: function () {
+    const self = this;
+
+    if (this._createVarObserver) {
+      this._createVarObserver.disconnect();
+    }
+
+    // intentar inmediatamente por si ya existe
+    const btnNow = highlightCreateVariableButton();
+    if (btnNow) return;
+
+    const blocklyDiv = document.getElementById("blocklyDiv");
+    if (!blocklyDiv) return;
+
+    let debounce;
+
+    this._createVarObserver = new MutationObserver(() => {
+      clearTimeout(debounce);
+
+      debounce = setTimeout(() => {
+        const btn = highlightCreateVariableButton();
+
+        if (btn) {
+          self._createVarObserver.disconnect();
+          self._createVarObserver = null;
+        }
+      }, 100);
+    });
+
+    this._createVarObserver.observe(blocklyDiv, {
+      childList: true,
+      subtree: true
+    });
+  },
 };
 
 /* ─── DRAG ───────────────────────────────────────────────────── */
@@ -1012,19 +1224,27 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function highlightCreateVariableButton() {
   const buttons = document.querySelectorAll(".blocklyFlyoutButton");
-  alert("Busca el botón 'Crear variable' en el flyout de Variables. Si no lo ves, abre el menú de Variables para que aparezca.");
+
   for (const btn of buttons) {
     const text = btn.textContent?.toLowerCase();
+
+    console.log("Checking button:", text);
 
     if (
       text.includes("crear variable") ||
       text.includes("create variable")
     ) {
-      btn.classList.add("tutorial-highlight");
+      const rect = btn.querySelector(".blocklyFlyoutButtonBackground");
+
+      if (rect) {
+        rect.classList.add("ts-block-glow");
+      }
+
       btn.scrollIntoView({
         behavior: "smooth",
         block: "center"
       });
+
       return btn;
     }
   }
